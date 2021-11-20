@@ -1,7 +1,7 @@
 class Person extends GameObject {
   constructor(config) {
     super(config);
-    this.movementProgressRemaining = 16;
+    this.movementProgressRemaining = 0;
 
     this.isPlayerControlled = config.isPlayerControlled || false;
 
@@ -15,6 +15,7 @@ class Person extends GameObject {
 
   update(state) {
     this.updatePosition();
+    this.updateSprite(state);
 
     if (
       this.isPlayerControlled &&
@@ -31,6 +32,20 @@ class Person extends GameObject {
       const [property, change] = this.directionUpdate[this.direction];
       this[property] += change;
       this.movementProgressRemaining -= 1;
+    }
+  }
+
+  updateSprite(state) {
+    if (
+      this.isPlayerControlled &&
+      this.movementProgressRemaining === 0 &&
+      !state.arrow
+    ) {
+      this.sprite.setAnimation("idle-" + this.direction);
+    }
+
+    if (this.movementProgressRemaining > 0) {
+      this.sprite.setAnimation("walk-" + this.direction);
     }
   }
 }
