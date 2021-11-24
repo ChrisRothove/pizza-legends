@@ -8,6 +8,8 @@ class OverworldMap {
 
     this.upperImage = new Image();
     this.upperImage.src = config.upperSrc;
+
+    this.isCutscenePlaying = true;
   }
 
   drawLowerImage(ctx, cameraPerson) {
@@ -32,10 +34,27 @@ class OverworldMap {
   }
 
   mountObjects() {
-    Object.values(this.gameObjects).forEach((o) => {
+    Object.keys(this.gameObjects).forEach((key) => {
+      let object = this.gameObjects[key];
+      object.id = key;
+
       // todo: determine if it should mount
-      o.mount(this);
+      object.mount(this);
     });
+  }
+
+  async startCutscene(events) {
+    this.isCutscenePlaying = true;
+
+    for (let index = 0; index < events.length; index++) {
+      const eventHandler = new OverworldEvent({
+        event: events[index],
+        map: this,
+      });
+      await eventHandler.init();
+    }
+
+    this.isCutscenePlaying = false;
   }
 
   addWall(x, y) {
@@ -63,10 +82,28 @@ window.OverworldMaps = {
         y: utils.withGrid(6),
         isPlayerControlled: true,
       }),
-      npc1: new Person({
-        x: utils.withGrid(9),
-        y: utils.withGrid(7),
+      npcA: new Person({
+        x: utils.withGrid(7),
+        y: utils.withGrid(9),
         src: "/images/characters/people/npc1.png",
+        behaviorLoop: [
+          { type: "stand", direction: "left", time: 800 },
+          { type: "stand", direction: "up", time: 800 },
+          { type: "stand", direction: "right", time: 1200 },
+          { type: "stand", direction: "up", time: 300 },
+        ],
+      }),
+      npcB: new Person({
+        x: utils.withGrid(3),
+        y: utils.withGrid(7),
+        src: "/images/characters/people/npc2.png",
+        behaviorLoop: [
+          { type: "walk", direction: "left" },
+          { type: "stand", direction: "up", time: 800 },
+          { type: "walk", direction: "up" },
+          { type: "walk", direction: "right" },
+          { type: "walk", direction: "down" },
+        ],
       }),
     },
     walls: {
