@@ -63,7 +63,7 @@ class Overworld {
     this.map.mountObjects();
   }
   init() {
-    this.startMap(window.OverworldMaps.Kitchen);
+    this.startMap(window.OverworldMaps.DemoRoom);
 
     this.bindActionInput();
     this.bindHeroPosition();
@@ -73,9 +73,10 @@ class Overworld {
 
     this.startGameLoop();
 
-    // this.map.startCutscene([
-    //   { type: "changeMap", map: "DemoRoom" },
-    //   { type: "textMessage", text: "This is the very first message!" },
-    // ]);
+    this.map.startCutscene([
+      { type: "battle" },
+      // { type: "changeMap", map: "DemoRoom" },
+      // { type: "textMessage", text: "This is the very first message!" },
+    ]);
   }
 }

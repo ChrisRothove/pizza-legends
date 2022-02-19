@@ -23,11 +23,40 @@
       media="screen"
       href="/styles/SceneTransition.css"
     />
+    <!--Battle Styles-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="/styles/Battle.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="/styles/Combatant.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="/styles/Team.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="/styles/SubmissionMenu.css"
+    />
   </head>
   <body>
     <div class="game-container">
       <canvas class="game-canvas" width="352" height="198"> </canvas>
     </div>
+
+    <!-- Content -->
+    <script src="/Content/pizzas.js"></script>
+
     <!-- Scripts -->
     <script src="/utils.js"></script>
     <script src="/DirectionInput.js"></script>
@@ -41,6 +70,13 @@
     <script src="/KeyPressListener.js"></script>
     <script src="/RevealingText.js"></script>
     <script src="/SceneTransition.js"></script>
+
+    <!--Battle-->
+    <script src="/battle/Battle.js"></script>
+    <script src="/battle/Combatant.js"></script>
+    <script src="/battle/Team.js"></script>
+    <script src="/battle/SubmissionMenu.js"></script>
+
     <script src="/init.js"></script>
   </body>
 </html>
