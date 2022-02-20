@@ -2,9 +2,11 @@ const utils = {
   withGrid(n) {
     return n * 16;
   },
+
   asGridCoords(x, y) {
     return `${x * 16},${y * 16}`;
   },
+
   nextPosition(initialX, initialY, direction) {
     let x = initialX;
     let y = initialY;
@@ -23,6 +25,7 @@ const utils = {
     }
     return { x, y };
   },
+
   oppositeDirection(direction) {
     if (direction === "right") {
       return "left";
@@ -37,6 +40,15 @@ const utils = {
       return "up";
     }
   },
+
+  wait(ms) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, ms);
+    });
+  },
+
   emitEvent(name, detail) {
     const event = new CustomEvent(name, {
       detail,
