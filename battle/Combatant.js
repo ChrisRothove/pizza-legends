@@ -6,6 +6,7 @@ class Combatant {
     this.battle = battle;
   }
 
+  //GETTERS
   get hpPercent() {
     const percent = (this.hp / this.maxHp) * 100;
     return percent > 0 ? percent : 0;
@@ -73,6 +74,56 @@ class Combatant {
     // update active flags for pizza and hud
     this.hudElement.setAttribute("data-active", this.isActive);
     this.pizzaElement.setAttribute("data-active", this.isActive);
+
+    //update Status
+    const statusElement = this.hudElement.querySelector(".Combatant_status");
+    if (this.status) {
+      statusElement.innerText = this.status.type;
+      statusElement.style.display = "block";
+    } else {
+      statusElement.innerText = "";
+      statusElement.style.display = "none";
+    }
+  }
+
+  getReplacedEvents(originalEvents) {
+    if (
+      this.status?.type === "clumsy" &&
+      utils.randomFromArray([true, false, false])
+    ) {
+      return [{ type: "textMessage", text: `${this.name} flops over!` }];
+    }
+
+    return originalEvents;
+  }
+
+  getPostEvents() {
+    if (this.status?.type === "saucy") {
+      return [
+        { type: "textMessage", text: "Feelin' Saucy!" },
+        { type: "stateChange", recover: 5, onCaster: true },
+      ];
+    }
+
+    return [];
+  }
+
+  decrementStatus() {
+    const type = this.status?.type || "";
+    if (this.status?.expiresIn > 0) {
+      this.status.expiresIn -= 1;
+      if (this.status.expiresIn === 0) {
+        this.update({
+          status: null,
+        });
+        return {
+          type: "textMessage",
+          text: `${type.toUpperCase()} Expired!`,
+        };
+      }
+    }
+
+    return null;
   }
 
   init(container) {
