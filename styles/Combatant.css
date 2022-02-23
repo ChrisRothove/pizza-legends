@@ -7,6 +7,7 @@
 
 .Battle .Combatant {
   transform: scale(2);
+  transition: opacity 0.4s;
 }
 .Battle .Combatant[data-active="false"] {
   opacity: 0;
@@ -23,7 +24,7 @@
   top: 28px;
   right: 77px;
 }
-/* Character crop */
+
 .Combatant_character_crop {
   position: absolute;
   bottom: 1px;
@@ -49,7 +50,7 @@
   white-space: nowrap;
   background: var(--menu-font-color);
   color: #fff;
-  font-size: 5px;
+  font-size: 5px; /*This is only so small because the component is scaled 2x in battle which is weird */
   padding-left: 2px;
   padding-right: 2px;
   margin: 0;
@@ -70,7 +71,7 @@
   height: 3px;
 }
 .Combatant_life-container > rect {
-  transform: width 0.2s;
+  transition: width 0.2s;
 }
 
 .Combatant_xp-container {
@@ -102,22 +103,23 @@
   bottom: -3px;
   padding-left: 2px;
   padding-right: 2px;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
   margin: 0;
 }
 .Combatant_status[data-status="saucy"] {
   color: red;
 }
 .Combatant_status[data-status="clumsy"] {
-  color: #582a79;
+  background: #582a79;
 }
 
-/* Pizzas */
 .Pizza {
   position: absolute;
   transform: scale(2);
-  background: url(/images/characters/pizzas/pizza-shadow.png);
+  transition: opacity 0.4s, transform 0.4s;
+  background: url(/images/characters/pizzas/pizza-shadow.png) no-repeat
+    no-repeat;
 }
 .Pizza[data-team="player"] {
   bottom: 73px;
@@ -129,7 +131,9 @@
 }
 .Pizza[data-active="false"] {
   opacity: 0;
+  transform: translate3d(0, 16px, 0) scale(2);
 }
 .Pizza[data-active="true"] {
   opacity: 1;
+  transform: translate3d(0, 0, 0) scale(2);
 }

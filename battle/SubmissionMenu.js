@@ -1,8 +1,9 @@
 class SubmissionMenu {
-  constructor({ caster, enemy, onComplete, items }) {
+  constructor({ caster, enemy, onComplete, items, replacements }) {
     this.caster = caster;
     this.enemy = enemy;
     this.onComplete = onComplete;
+    this.replacements = replacements;
 
     let quantityMap = {};
     items.forEach((item) => {
@@ -54,6 +55,7 @@ class SubmissionMenu {
           description: "Change to another pizza",
           handler: () => {
             // change to swap page...
+            this.keyboardMenu.setOptions(this.getPages().replacements);
           },
         },
       ],
@@ -86,7 +88,27 @@ class SubmissionMenu {
         }),
         backOption,
       ],
+      replacements: [
+        ...this.replacements.map((replacement) => {
+          return {
+            label: replacement.name,
+            description: replacement.description,
+            handler: () => {
+              //Swap me in, coach!
+              this.menuSubmitReplacement(replacement);
+            },
+          };
+        }),
+        backOption,
+      ],
     };
+  }
+
+  menuSubmitReplacement(replacement) {
+    this.keyboardMenu?.end();
+    this.onComplete({
+      replacement,
+    });
   }
 
   menuSubmit(action, instanceId = null) {
