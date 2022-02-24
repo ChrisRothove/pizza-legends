@@ -4,6 +4,7 @@ class Combatant {
       this[key] = config[key];
     });
     this.battle = battle;
+    this.hp = typeof this.hp === "undefined" ? this.maxHp : this.hp;
   }
 
   //GETTERS
@@ -18,6 +19,10 @@ class Combatant {
 
   get isActive() {
     return this.battle.activeCombatants[this.team] === this.id;
+  }
+
+  get givesXp() {
+    return this.level * 20;
   }
 
   createElement() {

@@ -76,6 +76,7 @@ class OverworldEvent {
 
   battle(resolve) {
     const battle = new Battle({
+      enemy: enemies[this.event.enemyId],
       onComplete: () => {
         resolve();
       },
