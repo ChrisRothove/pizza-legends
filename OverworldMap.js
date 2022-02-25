@@ -54,7 +54,10 @@ class OverworldMap {
         event: events[index],
         map: this,
       });
-      await eventHandler.init();
+      const result = await eventHandler.init();
+      if (result === "LOST_BATTLE") {
+        break;
+      }
     }
 
     this.isCutscenePlaying = false;
@@ -82,7 +85,13 @@ class OverworldMap {
     });
     console.log(match);
     if (!this.isCutscenePlaying && match && match.talking.length) {
-      this.startCutscene(match.talking[0].events);
+      const relevantScenario = match.talking.find((scenario) => {
+        return (scenario.required || []).every((sf) => {
+          return playerState.storyFlags[sf];
+        });
+      });
+
+      relevantScenario && this.startCutscene(relevantScenario.events);
     }
   }
 
@@ -123,13 +132,26 @@ window.OverworldMaps = {
         ],
         talking: [
           {
+            required: ["TALKED_TO_ERIO"],
             events: [
-              { type: "textMessage", text: "I'm busy...", faceHero: "npcA" },
-              { type: "battle", enemyId: "beth" },
+              {
+                type: "textMessage",
+                text: "Isn't Erio awesome?",
+                faceHero: "npcA",
+              },
             ],
           },
           {
-            events: [{ type: "textMessage", text: "Hello again!" }],
+            events: [
+              {
+                type: "textMessage",
+                text: "Time to Battle!",
+                faceHero: "npcA",
+              },
+              { type: "battle", enemyId: "beth" },
+              { type: "addStoryFlag", flag: "DEFEATED_BETH" },
+              { type: "textMessage", text: "You crushed me..." },
+            ],
           },
         ],
       }),
@@ -140,8 +162,8 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "I'm busy...", faceHero: "npcA" },
-              { type: "battle", enemyId: "erio" },
+              { type: "textMessage", text: "BAHAHA", faceHero: "npcA" },
+              { type: "addStoryFlag", flag: "TALKED_TO_ERIO" },
             ],
           },
         ],
