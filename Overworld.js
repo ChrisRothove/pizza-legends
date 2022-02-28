@@ -86,14 +86,21 @@ class Overworld {
     console.log(this.map.walls);
   }
 
-  init() {
+  async init() {
+    const container = document.querySelector(".game-container");
+
     // create new progress tracker
     this.progress = new Progress();
 
+    //show title screen
+    this.titleScreen = new TitleScreen({
+      progress: this.progress,
+    });
+    const useSaveFile = await this.titleScreen.init(container);
+
     //check for and load saved data
     let initialHeroState = null;
-    const saveFile = this.progress.getSaveFile();
-    if (saveFile) {
+    if (useSaveFile) {
       this.progress.load();
       initialHeroState = {
         x: this.progress.startingHeroX,
@@ -104,7 +111,7 @@ class Overworld {
 
     //load the Hud
     this.hud = new Hud();
-    this.hud.init(document.querySelector(".game-container"));
+    this.hud.init(container);
 
     //start the first map
     this.startMap(window.OverworldMaps[this.progress.mapId], initialHeroState);
