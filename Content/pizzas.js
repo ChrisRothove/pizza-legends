@@ -35,7 +35,7 @@ window.Pizzas = {
     typeWeak: null,
     src: "/images/characters/pizzas/n002.png",
     icon: "",
-    actions: ["damage2", "multi1", "saucyStatus", "clumsyStatus"],
+    actions: ["damage2", "multi1", "saucyStatus", "attack1"],
     attributes: {
       vit: 24,
       vitRate: 2,
@@ -115,7 +115,7 @@ window.Pizzas = {
     typeWeak: PizzaTypes.spicy,
     src: "/images/characters/pizzas/v002.png",
     icon: "/images/icons/veggie.png",
-    actions: ["veggie1", "damage2", "veggie+dot2", "clumsyStatus"],
+    actions: ["veggie1", "damage2", "veggie+dot2", "speed1"],
     attributes: {
       hp: 21,
       vitRate: 2,
@@ -155,7 +155,7 @@ window.Pizzas = {
     typeWeak: PizzaTypes.veggie,
     src: "/images/characters/pizzas/f002.png",
     icon: "/images/icons/fungi.png",
-    actions: ["damage1", "fungi2", "clumsyStatus", "dot1"],
+    actions: ["damage1", "fungi2", "speed1", "dot1"],
     baseStats: {
       hp: 23,
       vitRate: 2,
