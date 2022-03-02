@@ -59,4 +59,9 @@ const utils = {
     });
     document.dispatchEvent(event);
   },
+
+  determineHit(aSpd, bSpd) {
+    let diff = bSpd - aSpd + 10;
+    return Math.floor(Math.random() * 100) >= diff;
+  },
 };

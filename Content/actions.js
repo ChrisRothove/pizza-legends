@@ -1,16 +1,70 @@
 window.Actions = {
+  //Normal Moves
   damage1: {
     name: "Whomp!",
     description: "Pillowy punch of dough",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", damage: 10 },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 2,
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  damage2: {
+    name: "Crust Rush",
+    description: "Really grates on 'em",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      { type: "animation", animation: "spin" },
+      {
+        type: "stateChange",
+        damage: (atk) => Math.round(atk * 2.6),
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  dot1: {
+    name: "Tabasco Sauce",
+    description: "Target loses HP each turn",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "glob", color: "#dc143c" },
+      { type: "stateChange", status: { type: "tabasco", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is flamin' hot!" },
+    ],
+  },
+  multi1: {
+    name: "Black-eyed Olives",
+    description: "A blast of tiny veggies",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "blast", color: "#000000" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 1,
+        hit: utils.determineHit,
+      },
+      { type: "animation", animation: "blast", color: "#000000" },
+      {
+        type: "stateChange",
+        damage: (atk) => Math.round(atk * 1.25),
+        hit: utils.determineHit,
+      },
+      { type: "animation", animation: "blast", color: "#000000" },
+      {
+        type: "stateChange",
+        damage: (atk) => Math.round(atk * 1.5),
+        hit: utils.determineHit,
+      },
     ],
   },
   saucyStatus: {
     name: "Tomato Squeeze",
-    description: "Applies the Saucy status",
+    description: "Recovers HP each turn",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
@@ -19,12 +73,199 @@ window.Actions = {
   },
   clumsyStatus: {
     name: "Olive Oil",
-    description: "Slippery mess of deliciousness",
+    description: "The target may fail to act on their turn",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
       { type: "animation", animation: "glob", color: "#dafd2a" },
       { type: "stateChange", status: { type: "clumsy", expiresIn: 3 } },
       { type: "textMessage", text: "{TARGET} is slipping all around!" },
+    ],
+  },
+  //Spicy Attacks
+  spicy1: {
+    name: "Pepper Squirt",
+    description: "Not the eyes! Deals Spicy damage",
+    damageType: "spicy",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "glob", color: "red" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 2,
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  spicy2: {
+    name: "Pepperoni Pile Driver",
+    description: "A heavy strike with peperoni slices",
+    damageType: "spicy",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 3,
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  "spicy+dot1": {
+    name: "Ghost Pepper Haunt",
+    description: "A dish that keeps on giving",
+    damageType: "spicy",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 3,
+        hit: utils.determineHit,
+      },
+      { type: "stateChange", status: { type: "tabasco", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is haunted by that heat!" },
+    ],
+  },
+  //Veggie Attacks
+  veggie1: {
+    name: "Basil Bash",
+    description: "A feral and fragrant smash",
+    damageType: "veggie",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 2,
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  veggie2: {
+    name: "Pesto Press",
+    description: "A slippery and savage solution",
+    damageType: "veggie",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 3,
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  "veggie+dot2": {
+    name: "Kale-trops",
+    description: "Scatter sharp leaves to damage every turn",
+    damageType: "veggie",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      { type: "stateChange", status: { type: "kaled", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is walking on kale!" },
+    ],
+  },
+  //Fungi
+  fungi1: {
+    name: "Mushroom Melt",
+    description: "A smooth, creamy way to die",
+    damageType: "fungi",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 2,
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  fungi2: {
+    name: "Shitake Stake",
+    description: "They'll never see it coming.",
+    damageType: "fungi",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "blast", color: "#000000" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 3,
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  //Chill Attacks
+  chill1: {
+    name: "Arti-choke",
+    description: "Smothers the target in a delicious...whoops.",
+    damageType: "chill",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 2,
+        hit: utils.determineHit,
+      },
+    ],
+  },
+  "chill+saucy1": {
+    name: "Garlic Glaze",
+    description: "A little something for everyone.",
+    damageType: "chill",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      {
+        type: "stateChange",
+        damage: (atk) => atk * 3,
+        hit: utils.determineHit,
+      },
+      { type: "stateChange", status: { type: "saucy", expiresIn: 3 } },
+    ],
+  },
+  frozenStatus: {
+    name: "Freezer Fresh",
+    description: "It's not delivery it's...not thawed either",
+    damageType: "chill",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "spin" },
+      { type: "stateChange", status: { type: "frozen", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is frozen solid!" },
+    ],
+  },
+
+  //Buffs
+  speed1: {
+    name: "Speed Up",
+    description: "Target makes itself harder to hit",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "buff" },
+      { type: "stateChange", status: { type: "speed+", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is specially seasoned!" },
+    ],
+  },
+  attack1: {
+    name: "Attack Up",
+    description: "Target makes itself stronger",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "buff" },
+      { type: "stateChange", status: { type: "attack+", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is getting pumped!" },
+    ],
+  },
+  defense1: {
+    name: "Defense Up",
+    description: "Target makes itself bulkier",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "buff" },
+      { type: "stateChange", status: { type: "defense+", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is perfectly prepared!" },
     ],
   },
   //Items
@@ -40,10 +281,11 @@ window.Actions = {
   },
   item_recoverHp: {
     name: "Parmesan",
+    description: "Heals the target 25 HP",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} sprinkles on some {ACTION}!" },
-      { type: "stateChange", recover: 10 },
+      { type: "stateChange", recover: 25 },
       { type: "textMessage", text: "{CASTER} recovers HP!" },
     ],
   },
