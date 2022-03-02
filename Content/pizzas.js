@@ -35,7 +35,7 @@ window.Pizzas = {
     typeWeak: null,
     src: "/images/characters/pizzas/n002.png",
     icon: "",
-    actions: ["damage2", "multi1", "saucyStatus", "attack1"],
+    actions: ["damage2", "multi1", "saucyStatus", "damage1"],
     attributes: {
       vit: 24,
       vitRate: 2,
