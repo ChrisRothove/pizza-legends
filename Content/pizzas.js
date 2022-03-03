@@ -136,7 +136,7 @@ window.Pizzas = {
     src: "/images/characters/pizzas/f001.png",
     icon: "/images/icons/fungi.png",
     actions: ["fungi1", "dot1", "defense1"],
-    baseStats: {
+    attributes: {
       hp: 28,
       vitRate: 2,
       atk: 8,
@@ -156,7 +156,7 @@ window.Pizzas = {
     src: "/images/characters/pizzas/f002.png",
     icon: "/images/icons/fungi.png",
     actions: ["damage1", "fungi2", "speed1", "dot1"],
-    baseStats: {
+    attributes: {
       hp: 23,
       vitRate: 2,
       atk: 8,
@@ -176,7 +176,7 @@ window.Pizzas = {
     src: "/images/characters/pizzas/c001.png",
     icon: "/images/icons/chill.png",
     actions: ["damage1", "chill1", "frozenStatus"],
-    baseStats: {
+    attributes: {
       hp: 26,
       vitRate: 2,
       atk: 10,
@@ -196,7 +196,7 @@ window.Pizzas = {
     src: "/images/characters/pizzas/c002.png",
     icon: "/images/icons/chill.png",
     actions: ["chill1", "chill+saucy1", "dot1", "damage2"],
-    baseStats: {
+    attributes: {
       hp: 21,
       vitRate: 2,
       atk: 11,
