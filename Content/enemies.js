@@ -22,8 +22,14 @@ window.enemies = {
       a: {
         hp: 1,
         pizzaId: "f001",
-        maxHp: 50,
+        maxHp: 280,
         level: 1,
+        stats: {
+          vit: 28,
+          atk: 8,
+          def: 10,
+          spd: 4,
+        },
       },
     },
   },

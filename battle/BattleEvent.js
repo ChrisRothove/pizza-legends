@@ -20,14 +20,21 @@ class BattleEvent {
   }
 
   async stateChange(resolve) {
-    const { caster, target, damage, recover, status, action } = this.event;
-
+    const { caster, target, damage, recover, status, hit, action } = this.event;
+    console.log(hit(caster.stats.spd, target.stats.spd));
     let who = this.event.onCaster ? caster : target;
 
     if (damage) {
+      //determine if the attack hit
+      const isHit = hit(caster.stats.spd, target.stats.spd);
+      if (isHit === false) {
+        //if the hit missed, send a message instead
+        this.event.text = `${caster.name} missed!`;
+        return this.textMessage(resolve);
+      }
       // modify the target's HP
       target.update({
-        hp: target.hp - damage,
+        hp: target.hp - damage(caster.stats.atk),
       });
       //start blinking
       target.pizzaElement.classList.add("battle-damage-blink");

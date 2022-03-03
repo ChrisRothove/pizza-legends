@@ -3,12 +3,18 @@ class PlayerState {
     this.pizzas = {
       p1: {
         pizzaId: "s001",
-        hp: 50,
-        maxHp: 50,
+        hp: 200,
+        maxHp: 200,
         xp: 0,
-        maxXp: 100,
+        maxXp: levels[2],
         level: 1,
         status: null,
+        stats: {
+          vit: 20,
+          atk: 10,
+          def: 10,
+          spd: 10,
+        },
       },
     };
     this.lineup = ["p1"];
