@@ -95,16 +95,16 @@ window.Pizzas = {
     typeWeak: PizzaTypes.spicy,
     src: "/images/characters/pizzas/v001.png",
     icon: "/images/icons/veggie.png",
-    actions: ["veggie1", "dot2", "clumsyStatus"],
+    actions: ["veggie1", "veggie+dot2", "clumsyStatus"],
     attributes: {
-      hp: 19,
+      vit: 19,
       vitRate: 2,
       atk: 13,
-      atkRate: 2,
+      atkRate: 3,
       def: 4,
       defRate: 4,
       spd: 14,
-      spdRate: 1,
+      spdRate: 2,
     },
   },
   v002: {
@@ -117,7 +117,7 @@ window.Pizzas = {
     icon: "/images/icons/veggie.png",
     actions: ["veggie1", "damage2", "veggie+dot2", "speed1"],
     attributes: {
-      hp: 21,
+      vit: 21,
       vitRate: 2,
       atk: 9,
       atkRate: 1,
@@ -137,7 +137,7 @@ window.Pizzas = {
     icon: "/images/icons/fungi.png",
     actions: ["fungi1", "dot1", "defense1"],
     attributes: {
-      hp: 28,
+      vit: 28,
       vitRate: 2,
       atk: 8,
       atkRate: 2,
@@ -157,7 +157,7 @@ window.Pizzas = {
     icon: "/images/icons/fungi.png",
     actions: ["damage1", "fungi2", "speed1", "dot1"],
     attributes: {
-      hp: 23,
+      vit: 23,
       vitRate: 2,
       atk: 8,
       atkRate: 2,
@@ -177,7 +177,7 @@ window.Pizzas = {
     icon: "/images/icons/chill.png",
     actions: ["damage1", "chill1", "frozenStatus"],
     attributes: {
-      hp: 26,
+      vit: 26,
       vitRate: 2,
       atk: 10,
       atkRate: 1,
@@ -197,7 +197,7 @@ window.Pizzas = {
     icon: "/images/icons/chill.png",
     actions: ["chill1", "chill+saucy1", "dot1", "damage2"],
     attributes: {
-      hp: 21,
+      vit: 21,
       vitRate: 2,
       atk: 11,
       atkRate: 2,
