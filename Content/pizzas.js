@@ -14,7 +14,7 @@ window.Pizzas = {
     typeAdv: null,
     typeWeak: null,
     src: "/images/characters/pizzas/n001.png",
-    icon: "",
+    icon: "/images/icons/normal.png",
     actions: ["damage1", "dot1", "saucyStatus"],
     attributes: {
       vit: 20,
@@ -34,7 +34,7 @@ window.Pizzas = {
     typeAdv: null,
     typeWeak: null,
     src: "/images/characters/pizzas/n002.png",
-    icon: "",
+    icon: "/images/icons/normal.png",
     actions: ["damage2", "multi1", "saucyStatus", "damage1"],
     attributes: {
       vit: 24,
