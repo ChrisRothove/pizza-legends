@@ -81,6 +81,8 @@ class TurnCycle {
           xp,
           combatant: this.battle.combatants[playerActivePizzaId],
         });
+      } else {
+        playerState.removePizza(enemyId);
       }
     }
 
