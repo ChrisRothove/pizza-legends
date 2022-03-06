@@ -79,13 +79,21 @@ class OverworldEvent {
   }
 
   battle(resolve) {
-    const battle = new Battle({
-      enemy: enemies[this.event.enemyId],
-      onComplete: (didWin) => {
-        resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
-      },
-    });
-    battle.init(document.querySelector(".game-container"));
+    if (Object.keys(playerState.pizzas).length > 0) {
+      const battle = new Battle({
+        enemy: enemies[this.event.enemyId],
+        onComplete: (didWin) => {
+          resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
+        },
+      });
+      battle.init(document.querySelector(".game-container"));
+    } else {
+      const message = new TextMessage({
+        text: "You don't have any Pizzas...",
+        onComplete: () => resolve("NO_PIZZAS"),
+      });
+      message.init(document.querySelector(".game-container"));
+    }
   }
 
   pause(resolve) {
