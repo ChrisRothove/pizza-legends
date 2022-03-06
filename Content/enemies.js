@@ -20,7 +20,7 @@ window.enemies = {
     src: "/images/characters/people/npc1.png",
     pizzas: {
       a: {
-        hp: 1,
+        hp: 280,
         pizzaId: "f001",
         maxHp: 280,
         level: 1,
