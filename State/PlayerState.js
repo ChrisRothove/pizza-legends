@@ -3,7 +3,7 @@ class PlayerState {
     this.pizzas = {
       p1: {
         pizzaId: "s001",
-        hp: 200,
+        hp: 2,
         maxHp: 200,
         xp: 0,
         maxXp: levels[2],
@@ -27,7 +27,7 @@ class PlayerState {
 
     this.recipes = ["n001"];
     this.currency = 15;
-    this.pizzaLevel = 1;
+    this.pizzaLevel = 10;
     this.pizzaExp = 0;
   }
 
@@ -49,24 +49,65 @@ class PlayerState {
 
   addPizza(pizzaId) {
     const newId = `p${Date.now()}` + Math.floor(Math.random() * 99999);
+    const archetype = Pizzas[pizzaId];
+    const { vit, atk, def, spd } = archetype.attributes;
     this.pizzas[newId] = {
+      ...archetype,
       pizzaId,
-      hp: 50,
-      maxHp: 50,
+      hp: vit * 10,
+      maxHp: vit * 10,
       xp: 0,
       maxXp: 100,
       level: 1,
       status: null,
+      stats: {
+        vit,
+        atk,
+        def,
+        spd,
+      },
     };
+    console.log(this.pizzas[newId]);
+    if (this.pizzaLevel > 1) {
+      const diff = this.pizzaLevel - 1;
+      for (let i = 1; i <= diff; i++) {
+        this.levelUpPizza(newId);
+      }
+    }
     if (this.lineup.length < 3) {
       this.lineup.push(newId);
     }
     utils.emitEvent("LineupChanged");
-    console.log(this);
+    console.log("new State:", this);
+  }
+
+  levelUpPizza(pizzaId) {
+    const thePizza = this.pizzas[pizzaId];
+    thePizza.level += 1;
+    // set xp if not correct
+    if (thePizza.xp !== levels[thePizza.level]) {
+      thePizza.xp = levels[thePizza.level];
+    }
+    thePizza.maxXp = levels[thePizza.level + 1];
+    // uptick HP
+    const toAdd =
+      thePizza.level % thePizza.vitRate ? Math.round(thePizza.vit / 2) : 0;
+    console.log(thePizza.maxHp);
+    thePizza.maxHp += toAdd;
+    thePizza.hp = thePizza.maxHp;
+
+    // uptick atk
+    thePizza.stats.atk += thePizza.level % thePizza.attributes.atkRate ? 0 : 1;
+
+    // uptick def
+    thePizza.stats.def += thePizza.level % thePizza.attributes.defRate ? 0 : 1;
+
+    // uptick spd
+    thePizza.stats.spd += thePizza.level % thePizza.attributes.spdRate ? 0 : 1;
   }
 
   removePizza(pizzaId) {
-    delete pizzas[pizzaId];
+    delete this.pizzas[pizzaId];
     this.lineup = [...this.lineup.filter((pizzaId) => pizzaId !== pizzaId)];
     utils.emitEvent("LineupChanged");
   }
