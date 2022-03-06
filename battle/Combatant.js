@@ -14,7 +14,9 @@ class Combatant {
   }
 
   get xpPercent() {
-    return (this.xp / this.maxXp) * 100;
+    return (
+      ((this.xp - levels[this.level]) / (this.maxXp - levels[this.level])) * 100
+    );
   }
 
   get isActive() {

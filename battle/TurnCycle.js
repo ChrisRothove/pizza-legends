@@ -79,6 +79,7 @@ class TurnCycle {
         await this.onNewEvent({
           type: "giveXp",
           xp,
+          playerActivePizzaId,
           combatant: this.battle.combatants[playerActivePizzaId],
         });
       } else {

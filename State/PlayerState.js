@@ -2,10 +2,11 @@ class PlayerState {
   constructor() {
     this.pizzas = {
       p1: {
-        pizzaId: "s001",
-        hp: 2,
+        ...Pizzas["n001"],
+        pizzaId: "n001",
+        hp: 200,
         maxHp: 200,
-        xp: 0,
+        xp: 99,
         maxXp: levels[2],
         level: 1,
         status: null,
@@ -82,7 +83,9 @@ class PlayerState {
   }
 
   levelUpPizza(pizzaId) {
+    console.log(pizzaId);
     const thePizza = this.pizzas[pizzaId];
+    console.log(thePizza);
     thePizza.level += 1;
     // set xp if not correct
     if (thePizza.xp !== levels[thePizza.level]) {
@@ -92,7 +95,6 @@ class PlayerState {
     // uptick HP
     const toAdd =
       thePizza.level % thePizza.vitRate ? Math.round(thePizza.vit / 2) : 0;
-    console.log(thePizza.maxHp);
     thePizza.maxHp += toAdd;
     thePizza.hp = thePizza.maxHp;
 

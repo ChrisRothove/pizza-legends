@@ -124,17 +124,23 @@ class BattleEvent {
 
   giveXp(resolve) {
     let amount = this.event.xp;
-    const { combatant } = this.event;
+    const { combatant, playerActivePizzaId } = this.event;
+    const pizza = playerState.pizzas[playerActivePizzaId];
     const step = () => {
       if (amount > 0) {
         amount -= 1;
         combatant.xp += 1;
+        pizza.xp += 1;
 
         //Check if we've hit level up point
         if (combatant.xp === combatant.maxXp) {
-          combatant.xp = 0;
-          combatant.maxXp = 100;
-          combatant.level += 1;
+          // level up player Pizza
+          playerState.levelUpPizza(playerActivePizzaId);
+          // apply changes to combatant
+          Object.keys(pizza).forEach((key) => {
+            combatant[key] = pizza[key];
+          });
+          console.log(playerState.pizzas[playerActivePizzaId], combatant);
         }
 
         combatant.update();
