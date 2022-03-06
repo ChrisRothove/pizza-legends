@@ -55,7 +55,7 @@ class OverworldMap {
         map: this,
       });
       const result = await eventHandler.init();
-      if (result === "LOST_BATTLE") {
+      if (result === "LOST_BATTLE" || result === "NO_PIZZAS") {
         break;
       }
     }
