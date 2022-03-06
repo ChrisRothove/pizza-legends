@@ -24,6 +24,27 @@ class PlayerState {
       { actionId: "item_recoverHp", instanceId: "item3" },
     ];
     this.storyFlags = {};
+
+    this.recipes = ["n001"];
+    this.currency = 15;
+    this.pizzaLevel = 1;
+    this.pizzaExp = 0;
+  }
+
+  addRecipe(recipeId) {
+    this.recipes.push(recipeId);
+  }
+
+  addCurrency(amount) {
+    this.currency += amount;
+  }
+
+  removeCurrency(amount) {
+    this.currency -= amount;
+  }
+
+  addExp(amount) {
+    this.pizzaExp += amount;
   }
 
   addPizza(pizzaId) {
@@ -42,6 +63,12 @@ class PlayerState {
     }
     utils.emitEvent("LineupChanged");
     console.log(this);
+  }
+
+  removePizza(pizzaId) {
+    delete pizzas[pizzaId];
+    this.lineup = [...this.lineup.filter((pizzaId) => pizzaId !== pizzaId)];
+    utils.emitEvent("LineupChanged");
   }
 
   swapLineup(oldId, incomingId) {
