@@ -7,19 +7,14 @@ class PauseMenu {
   getOptions(pageKey) {
     //Case 1: Show the first page of options
     if (pageKey === "root") {
-      const lineupPizzas = playerState.lineup.map((id) => {
-        const { pizzaId } = playerState.pizzas[id];
-        const base = Pizzas[pizzaId];
-        return {
-          label: base.name,
-          description: base.description,
-          handler: () => {
-            this.keyboardMenu.setOptions(this.getOptions(id));
-          },
-        };
-      });
       return [
-        ...lineupPizzas,
+        {
+          label: "Pizzas",
+          description: "Check out your pizzas",
+          handler: () => {
+            this.keyboardMenu.setOptions(this.getOptions("pizzas"));
+          },
+        },
         {
           label: "Save",
           description: "Save your progress",
@@ -39,7 +34,33 @@ class PauseMenu {
       ];
     }
 
-    //Case 2: Show the options for just one pizza (by id)
+    //Case 2: Show available pizzas
+    if (pageKey === "pizzas") {
+      const lineupPizzas = playerState.lineup.map((id) => {
+        const { pizzaId } = playerState.pizzas[id];
+        const base = Pizzas[pizzaId];
+        return {
+          label: base.name,
+          description: base.description,
+          handler: () => {
+            this.keyboardMenu.setOptions(this.getOptions(id));
+            this.statPanel.setPanel(id);
+          },
+        };
+      });
+      return [
+        ...lineupPizzas,
+        {
+          label: "Close",
+          description: "Close the pause menu",
+          handler: () => {
+            this.close();
+          },
+        },
+      ];
+    }
+
+    //Case 3: Show the options for just one pizza (by id)
     const unequipped = Object.keys(playerState.pizzas)
       .filter((id) => {
         return playerState.lineup.indexOf(id) === -1;
@@ -79,8 +100,12 @@ class PauseMenu {
 
   createElement() {
     this.element = document.createElement("div");
+    this.panelElement = document.createElement("div");
+    this.panelElement.classList.add("overlayMenu");
+    this.panelElement.classList.add("pizzaPaneRight");
     this.element.classList.add("PauseMenu");
     this.element.classList.add("overlayMenu");
+    this.element.classList.add("left");
     this.element.innerHTML = `
       <h2>Pause Menu</h2>
     `;
@@ -90,6 +115,7 @@ class PauseMenu {
     this.esc?.unbind();
     this.keyboardMenu.end();
     this.element.remove();
+    this.panelElement.remove();
     this.onComplete();
   }
 
@@ -101,7 +127,14 @@ class PauseMenu {
     this.keyboardMenu.init(this.element);
     this.keyboardMenu.setOptions(this.getOptions("root"));
 
+    this.statPanel = new StatPanel({
+      id: 0,
+    });
+    this.statPanel.init(this.panelElement);
+    this.statPanel.setPanel();
+
     container.appendChild(this.element);
+    container.appendChild(this.panelElement);
 
     utils.wait(200);
     this.esc = new KeyPressListener("Escape", () => {

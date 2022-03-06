@@ -1,5 +1,6 @@
 class PlayerState {
   constructor() {
+    this.name = "Hero";
     this.pizzas = {
       p1: {
         ...Pizzas["n001"],
@@ -16,6 +17,7 @@ class PlayerState {
           def: 10,
           spd: 10,
         },
+        addOns: [],
       },
     };
     this.lineup = ["p1"];
@@ -28,7 +30,7 @@ class PlayerState {
 
     this.recipes = ["n001"];
     this.currency = 15;
-    this.pizzaLevel = 10;
+    this.pizzaLevel = 1;
     this.pizzaExp = 0;
   }
 
@@ -67,6 +69,7 @@ class PlayerState {
         def,
         spd,
       },
+      addOns: [],
     };
     console.log(this.pizzas[newId]);
     if (this.pizzaLevel > 1) {

@@ -25,3 +25,70 @@
   text-align: center;
   border-bottom: 1px solid #a48465;
 }
+
+.left {
+  left: 0;
+  top: auto;
+  right: 60%;
+  bottom: 1em;
+}
+
+.pizzaPaneRight {
+  left: 40%;
+  top: 0;
+  right: 0;
+  bottom: 1em;
+}
+
+.statPanel h4 {
+  font-size: 8px;
+  color: var(--menu-font-color);
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.stats {
+  width: 100%;
+  border: 0px;
+  padding: 1px;
+  font-variant: small-caps;
+}
+
+.stats td {
+  width: 25%;
+  font-size: 6px;
+  padding: 0px;
+  padding-left: 3px;
+  border: 1px solid var(--menu-border-color);
+  color: var(--menu-font-color);
+  border-radius: 0px 3px 3px 0px;
+  margin: 1px;
+  margin-left: 0px;
+}
+
+.stats .alone {
+  border-radius: 3px;
+  padding: 0px;
+  text-align: center;
+}
+
+.stats .head {
+  text-align: right;
+  width: 25%;
+  font-size: 6px;
+  padding: 0px;
+  padding-right: 3px;
+  background: var(--menu-font-color);
+  border: 1px solid var(--menu-font-color);
+  color: var(--menu-background);
+  border-radius: 3px 0px 0px 3px;
+  margin: 1px;
+  margin-right: 0px;
+}
+
+.stats .banner {
+  font-size: 5px;
+  text-align: center;
+  margin-top: -2px;
+  border: 0px, 0px, 0px, 1px solid var(--menu-border-color);
+}
