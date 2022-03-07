@@ -30,6 +30,13 @@ class PauseMenu {
           },
         },
         {
+          label: "Recipes",
+          description: "Recipes for making pizzas (coming soon)",
+          handler: () => {
+            // view Recipes.
+          },
+        },
+        {
           label: "Controls",
           description: "Map keybinds (coming soon)",
           handler: () => {
