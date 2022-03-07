@@ -232,7 +232,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", status: { type: "frozen", expiresIn: 3 } },
+      { type: "stateChange", status: { type: "frozen", expiresIn: 1 } },
       { type: "textMessage", text: "{TARGET} is frozen solid!" },
     ],
   },

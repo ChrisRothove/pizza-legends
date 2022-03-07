@@ -20,7 +20,7 @@ class BattleEvent {
   }
 
   async stateChange(resolve) {
-    const { caster, target, damage, recover, status, hit, action } = this.event;
+    const { caster, target, damage, recover, status, dot, hit = () => true, action } = this.event;
 
     let who = this.event.onCaster ? caster : target;
 
@@ -48,6 +48,14 @@ class BattleEvent {
       who.update({
         hp: newHp,
       });
+    }
+
+    if (dot) {
+      let newHp = target.hp - dot
+      if (newHp < 0) newHp = 0
+      who.update({
+        hp: newHp
+      })
     }
 
     if (status) {

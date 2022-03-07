@@ -101,10 +101,15 @@ class Combatant {
       return [{ type: "textMessage", text: `${this.name} flops over!` }];
     }
 
+    if (this.status?.frozen) {
+      return [{type: "textMessage", text: `${this.name} is frozen solid!`}]
+    }
+
     return originalEvents;
   }
 
   getPostEvents() {
+    //ailments
     if (this.status?.type === "saucy") {
       return [
         { type: "textMessage", text: "Feelin' Saucy!" },
@@ -112,7 +117,65 @@ class Combatant {
       ];
     }
 
+    if (this.status?.tobasco) {
+      return [
+        {type: "textMessage", text: `${this.name} is on fire!`},
+        {type: "stateChange", dot: 10}
+      ]
+    }
+
+    //Stat buffs
+    if (this.status?.type === "attack+") {
+      return [
+        {type: "textMessage", text: `${this.name} is hurt by kale!`},
+        {type: "stateChange", statDown: {stat: "atk", value: 5}}
+      ]
+    }
+    if (this.status?.type === "defense+") {
+      return [
+        {type: "textMessage", text: `${this.name} is hurt by kale!`},
+        {type: "stateChange", statDown: {stat: "def", value: 5}}
+      ]
+    }
+    if (this.status?.type === "speed+") {
+      return [
+        {type: "textMessage", text: `${this.name} is hurt by kale!`},
+        {type: "stateChange", statDown: {stat: "spd", value: 5}}
+      ]
+    }
+
     return [];
+  }
+
+  getPreEvents() {
+    //Ailments
+    if (this.status?.type === "kaled") {
+      return [
+        {type: "textMessage", text: `${this.name} is hurt by kale!`},
+        {type: "stateChange", dot: 15}
+      ]
+    }
+
+    //Stat Buffs
+    if (this.status?.type === "attack+") {
+      return [
+        {type: "textMessage", text: `${this.name} is hurt by kale!`},
+        {type: "stateChange", statUp: {stat: "atk", value: 5}}
+      ]
+    }
+    if (this.status?.type === "defense+") {
+      return [
+        {type: "textMessage", text: `${this.name} is hurt by kale!`},
+        {type: "stateChange", statUp: {stat: "def", value: 5}}
+      ]
+    }
+    if (this.status?.type === "speed+") {
+      return [
+        {type: "textMessage", text: `${this.name} is hurt by kale!`},
+        {type: "stateChange", statUp: {stat: "spd", value: 5}}
+      ]
+    }
+    return []
   }
 
   decrementStatus() {

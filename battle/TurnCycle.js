@@ -18,6 +18,18 @@ class TurnCycle {
       ];
     const enemy = this.battle.combatants[enemyId];
 
+    //check for post events
+    // happen after turn submission
+    const preEvents = caster.getPreEvents();
+    for (let i = 0; i < preEvents.length; i++) {
+      const event = {
+        ...preEvents[i],
+        caster,
+        onCaster: true
+      };
+      await this.onNewEvent(event);
+    }
+
     const submission = await this.onNewEvent({
       type: "submissionMenu",
       enemy: enemy,
