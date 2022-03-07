@@ -42,6 +42,9 @@ window.recipes = {
 };
 
 window.ingredients = {
+  "magic dough": {
+    price: 50,
+  },
   pepperoni: {
     price: 37,
   },

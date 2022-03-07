@@ -95,7 +95,7 @@ class Battle {
           battleEvent.init(resolve);
         });
       },
-      onWinner: (winner) => {
+      onWinner: async (winner) => {
         if (winner === "player") {
           const playerState = window.playerState;
           Object.keys(playerState.pizzas).forEach((id) => {
@@ -113,6 +113,58 @@ class Battle {
           playerState.items = playerState.items.filter((item) => {
             return !this.usedInstanceIds[item.instanceId];
           });
+
+          //add victory rewards
+          const {
+            items,
+            currency,
+            ingredients: enemyIngredients,
+          } = this.enemy.rewards;
+          if (items) {
+            items.forEach((item) => {
+              playerState.items.push(Actions[item]);
+            });
+            await new Promise((resolve) => {
+              const battleEvent = new BattleEvent(
+                {
+                  type: "textMessage",
+                  text: `Gained ${items
+                    .map((item) => Actions[item].name)
+                    .join(", ")}`,
+                },
+                this
+              );
+              battleEvent.init(resolve);
+            });
+          }
+          if (currency) {
+            playerState.currency += currency;
+            await new Promise((resolve) => {
+              const battleEvent = new BattleEvent(
+                {
+                  type: "textMessage",
+                  text: `Gained $$$${currency}`,
+                },
+                this
+              );
+              battleEvent.init(resolve);
+            });
+          }
+          if (enemyIngredients) {
+            enemyIngredients.forEach((item) => {
+              playerState.ingredients.push(ingredients[item]);
+            });
+            await new Promise((resolve) => {
+              const battleEvent = new BattleEvent(
+                {
+                  type: "textMessage",
+                  text: `Gained ${enemyIngredients.join(", ")}`,
+                },
+                this
+              );
+              battleEvent.init(resolve);
+            });
+          }
 
           utils.emitEvent("PlayerStateUpdated");
         }

@@ -5,6 +5,7 @@ window.enemies = {
     rewards: {
       currency: 1000,
       items: ["item_recoverHp2"],
+      ingredients: ["magic dough"],
     },
     pizzas: {
       a: {
@@ -25,6 +26,7 @@ window.enemies = {
     rewards: {
       currency: 100,
       items: ["item_recoverHp"],
+      ingredients: ["basil"],
     },
     pizzas: {
       a: {

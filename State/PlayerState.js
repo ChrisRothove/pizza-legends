@@ -32,6 +32,7 @@ class PlayerState {
     this.currency = 15;
     this.pizzaLevel = 1;
     this.pizzaExp = 0;
+    this.ingredients = [];
   }
 
   addRecipe(recipeId) {
