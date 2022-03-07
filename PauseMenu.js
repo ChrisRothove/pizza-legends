@@ -16,12 +16,33 @@ class PauseMenu {
           },
         },
         {
+          label: "Items",
+          description: "View and Use Items (coming soon)",
+          handler: () => {
+            // open items and use/view them.
+          },
+        },
+        {
+          label: "Controls",
+          description: "Map keybinds (coming soon)",
+          handler: () => {
+            // open keymap screen
+          },
+        },
+        {
           label: "Save",
           description: "Save your progress",
           handler: () => {
             //We'll come back to this...
             this.progress.save();
             this.close();
+          },
+        },
+        {
+          label: "Load",
+          description: "Load progress",
+          handler: () => {
+            this.progress.load();
           },
         },
         {
