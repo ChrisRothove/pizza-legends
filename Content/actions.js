@@ -280,13 +280,56 @@ window.Actions = {
     ],
   },
   item_recoverHp: {
-    name: "Parmesan",
-    description: "Heals the target 25 HP",
+    name: "Parmesan Packet",
+    description: "Heals the target 50 HP",
     targetType: "friendly",
     success: [
-      { type: "textMessage", text: "{CASTER} sprinkles on some {ACTION}!" },
-      { type: "stateChange", recover: 25 },
+      { type: "textMessage", text: "{CASTER} sprinkles on some parmesan!" },
+      { type: "stateChange", recover: 50 },
       { type: "textMessage", text: "{CASTER} recovers HP!" },
+    ],
+  },
+  item_recoverHp2: {
+    name: "Parmesan Shaker",
+    description: "Heals the target 150 HP",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} sprinkles on some parmesan!" },
+      { type: "stateChange", recover: 150 },
+      { type: "textMessage", text: "{CASTER} recovers HP!" },
+    ],
+  },
+  item_attack1: {
+    name: "Attack Sauce",
+    description: "Increases atk for 3 turns",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "buff" },
+      { type: "stateChange", status: { type: "attack+", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is getting pumped!" },
+    ],
+  },
+  item_defense1: {
+    name: "Defense Sauce",
+    description: "Increases def for 3 turns",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "buff" },
+      { type: "stateChange", status: { type: "defense+", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is getting pumped!" },
+    ],
+  },
+  item_speed1: {
+    name: "Speed Sauce",
+    description: "Increases spd for 3 turns",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
+      { type: "animation", animation: "buff" },
+      { type: "stateChange", status: { type: "speed+", expiresIn: 3 } },
+      { type: "textMessage", text: "{TARGET} is getting pumped!" },
     ],
   },
 };
