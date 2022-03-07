@@ -73,7 +73,8 @@ class PauseMenu {
           description: base.description,
           handler: () => {
             playerState.swapLineup(pageKey, id);
-            this.keyboardMenu.setOptions(this.getOptions("root"));
+            this.keyboardMenu.setOptions(this.getOptions("pizzas"));
+            this.statPanel.setPanel(0);
           },
         };
       });
@@ -86,6 +87,7 @@ class PauseMenu {
         handler: () => {
           playerState.moveToFront(pageKey);
           this.keyboardMenu.setOptions(this.getOptions("root"));
+          this.statPanel.setPanel(0);
         },
       },
       {
@@ -93,6 +95,7 @@ class PauseMenu {
         description: "Back to root menu",
         handler: () => {
           this.keyboardMenu.setOptions(this.getOptions("root"));
+          this.statPanel.setPanel(0);
         },
       },
     ];

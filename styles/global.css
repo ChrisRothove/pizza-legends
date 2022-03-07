@@ -25,9 +25,9 @@ body {
   width: 352px;
   height: 198px;
   outline: 1px solid #fff;
-  margin: 0 auto;
+  margin: auto;
 
-  transform: scale(3) translateY(50%);
+  transform: scale(3) translateY(65%);
 }
 
 .game-container canvas {

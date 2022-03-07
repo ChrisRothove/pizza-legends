@@ -81,12 +81,48 @@ class StatPanel {
       // render for player
       this.element.innerHTML = `
         <h2>${this.subject.name} | Level ${this.subject.pizzaLevel}</h2>
-        <div class="row statLine">
-          <p><strong>Exp</strong><em>${this.subject.pizzaExp}</em></p>
-          <p><strong>Next Level</strong><em>${
-            levels[this.subject.pizzaLevel + 1]
-          }</em></p>
-        </div>
+        <table class="stats">
+        <tr>
+          <td class="head"><strong>Exp</strong></td>
+          <td><em>${this.subject.pizzaExp}</em></td>
+          <td class="head"><strong>Next Level</strong></td>
+          <td><em>${levels[this.subject.pizzaLevel + 1]}</em></td>
+        </tr>
+        <tr>
+          <td class="head"><strong>$$$</strong></td>
+          <td><em>${this.subject.currency}</em></td>
+          <td class="head"><strong>Recipes</strong></td>
+          <td><em>${this.subject.recipes.length} / 10</em></td>
+        </tr>
+        <tr>
+        <td colSpan="4" class="banner divider"><h4>Active Pizzas</h4></td>
+        </tr>
+        ${this.subject.lineup
+          .map((pizzaId, idx) => {
+            const thePizza = this.subject.pizzas[pizzaId];
+            return `
+              <tr>
+                <td class="head pizzaBox">
+                  <img src="${thePizza.src}" /> 
+                </td>
+                <td><em>${thePizza.name}</em></td>
+                <td class="head"><strong>Level</strong></td>
+                <td><em>${thePizza.level}</em></td>
+              </tr>
+              <tr>
+                <td class="banner hp" colSpan="4">
+                  <div style="height: 1em; width: ${
+                    (thePizza.hp / thePizza.maxHp) * 100
+                  }%; background: lightgreen;" />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="4" class="banner divider"> </td>
+              </tr>
+            `;
+          })
+          .join("")}
+        </table>
       `;
     }
   }
