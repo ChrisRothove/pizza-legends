@@ -119,22 +119,13 @@ class Combatant {
 
     //Stat buffs
     if (this.status?.type === "attack+") {
-      return [
-        { type: "textMessage", text: `${this.name} is pumped!` },
-        { type: "stateChange", statDown: { stat: "atk", value: 5 } },
-      ];
+      return [{ type: "stateChange", statDown: { stat: "atk", value: 5 } }];
     }
     if (this.status?.type === "defense+") {
-      return [
-        { type: "textMessage", text: `${this.name} is hale and hardy!` },
-        { type: "stateChange", statDown: { stat: "def", value: 5 } },
-      ];
+      return [{ type: "stateChange", statDown: { stat: "def", value: 5 } }];
     }
     if (this.status?.type === "speed+") {
-      return [
-        { type: "textMessage", text: `${this.name} is goin' fast!` },
-        { type: "stateChange", statDown: { stat: "spd", value: 5 } },
-      ];
+      return [{ type: "stateChange", statDown: { stat: "spd", value: 5 } }];
     }
 
     return [];
@@ -159,19 +150,19 @@ class Combatant {
     //Stat Buffs
     if (this.status?.type === "attack+") {
       return [
-        { type: "textMessage", text: `${this.name} is hurt by kale!` },
+        { type: "textMessage", text: `${this.name} is pumped!` },
         { type: "stateChange", statUp: { stat: "atk", value: 5 } },
       ];
     }
     if (this.status?.type === "defense+") {
       return [
-        { type: "textMessage", text: `${this.name} is hurt by kale!` },
+        { type: "textMessage", text: `${this.name} is hale and hardy!` },
         { type: "stateChange", statUp: { stat: "def", value: 5 } },
       ];
     }
     if (this.status?.type === "speed+") {
       return [
-        { type: "textMessage", text: `${this.name} is hurt by kale!` },
+        { type: "textMessage", text: `${this.name} is goin' fast!` },
         { type: "stateChange", statUp: { stat: "spd", value: 5 } },
       ];
     }
