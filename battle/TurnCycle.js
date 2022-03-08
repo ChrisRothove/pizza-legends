@@ -25,7 +25,7 @@ class TurnCycle {
       const event = {
         ...preEvents[i],
         caster,
-        onCaster: true
+        onCaster: true,
       };
       await this.onNewEvent(event);
     }
@@ -38,7 +38,7 @@ class TurnCycle {
 
     if (submission.instanceId) {
       //add to list to persist to player state
-      this.usedInstanceIds[submission.instanceId] = true;
+      this.battle.usedInstanceIds[submission.instanceId] = true;
       //remove used item
       this.battle.items = this.battle.items.filter(
         (i) => i.instanceId !== submission.instanceId
