@@ -83,7 +83,7 @@ class OverworldMap {
     const match = Object.values(this.gameObjects).find((object) => {
       return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`;
     });
-    console.log(match);
+
     if (!this.isCutscenePlaying && match && match.talking.length) {
       const relevantScenario = match.talking.find((scenario) => {
         return (scenario.required || []).every((sf) => {
