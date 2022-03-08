@@ -25,7 +25,7 @@ class TurnCycle {
       const event = {
         ...preEvents[i],
         caster,
-        onCaster: true,
+        target: enemy,
       };
       await this.onNewEvent(event);
     }

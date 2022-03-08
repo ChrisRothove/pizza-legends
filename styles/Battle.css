@@ -78,6 +78,7 @@
   animation: battle-spin-left 0.8s;
 }
 
+/*Glob Animation */
 .glob-orb {
   position: absolute;
   width: 32px;
@@ -129,4 +130,132 @@
   left: 227px;
   top: 56px;
   animation: battle-glob-left 1s forwards;
+}
+
+/* blast animation */
+
+.battle-blast {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+@keyframes battle-blast-right {
+  0% {
+    transform: translate3d(0, 0, 0) scale(2);
+  }
+  95% {
+    transform: translate3d(174px, -47px, 0) scale(2);
+  }
+  100% {
+    transform: translate3d(174px, -47px, 0) scale(2) scaleX(3);
+  }
+}
+.blast-particle-right-1 {
+  left: 73px;
+  top: 93px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-right-2 {
+  left: 69px;
+  top: 81px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-right-3 {
+  left: 78px;
+  top: 105px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-right-4 {
+  left: 72px;
+  top: 107px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-right-5 {
+  left: 67px;
+  top: 92px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-right-6 {
+  left: 79px;
+  top: 88px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+@keyframes battle-blast-left {
+  0% {
+    transform: translate3d(0, 0, 0) scale(2);
+  }
+  95% {
+    transform: translate3d(-174px, 47px, 0) scale(2);
+  }
+  100% {
+    transform: translate3d(-174px, 47px, 0) scale(2) scaleX(3);
+  }
+}
+
+.blast-particle-left-1 {
+  left: 223px;
+  top: 53px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-left-2 {
+  left: 229px;
+  top: 51px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-left-3 {
+  left: 228px;
+  top: 55px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-left-4 {
+  left: 222px;
+  top: 57px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-left-5 {
+  left: 227px;
+  top: 52px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+.blast-particle-left-6 {
+  left: 229px;
+  top: 58px;
+  animation: battle-blast-right 0.4s forwards;
+}
+
+/*Buff animation */
+
+@keyframes battle-buff {
+  0% {
+    transform: translate3d(0, 0, 0) scale(3);
+  }
+  10% {
+    transform: translate3d(0, -32px, 0) scale(3);
+  }
+  40% {
+    transform: translate3d(0, -32px, 0) scale(4);
+  }
+  90% {
+    transform: translate3d(0, -32px, 0) scale(3);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(3);
+  }
+}
+
+.battle-buff {
+  animation: battle-buff 0.8s forwards;
 }

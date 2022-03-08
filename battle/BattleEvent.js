@@ -67,6 +67,9 @@ class BattleEvent {
       who.update({
         hp: newHp,
       });
+
+      //start blinking
+      who.pizzaElement.classList.add("battle-damage-blink");
     }
 
     if (status) {
@@ -94,7 +97,7 @@ class BattleEvent {
     this.battle.playerTeam.update();
     this.battle.enemyTeam.update();
     //stop blinking
-    target.pizzaElement.classList.remove("battle-damage-blink");
+    who.pizzaElement.classList.remove("battle-damage-blink");
 
     resolve();
   }

@@ -42,4 +42,52 @@ window.BattleAnimations = {
     await utils.wait(820);
     onComplete();
   },
+
+  async blast(event, onComplete) {
+    const { caster } = event;
+    const elements = [];
+    while (elements.length < 6) {
+      elements.push(document.createElement("div"));
+
+      const element = elements[elements.length - 1];
+      const team = caster.team === "player" ? "right" : "left";
+
+      element.classList.add("battle-blast");
+      element.classList.add(`blast-particle-${team}-${elements.length}`);
+
+      element.innerHTML = `
+      <svg viewBox="0 0 3 3" width="3" height="3">
+      <circle cx="1" cy="1" r="1" fill="${event.color}" />
+      </svg>
+      `;
+
+      //Remove after completion
+      element.addEventListener("animationend", () => {
+        element.remove();
+      });
+
+      document.querySelector(".Battle").appendChild(element);
+    }
+
+    await utils.wait(820);
+    onComplete();
+  },
+
+  async buff(event, onComplete) {
+    const element = event.caster.pizzaElement;
+    element.classList.add("battle-buff");
+
+    //remove class when animation is complete
+    element.addEventListener(
+      "animationend",
+      () => {
+        element.classList.remove("battle-buff");
+      },
+      { once: true }
+    );
+
+    //continue battle cycle right around the time of impact
+    await utils.wait(100);
+    onComplete();
+  },
 };

@@ -28,7 +28,19 @@ class PlayerState {
     ];
     this.storyFlags = {};
 
-    this.recipes = ["n001"];
+    this.recipes = [
+      "n001",
+      "n002",
+      "s001",
+      "s002",
+      "v001",
+      "v002",
+      "f001",
+      "f002",
+      "c001",
+      "c002",
+    ];
+
     this.currency = 15;
     this.pizzaLevel = 1;
     this.pizzaExp = 0;
@@ -130,4 +142,5 @@ class PlayerState {
     utils.emitEvent("LineupChanged");
   }
 }
+console.log("this is firing now");
 window.playerState = new PlayerState();

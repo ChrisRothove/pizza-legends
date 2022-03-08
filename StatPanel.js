@@ -92,7 +92,7 @@ class StatPanel {
           <td class="head"><strong>$$$</strong></td>
           <td><em>${this.subject.currency}</em></td>
           <td class="head"><strong>Recipes</strong></td>
-          <td><em>${this.subject.recipes.length} / 10</em></td>
+          <td><em>${this.subject.recipes.length} / ${recipes.length}</em></td>
         </tr>
         <tr>
         <td colSpan="4" class="banner divider"><h4>Active Pizzas</h4></td>

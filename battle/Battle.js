@@ -120,10 +120,15 @@ class Battle {
             currency,
             ingredients: enemyIngredients,
           } = this.enemy.rewards;
+          //if there are reward items, push them into player state
           if (items) {
             items.forEach((item) => {
-              playerState.items.push(Actions[item]);
+              playerState.items.push({
+                actionId: item,
+                instanceId: `item${playerState.items.length + 1}`,
+              });
             });
+            //notify the player
             await new Promise((resolve) => {
               const battleEvent = new BattleEvent(
                 {
@@ -137,6 +142,7 @@ class Battle {
               battleEvent.init(resolve);
             });
           }
+          //Add Currency to player state
           if (currency) {
             playerState.currency += currency;
             await new Promise((resolve) => {
@@ -150,6 +156,7 @@ class Battle {
               battleEvent.init(resolve);
             });
           }
+          //add ingredients to player state
           if (enemyIngredients) {
             enemyIngredients.forEach((item) => {
               playerState.ingredients.push(ingredients[item]);
