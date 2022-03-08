@@ -8,7 +8,7 @@ window.Actions = {
       { type: "animation", animation: "spin" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 2,
+        damage: (atk) => atk * 4,
         hit: utils.determineHit,
       },
     ],
@@ -22,7 +22,7 @@ window.Actions = {
       { type: "animation", animation: "spin" },
       {
         type: "stateChange",
-        damage: (atk) => Math.round(atk * 2.6),
+        damage: (atk) => Math.round(atk * 5),
         hit: utils.determineHit,
       },
     ],
@@ -45,19 +45,19 @@ window.Actions = {
       { type: "animation", animation: "blast", color: "#000000" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 1,
+        damage: (atk) => atk * 2,
         hit: utils.determineHit,
       },
       { type: "animation", animation: "blast", color: "#000000" },
       {
         type: "stateChange",
-        damage: (atk) => Math.round(atk * 1.25),
+        damage: (atk) => Math.round(atk * 2.25),
         hit: utils.determineHit,
       },
       { type: "animation", animation: "blast", color: "#000000" },
       {
         type: "stateChange",
-        damage: (atk) => Math.round(atk * 1.5),
+        damage: (atk) => Math.round(atk * 2.5),
         hit: utils.determineHit,
       },
     ],
@@ -91,7 +91,7 @@ window.Actions = {
       { type: "animation", animation: "glob", color: "red" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 2,
+        damage: (atk) => atk * 4,
         hit: utils.determineHit,
       },
     ],
@@ -105,7 +105,7 @@ window.Actions = {
       { type: "animation", animation: "spin" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 3,
+        damage: (atk) => atk * 5,
         hit: utils.determineHit,
       },
     ],
@@ -136,7 +136,7 @@ window.Actions = {
       { type: "animation", animation: "spin" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 2,
+        damage: (atk) => atk * 4,
         hit: utils.determineHit,
       },
     ],
@@ -150,7 +150,7 @@ window.Actions = {
       { type: "animation", animation: "spin" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 3,
+        damage: (atk) => atk * 5,
         hit: utils.determineHit,
       },
     ],
@@ -176,7 +176,7 @@ window.Actions = {
       { type: "animation", animation: "spin" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 2,
+        damage: (atk) => atk * 4,
         hit: utils.determineHit,
       },
     ],
@@ -190,7 +190,7 @@ window.Actions = {
       { type: "animation", animation: "blast", color: "#000000" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 3,
+        damage: (atk) => atk * 5,
         hit: utils.determineHit,
       },
     ],
@@ -205,7 +205,7 @@ window.Actions = {
       { type: "animation", animation: "spin" },
       {
         type: "stateChange",
-        damage: (atk) => atk * 2,
+        damage: (atk) => atk * 4,
         hit: utils.determineHit,
       },
     ],
@@ -222,7 +222,11 @@ window.Actions = {
         damage: (atk) => atk * 3,
         hit: utils.determineHit,
       },
-      { type: "stateChange", status: { type: "saucy", expiresIn: 3 } },
+      {
+        type: "stateChange",
+        status: { type: "saucy", expiresIn: 3 },
+        onCaster: true,
+      },
     ],
   },
   frozenStatus: {
@@ -244,7 +248,11 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
       { type: "animation", animation: "buff" },
-      { type: "stateChange", status: { type: "speed+", expiresIn: 3 } },
+      {
+        type: "stateChange",
+        status: { type: "speed+", expiresIn: 3 },
+        onCaster: true,
+      },
       { type: "textMessage", text: "{TARGET} is specially seasoned!" },
     ],
   },
@@ -254,7 +262,11 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
       { type: "animation", animation: "buff" },
-      { type: "stateChange", status: { type: "attack+", expiresIn: 3 } },
+      {
+        type: "stateChange",
+        status: { type: "attack+", expiresIn: 3 },
+        onCaster: true,
+      },
       { type: "textMessage", text: "{TARGET} is getting pumped!" },
     ],
   },
@@ -264,7 +276,11 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
       { type: "animation", animation: "buff" },
-      { type: "stateChange", status: { type: "defense+", expiresIn: 3 } },
+      {
+        type: "stateChange",
+        status: { type: "defense+", expiresIn: 3 },
+        onCaster: true,
+      },
       { type: "textMessage", text: "{TARGET} is perfectly prepared!" },
     ],
   },
@@ -281,11 +297,11 @@ window.Actions = {
   },
   item_recoverHp: {
     name: "Parmesan Packet",
-    description: "Heals the target 50 HP",
+    description: "Heals the target 75 HP",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} sprinkles on some parmesan!" },
-      { type: "stateChange", recover: 50 },
+      { type: "stateChange", recover: 75 },
       { type: "textMessage", text: "{CASTER} recovers HP!" },
     ],
   },
