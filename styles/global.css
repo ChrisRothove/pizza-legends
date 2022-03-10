@@ -33,3 +33,7 @@ body {
 .game-container canvas {
   image-rendering: pixelated;
 }
+
+.hidden {
+  display: none;
+}

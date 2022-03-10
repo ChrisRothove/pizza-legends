@@ -81,6 +81,20 @@ class ShopMenu {
     ];
   }
 
+  swapList(side) {
+    if (side === "right") {
+      this.sellMenu.setOptions(this.getSellOptions());
+      this.buyMenu.setOptions(this.getBuyOptions());
+      this.sellMenu.descriptionElement.classList.remove("hidden");
+      this.buyMenu.descriptionElement.classList.add("hidden");
+    } else {
+      this.sellMenu.setOptions(this.getSellOptions());
+      this.buyMenu.setOptions(this.getBuyOptions());
+      this.sellMenu.descriptionElement.classList.add("hidden");
+      this.buyMenu.descriptionElement.classList.remove("hidden");
+    }
+  }
+
   createElement() {
     this.buyElement = document.createElement("div");
     this.sellElement = document.createElement("div");
@@ -129,14 +143,12 @@ class ShopMenu {
 
     this.right = new KeyPressListener("ArrowRight", () => {
       this.tab = "right";
-      this.buyMenu.setOptions(this.getBuyOptions());
-      this.sellMenu.setOptions(this.getSellOptions());
+      this.swapList("right");
     });
 
     this.left = new KeyPressListener("ArrowLeft", () => {
       this.tab = "left";
-      this.buyMenu.setOptions(this.getBuyOptions());
-      this.sellMenu.setOptions(this.getSellOptions());
+      this.swapList("left");
     });
 
     utils.wait(200);
