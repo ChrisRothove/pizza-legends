@@ -246,6 +246,7 @@ window.OverworldMaps = {
                 text: "You made it! This video is going to be such a good time!",
                 faceHero: "npcB",
               },
+              { type: "openShop" },
             ],
           },
         ],

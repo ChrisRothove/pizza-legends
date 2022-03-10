@@ -125,7 +125,7 @@ class Battle {
             items.forEach((item) => {
               playerState.items.push({
                 actionId: item,
-                instanceId: `item${playerState.items.length + 1}`,
+                instanceId: `item${new Date()}`,
               });
             });
             //notify the player

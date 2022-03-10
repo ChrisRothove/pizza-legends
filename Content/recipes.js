@@ -43,60 +43,79 @@ window.recipes = {
 
 window.ingredients = {
   "magic dough": {
+    name: "magic dough",
     price: 50,
   },
   pepperoni: {
+    name: "pepperoni",
     price: 37,
   },
   cheddar: {
+    name: "cheddar",
     price: 20,
   },
   "tomato sauce": {
+    name: "tomato sauce",
     price: 25,
   },
   "black olives": {
+    name: "black olives",
     price: 15,
   },
   "alfredo sauce": {
+    name: "alfredo sauce",
     price: 20,
   },
   bacon: {
+    name: "bacon",
     price: 45,
   },
   feta: {
+    name: "feta",
     price: 25,
   },
   "spicy marinara": {
+    name: "spicy marinara",
     price: 30,
   },
   "four cheese mix": {
+    name: "four cheese mix",
     price: 40,
   },
   peppers: {
+    name: "peppers",
     price: 20,
   },
   kale: {
+    name: "kale",
     price: 25,
   },
   spinach: {
+    name: "spinach",
     price: 30,
   },
   portobello: {
+    name: "portobello",
     price: 25,
   },
   chanterelle: {
+    name: "chanterelle",
     price: 35,
   },
   "garlic sauce": {
+    name: "garlic sauce",
     price: 25,
   },
   pineapple: {
+    name: "pineapple",
     price: 35,
   },
   tomatoes: {
+    name: "tomatoes",
     price: 30,
   },
   basil: {
+    name: "basil",
     price: 15,
   },
 };

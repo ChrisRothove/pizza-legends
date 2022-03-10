@@ -124,6 +124,18 @@ class OverworldEvent {
     menu.init(document.querySelector(".game-container"));
   }
 
+  openShop(resolve) {
+    this.map.isPaused = true;
+    const menu = new ShopMenu({
+      onComplete: () => {
+        resolve();
+        this.map.isPause = false;
+        this.map.overworld.startGameLoop();
+      },
+    });
+    menu.init(document.querySelector(".game-container"));
+  }
+
   init() {
     return new Promise((resolve) => {
       this[this.event.type](resolve);

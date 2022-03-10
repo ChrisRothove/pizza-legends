@@ -294,6 +294,7 @@ window.Actions = {
       { type: "stateChange", status: null },
       { type: "textMessage", text: "Feeling fresh!" },
     ],
+    price: 25,
   },
   item_recoverHp: {
     name: "Parmesan Packet",
@@ -304,6 +305,7 @@ window.Actions = {
       { type: "stateChange", recover: 75 },
       { type: "textMessage", text: "{CASTER} recovers HP!" },
     ],
+    price: 50,
   },
   item_recoverHp2: {
     name: "Parmesan Shaker",
@@ -314,6 +316,7 @@ window.Actions = {
       { type: "stateChange", recover: 150 },
       { type: "textMessage", text: "{CASTER} recovers HP!" },
     ],
+    price: 100,
   },
   item_attack1: {
     name: "Attack Sauce",
@@ -325,6 +328,7 @@ window.Actions = {
       { type: "stateChange", status: { type: "attack+", expiresIn: 3 } },
       { type: "textMessage", text: "{TARGET} is getting pumped!" },
     ],
+    price: 35,
   },
   item_defense1: {
     name: "Defense Sauce",
@@ -336,6 +340,7 @@ window.Actions = {
       { type: "stateChange", status: { type: "defense+", expiresIn: 3 } },
       { type: "textMessage", text: "{TARGET} is getting pumped!" },
     ],
+    price: 35,
   },
   item_speed1: {
     name: "Speed Sauce",
@@ -347,5 +352,6 @@ window.Actions = {
       { type: "stateChange", status: { type: "speed+", expiresIn: 3 } },
       { type: "textMessage", text: "{TARGET} is getting pumped!" },
     ],
+    price: 35,
   },
 };
