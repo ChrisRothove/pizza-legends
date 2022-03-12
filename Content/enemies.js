@@ -26,7 +26,7 @@ window.enemies = {
     rewards: {
       currency: 100,
       items: ["item_recoverHp"],
-      ingredients: ["basil"],
+      ingredients: ["pepperoni", "cheddar", "tomato sauce"],
     },
     pizzas: {
       a: {

@@ -44,7 +44,12 @@ class PlayerState {
     this.currency = 15;
     this.pizzaLevel = 1;
     this.pizzaExp = 0;
-    this.ingredients = [{ indexId: "magic dough", instanceId: "item1" }];
+    this.ingredients = [
+      { indexId: "magic dough", instanceId: "item1" },
+      { indexId: "pepperoni", instanceId: "item2" },
+      { indexId: "cheddar", instanceId: "item3" },
+      { indexId: "tomato sauce", instanceId: "item4" },
+    ];
   }
 
   addRecipe(recipeId) {
@@ -61,6 +66,12 @@ class PlayerState {
 
   addExp(amount) {
     this.pizzaExp += amount;
+  }
+
+  removeIngredients(instanceId) {
+    this.ingredients = this.ingredients.filter(
+      (item) => item.instanceId !== instanceId
+    );
   }
 
   addPizza(pizzaId) {

@@ -32,15 +32,28 @@ class CraftingMenu {
       ];
     } else {
       const disabled =
-        this.statPanel.ingredient1.value <= 0 ||
-        this.statPanel.ingredient2.value <= 0 ||
-        this.statPanel.ingredient3.value <= 0;
+        this.statPanel.ingredient1.value.length <= 0 ||
+        this.statPanel.ingredient2.value.length <= 0 ||
+        this.statPanel.ingredient3.value.length <= 0;
       return [
         {
           label: `Create this pizza`,
           description: "Add this pizza to your team",
           handler: () => {
             playerState.addPizza(pageId);
+            playerState.removeIngredients(
+              this.statPanel.ingredient1.value[0].instanceId
+            );
+            playerState.removeIngredients(
+              this.statPanel.ingredient2.value[0].instanceId
+            );
+            playerState.removeIngredients(
+              this.statPanel.ingredient3.value[0].instanceId
+            );
+            const magicDough = playerState.ingredients.find(
+              (item) => item.indexId === "magic dough"
+            );
+            playerState.removeIngredients(magicDough.instanceId);
             this.close();
           },
           disabled,

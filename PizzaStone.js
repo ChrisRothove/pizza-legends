@@ -39,6 +39,9 @@ class PizzaStone extends GameObject {
   }
 
   update() {
+    this.doughCount = playerState.ingredients.filter(
+      (item) => item.indexId === "magic dough"
+    );
     this.sprite.currentAnimation =
       this.doughCount <= 0 ? "used-down" : "unused-down";
   }

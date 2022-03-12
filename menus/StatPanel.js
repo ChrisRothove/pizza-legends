@@ -83,27 +83,28 @@ class StatPanel {
       this.activeIngredients = playerState.ingredients.filter((ingred) => {
         return recipes[this.id].ingredients.includes(ingred.indexId);
       });
+      console.log(this.activeIngredients);
       // create ingredient 1 object
       this.ingredient1 = {
         name: recipes[this.subject.pizzaId].ingredients[0],
       };
       this.ingredient1.value = this.activeIngredients.filter(
-        (ing) => ing.indexId === ingredient1.name
-      ).length;
+        (ing) => ing.indexId === this.ingredient1.name
+      );
       // ingredient 2 object
       this.ingredient2 = {
         name: recipes[this.subject.pizzaId].ingredients[1],
       };
       this.ingredient2.value = this.activeIngredients.filter(
-        (ing) => ing.indexId === ingredient2.name
-      ).length;
+        (ing) => ing.indexId === this.ingredient2.name
+      );
       // ingredient 3 object
       this.ingredient3 = {
         name: recipes[this.subject.pizzaId].ingredients[2],
       };
       this.ingredient3.value = this.activeIngredients.filter(
-        (ing) => ing.indexId === ingredient3.name
-      ).length;
+        (ing) => ing.indexId === this.ingredient3.name
+      );
 
       this.element.innerHTML = `
         <h2>${this.subject.name}</h2>
@@ -147,12 +148,14 @@ class StatPanel {
         </tr>
         <tr>
           <td class="head"><strong>ingredients</strong></td>
-          <td><em>${this.ingredient1.name}(${this.ingredient1.value})</em></td>
+          <td><em>${this.ingredient1.name}(${
+        this.ingredient1.value.length
+      })</em></td>
           <td class="alone"><em>${this.ingredient2.name}(${
-        this.ingredient2.value
+        this.ingredient2.value.length
       })</em></td>
           <td class="alone"><em>${this.ingredient3.name}(${
-        this.ingredient3.value
+        this.ingredient3.value.length
       })</em></td>
         </tr>
         <tr>
