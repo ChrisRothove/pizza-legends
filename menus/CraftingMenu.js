@@ -4,44 +4,92 @@ class CraftingMenu {
     this.onComplete = onComplete;
   }
 
-  getOptions() {
-    return this.pizzas.map((id) => {
-      const base = Pizzas[id];
-      return {
-        label: base.name,
-        description: base.description,
-        handler: () => {
-          playerState.addPizza(id);
-          this.close();
+  getOptions(pageId) {
+    if (!pageId) {
+      return [
+        ...this.pizzas.map((id) => {
+          const base = Pizzas[id];
+          return {
+            label: base.name,
+            description: base.description,
+            handler: () => {
+              this.statPanel = new StatPanel({
+                id,
+              });
+              this.statPanel.init(this.displayElement);
+              this.statPanel.setPanel(id);
+              this.listMenu.setOptions(this.getOptions(id));
+            },
+          };
+        }),
+        {
+          label: "Close",
+          description: "leave the pizza menu",
+          handler: () => {
+            this.close();
+          },
         },
-      };
-    });
+      ];
+    } else {
+      const disabled =
+        this.statPanel.ingredient1.value <= 0 ||
+        this.statPanel.ingredient2.value <= 0 ||
+        this.statPanel.ingredient3.value <= 0;
+      return [
+        {
+          label: `Create this pizza`,
+          description: "Add this pizza to your team",
+          handler: () => {
+            playerState.addPizza(pageId);
+            this.close();
+          },
+          disabled,
+        },
+        {
+          label: "Back",
+          description: disabled
+            ? "You don't have enough ingredients"
+            : "Go back to pizza select",
+          handler: () => {
+            this.statPanel.end();
+            this.listMenu.setOptions(this.getOptions());
+          },
+        },
+      ];
+    }
   }
 
   createElement() {
-    this.element = document.createElement("div");
-    this.element.classList.add("CraftingMenu");
-    this.element.classList.add("overlayMenu");
-    this.element.innerHTML = `
+    this.listElement = document.createElement("div");
+    this.listElement.classList.add("CraftingMenu");
+    this.listElement.classList.add("overlayMenu");
+    this.listElement.classList.add("left");
+    this.listElement.innerHTML = `
       <h2>Create a Pizza</h2>
     `;
+
+    this.displayElement = document.createElement("div");
+    this.displayElement.classList.add("overlayMenu");
+    this.displayElement.classList.add("pizzaPaneRight");
   }
 
   close() {
-    this.keyboardMenu.end();
-    this.element.remove();
+    this.listMenu.end();
+    this.listElement.remove();
+    this.displayElement.remove();
     this.onComplete();
   }
 
   init(container) {
     this.createElement();
-    this.keyboardMenu = new KeyboardMenu({
+    this.listMenu = new KeyboardMenu({
       descriptionContainer: container,
-      KeyboardLength: 6,
+      KeyboardLength: 8,
     });
-    this.keyboardMenu.init(this.element);
-    this.keyboardMenu.setOptions(this.getOptions());
+    this.listMenu.init(this.listElement);
+    this.listMenu.setOptions(this.getOptions());
 
-    container.appendChild(this.element);
+    container.appendChild(this.listElement);
+    container.appendChild(this.displayElement);
   }
 }

@@ -10,30 +10,36 @@ class PizzaStone extends GameObject {
       },
       currentAnimation: "used-down",
     });
-    this.storyFlag = config.storyFlag;
+    this.doughCount = playerState.ingredients.filter(
+      (item) => item.indexId === "magic dough"
+    );
     this.pizzas = config.pizzas;
 
-    this.talking = [
-      {
-        required: [this.storyFlag],
-        events: [{ type: "textMessage", text: "You have already used this." }],
-      },
-      {
-        events: [
-          {
-            type: "textMessage",
-            text: "Approaching the legendary pizza stone...",
-          },
-          { type: "craftingMenu", pizzas: this.pizzas },
-          { type: "addStoryFlag", flag: this.storyFlag },
-        ],
-      },
-    ];
+    this.talking =
+      this.doughCount <= 0
+        ? [
+            {
+              events: [
+                { type: "textMessage", text: "You have already used this." },
+              ],
+            },
+          ]
+        : [
+            {
+              events: [
+                {
+                  type: "textMessage",
+                  text: "Approaching the legendary pizza stone...",
+                },
+                { type: "craftingMenu", pizzas: this.pizzas },
+                { type: "addStoryFlag", flag: this.storyFlag },
+              ],
+            },
+          ];
   }
 
   update() {
-    this.sprite.currentAnimation = playerState.storyFlags[this.storyFlag]
-      ? "used-down"
-      : "unused-down";
+    this.sprite.currentAnimation =
+      this.doughCount <= 0 ? "used-down" : "unused-down";
   }
 }

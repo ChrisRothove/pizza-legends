@@ -7,8 +7,8 @@ class StatPanel {
   setPanel(newSubject = 0) {
     this.id = newSubject;
     this.subject = !newSubject ? playerState : playerState.pizzas[this.id];
-    if (this.id) {
-      // render for Pizza
+    if (this.id && Object.keys(playerState.pizzas).includes(this.id)) {
+      // render for Pizza in Pause Menu
       this.element.innerHTML = `
         <h2>${this.subject.name}</h2>
         <h4>${this.subject.description}</h4>
@@ -77,6 +77,97 @@ class StatPanel {
         </tr>
         </table>
       `;
+    } else if (this.id) {
+      this.subject = Pizzas[this.id];
+      // render for Pizza in creation menu
+      this.activeIngredients = playerState.ingredients.filter((ingred) => {
+        return recipes[this.id].ingredients.includes(ingred.indexId);
+      });
+      // create ingredient 1 object
+      this.ingredient1 = {
+        name: recipes[this.subject.pizzaId].ingredients[0],
+      };
+      this.ingredient1.value = this.activeIngredients.filter(
+        (ing) => ing.indexId === ingredient1.name
+      ).length;
+      // ingredient 2 object
+      this.ingredient2 = {
+        name: recipes[this.subject.pizzaId].ingredients[1],
+      };
+      this.ingredient2.value = this.activeIngredients.filter(
+        (ing) => ing.indexId === ingredient2.name
+      ).length;
+      // ingredient 3 object
+      this.ingredient3 = {
+        name: recipes[this.subject.pizzaId].ingredients[2],
+      };
+      this.ingredient3.value = this.activeIngredients.filter(
+        (ing) => ing.indexId === ingredient3.name
+      ).length;
+
+      this.element.innerHTML = `
+        <h2>${this.subject.name}</h2>
+        <h4>${this.subject.description}</h4>
+        <table class="stats">
+        <tr>
+          <td class="head"><strong>Hit Points</strong></td>
+          <td><em>${this.subject.attributes.vit * 10}</em></td>
+          <td class="head"><strong>Type</strong></td>
+          <td><em>${this.subject.type}</em></td>
+        </tr>
+        <tr>
+          <td class="head"><strong>Weak</strong></td>
+          <td><em>${this.subject.typeWeak || "None"}</em></td>
+          <td class="head"><strong>Resist</strong></td>
+          <td><em>${this.subject.typeAdv || "None"}</em></td>
+        </tr>
+        <tr>
+          <td class="head"><strong>Vitality</strong></td>
+          <td><em>${this.subject.attributes.vit}</em></td>
+          <td class="head"><strong>Growth Rate</strong></td>
+          <td><em>level/${this.subject.attributes.vitRate}</em></td>
+        </tr>
+        <tr>
+          <td class="head"><strong>Attack</strong></td>
+          <td><em>${this.subject.attributes.atk}</em></td>
+          <td class="head"><strong>Growth Rate</strong></td>
+          <td><em>level/${this.subject.attributes.atkRate}</em></td>
+        </tr>
+        <tr>
+          <td class="head"><strong>Defense</strong></td>
+          <td><em>${this.subject.attributes.def}</em></td>
+          <td class="head"><strong>Growth Rate</strong></td>
+          <td><em>level/${this.subject.attributes.defRate}</em></td>
+        </tr>
+        <tr>
+          <td class="head"><strong>Speed</strong></td>
+          <td><em>${this.subject.attributes.spd}</em></td>
+          <td class="head"><strong>Growth Rate</strong></td>
+          <td><em>level/${this.subject.attributes.spdRate}</em></td>
+        </tr>
+        <tr>
+          <td class="head"><strong>ingredients</strong></td>
+          <td><em>${this.ingredient1.name}(${this.ingredient1.value})</em></td>
+          <td class="alone"><em>${this.ingredient2.name}(${
+        this.ingredient2.value
+      })</em></td>
+          <td class="alone"><em>${this.ingredient3.name}(${
+        this.ingredient3.value
+      })</em></td>
+        </tr>
+        <tr>
+        <td colSpan="4" class="banner divider"><h4>Attacks</h4></td>
+        </tr>
+        <tr>
+          ${this.subject.actions
+            .map(
+              (action) =>
+                `<td class="alone"><em>${Actions[action].name}</em></td>`
+            )
+            .join("")}
+        </tr>
+        </table>
+      `;
     } else {
       // render for player
       this.element.innerHTML = `
@@ -132,6 +223,10 @@ class StatPanel {
   createElement() {
     this.element = document.createElement("div");
     this.element.classList.add("statPanel");
+  }
+
+  end() {
+    this.element.remove();
   }
 
   init(container) {

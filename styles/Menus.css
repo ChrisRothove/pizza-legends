@@ -53,6 +53,7 @@
   border: 0px;
   padding: 1px;
   font-variant: small-caps;
+  font-family: "Crete Round", serif;
 }
 
 .stats td {
@@ -88,6 +89,7 @@
   margin-right: 0px;
   image-rendering: pixelated;
   overflow: hidden;
+  font-family: "Crete Round", serif;
 }
 
 .stats .pizzaBox {

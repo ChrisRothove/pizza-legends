@@ -8,6 +8,7 @@ window.PizzaTypes = {
 
 window.Pizzas = {
   n001: {
+    pizzaId: "n001",
     name: "Slice Samurai",
     description: "A taste so sharp you'll bleed!",
     type: PizzaTypes.normal,
@@ -28,6 +29,7 @@ window.Pizzas = {
     },
   },
   n002: {
+    pizzaId: "n002",
     name: "Alfredo Snake-eyes",
     description: "At least one of those olives is explosive",
     type: PizzaTypes.normal,
@@ -48,6 +50,7 @@ window.Pizzas = {
     },
   },
   s001: {
+    pizzaId: "s001",
     name: "Bacon Brigade",
     description: "A salty warrior who fears nothing",
     type: PizzaTypes.spicy,
@@ -68,6 +71,7 @@ window.Pizzas = {
     },
   },
   s002: {
+    pizzaId: "s002",
     name: "Deep Dish Volcano",
     description: "A molten melody of four spiced cheeses",
     type: PizzaTypes.spicy,
@@ -88,6 +92,7 @@ window.Pizzas = {
     },
   },
   v001: {
+    pizzaId: "v001",
     name: "Kale-eye-descope",
     description: "A Healthy and mysterious fighter",
     type: PizzaTypes.veggie,
@@ -108,6 +113,7 @@ window.Pizzas = {
     },
   },
   v002: {
+    pizzaId: "v002",
     name: "Spinning Spinach",
     description: "Lithe and leafy with deadly accuracy",
     type: PizzaTypes.veggie,
@@ -128,6 +134,7 @@ window.Pizzas = {
     },
   },
   f001: {
+    pizzaId: "f001",
     name: "Portobello Express",
     description: "A stalwart fungal defender",
     type: PizzaTypes.fungi,
@@ -148,6 +155,7 @@ window.Pizzas = {
     },
   },
   f002: {
+    pizzaId: "f002",
     name: "Chanterella",
     description: "A fragrant and graceful combatant",
     type: PizzaTypes.fungi,
@@ -168,7 +176,8 @@ window.Pizzas = {
     },
   },
   c001: {
-    name: "Pineapple Powerhouse",
+    pizzaId: "c001",
+    name: "Pineapple Punch",
     description: "This frosty fighter is too cruel for school",
     type: PizzaTypes.chill,
     typeAdv: PizzaTypes.spicy,
@@ -188,6 +197,7 @@ window.Pizzas = {
     },
   },
   c002: {
+    pizzaId: "c002",
     name: "Margherita Mellow",
     description: "A Tomato-basil bombshell",
     type: PizzaTypes.chill,

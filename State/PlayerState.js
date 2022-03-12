@@ -44,7 +44,7 @@ class PlayerState {
     this.currency = 15;
     this.pizzaLevel = 1;
     this.pizzaExp = 0;
-    this.ingredients = [];
+    this.ingredients = [{ indexId: "magic dough", instanceId: "item1" }];
   }
 
   addRecipe(recipeId) {
