@@ -159,7 +159,10 @@ class Battle {
           //add ingredients to player state
           if (enemyIngredients) {
             enemyIngredients.forEach((item) => {
-              playerState.ingredients.push(ingredients[item]);
+              playerState.ingredients.push({
+                indexId: item,
+                instanceId: `ingred${new Date()}`,
+              });
             });
             await new Promise((resolve) => {
               const battleEvent = new BattleEvent(

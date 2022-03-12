@@ -13,14 +13,17 @@ class ShopMenu {
           label: ingred.name,
           description: `Buy some ${ingred.name}`,
           handler: () => {
-            money -= ingred.price;
+            playerState.currency -= ingred.price;
             playerState.ingredients.push({
               indexId: ingred.name,
               instanceId: `ingred${new Date()}`,
             });
 
             const moneySpan = document.querySelector(".currentMoney");
-            moneySpan.textContent = money;
+            moneySpan.textContent = playerState.currency;
+
+            this.sellMenu.setOptions(this.getSellOptions());
+            this.buyMenu.setOptions(this.getBuyOptions());
           },
           right: () => {
             return `<em>$$$${ingred.price}</em>`;
