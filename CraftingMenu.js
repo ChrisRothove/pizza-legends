@@ -37,6 +37,7 @@ class CraftingMenu {
     this.createElement();
     this.keyboardMenu = new KeyboardMenu({
       descriptionContainer: container,
+      KeyboardLength: 6,
     });
     this.keyboardMenu.init(this.element);
     this.keyboardMenu.setOptions(this.getOptions());

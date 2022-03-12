@@ -129,7 +129,7 @@ class OverworldEvent {
     const menu = new ShopMenu({
       onComplete: () => {
         resolve();
-        this.map.isPause = false;
+        this.map.isPaused = false;
         this.map.overworld.startGameLoop();
       },
     });

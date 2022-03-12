@@ -41,7 +41,9 @@ class KeyboardMenu {
     });
 
     setTimeout(() => {
-      this.element.querySelector("button[data-button]:not([disabled])").focus();
+      this.element
+        .querySelector("button[data-button]:not([disabled])")
+        ?.focus();
     }, 10);
   }
 
@@ -88,7 +90,7 @@ class KeyboardMenu {
     container.appendChild(this.element);
 
     this.up = new KeyPressListener("ArrowUp", () => {
-      const current = Number(this.prevFocus.getAttribute("data-button"));
+      const current = Number(this.prevFocus?.getAttribute("data-button"));
       const prevButton = Array.from(
         this.element.querySelectorAll("button[data-button]")
       )
@@ -99,7 +101,7 @@ class KeyboardMenu {
       prevButton?.focus();
     });
     this.down = new KeyPressListener("ArrowDown", () => {
-      const current = Number(this.prevFocus.getAttribute("data-button"));
+      const current = Number(this.prevFocus?.getAttribute("data-button"));
       const nextButton = Array.from(
         this.element.querySelectorAll("button[data-button]")
       ).find((el) => {

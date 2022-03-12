@@ -1,5 +1,5 @@
 class ShopMenu {
-  constructor(onComplete) {
+  constructor({ onComplete }) {
     this.onComplete = onComplete;
     this.tab = "left";
   }
@@ -121,7 +121,7 @@ class ShopMenu {
     this.sellMenu.end();
     this.buyElement.remove();
     this.sellElement.remove();
-    this.onComplete(this.cart);
+    this.onComplete();
   }
 
   async init(container) {
