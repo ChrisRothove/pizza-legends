@@ -2,7 +2,18 @@
   border: 1px solid var(--border-color);
   background: var(--menu-background);
   position: absolute;
+  overflow: auto;
 }
+.four-button-menu {
+  height: 80px;
+}
+.six-button-menu {
+  height: 120px;
+}
+.eight-button-menu {
+  height: 160px;
+}
+
 .KeyboardMenu button {
   display: flex;
   align-items: center;
@@ -57,4 +68,19 @@
   right: 0;
   bottom: 0;
   width: 140px;
+}
+
+/* Scrollbar Styles */
+.KeyboardMenu::-webkit-scrollbar {
+  width: 3px;
+  background-color: transparent;
+}
+
+.KeyboardMenu::-webkit-scrollbar-button {
+  height: 0px;
+}
+
+.KeyboardMenu::-webkit-scrollbar-thumb {
+  background-color: var(--menu-border-color);
+  border-radius: 12px;
 }

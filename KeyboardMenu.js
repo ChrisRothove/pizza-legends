@@ -5,6 +5,7 @@ class KeyboardMenu {
     this.down = null;
     this.prevFocus = null;
     this.descriptionContainer = config.descriptionContainer || null;
+    this.KeyboardLength = config.KeyboardLength || 4;
   }
 
   setOptions(options) {
@@ -47,6 +48,20 @@ class KeyboardMenu {
   createElement() {
     this.element = document.createElement("div");
     this.element.classList.add("KeyboardMenu");
+    switch (this.KeyboardLength) {
+      case 8: {
+        this.element.classList.add("eight-button-menu");
+        break;
+      }
+      case 6: {
+        this.element.classList.add("six-button-menu");
+        break;
+      }
+      default: {
+        this.element.classList.add("four-button-menu");
+        break;
+      }
+    }
 
     //Description box element
     this.descriptionElement = document.createElement("div");

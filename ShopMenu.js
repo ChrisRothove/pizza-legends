@@ -128,9 +128,11 @@ class ShopMenu {
     this.createElement();
     this.buyMenu = new KeyboardMenu({
       descriptionContainer: container,
+      KeyboardLength: 8,
     });
     this.sellMenu = new KeyboardMenu({
       descriptionContainer: container,
+      KeyboardLength: 8,
     });
     this.buyMenu.init(this.buyElement);
     this.buyMenu.setOptions(this.getBuyOptions());
