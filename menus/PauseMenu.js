@@ -86,10 +86,10 @@ class PauseMenu {
       return [
         ...lineupPizzas,
         {
-          label: "Close",
-          description: "Close the pause menu",
+          label: "Back",
+          description: "Back to pause menu",
           handler: () => {
-            this.close();
+            this.keyboardMenu.setOptions(this.getOptions("root"));
           },
         },
       ];
