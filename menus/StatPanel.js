@@ -173,6 +173,10 @@ class StatPanel {
       `;
     } else {
       // render for player
+      const lineup = this.subject.lineup;
+      const reserve = Object.keys(this.subject.pizzas).filter(
+        (item) => !this.subject.lineup.includes(item)
+      );
       this.element.innerHTML = `
         <h2>${this.subject.name} | Level ${this.subject.pizzaLevel}</h2>
         <table class="stats">
@@ -191,24 +195,35 @@ class StatPanel {
       }</em></td>
         </tr>
         <tr>
-        <td colSpan="4" class="banner divider"><h4>Active Pizzas</h4></td>
+        <td colSpan="2" class="banner divider"><h4>Active Pizzas</h4></td>
+        <td colSpan="2" class="banner divider"><h4>Reserve Pizzas</h4></td>
         </tr>
-        ${this.subject.lineup
-          .map((pizzaId, idx) => {
-            const thePizza = this.subject.pizzas[pizzaId];
+        ${[0, 1, 2]
+          .map((idx) => {
+            const thePizza = this.subject.pizzas[lineup[idx]];
+            const theReserve = this.subject.pizzas[reserve[idx]];
+            console.log(thePizza, theReserve);
             return `
               <tr>
                 <td class="head pizzaBox">
-                  <img src="${thePizza.src}" /> 
+                  ${thePizza ? `<img src="${thePizza.src}" />` : `Empty`}
                 </td>
-                <td><em>${thePizza.name}</em></td>
-                <td class="head"><strong>Level</strong></td>
-                <td><em>${thePizza.level}</em></td>
+                <td><em>${thePizza?.name || "Empty"}</em></td>
+
+                <td class="head pizzaBox">
+                  ${theReserve ? `<img src="${theReserve.src}" />` : `Empty`}
+                </td>
+                <td><em>${theReserve?.name || "Empty"}</em></td>
               </tr>
               <tr>
-                <td class="banner hp" colSpan="4">
+                <td class="banner hp" colSpan="2">
                   <div style="height: 1em; width: ${
-                    (thePizza.hp / thePizza.maxHp) * 100
+                    (thePizza?.hp / thePizza?.maxHp) * 100 || 0
+                  }%; background: lightgreen;" />
+                </td>
+                <td class="banner hp" colSpan="2">
+                  <div style="height: 1em; width: ${
+                    (theReserve?.hp / theReserve?.maxHp) * 100 || 0
                   }%; background: lightgreen;" />
                 </td>
               </tr>
