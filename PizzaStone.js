@@ -20,7 +20,15 @@ class PizzaStone extends GameObject {
         ? [
             {
               events: [
-                { type: "textMessage", text: "You have already used this." },
+                { type: "textMessage", text: "You are out of magic dough" },
+              ],
+            },
+          ]
+        : Object.keys(playerState.pizzas).length >= 6
+        ? [
+            {
+              events: [
+                { type: "textMessage", text: "You already have 6 pizzas" },
               ],
             },
           ]
@@ -29,10 +37,9 @@ class PizzaStone extends GameObject {
               events: [
                 {
                   type: "textMessage",
-                  text: "Approaching the legendary pizza stone...",
+                  text: "It's the Master's legendary pizza stone...",
                 },
                 { type: "craftingMenu", pizzas: this.pizzas },
-                { type: "addStoryFlag", flag: this.storyFlag },
               ],
             },
           ];
