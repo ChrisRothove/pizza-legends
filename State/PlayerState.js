@@ -189,9 +189,18 @@ class PlayerState {
     thePizza.stats.spd += thePizza.level % thePizza.attributes.spdRate ? 0 : 1;
   }
 
-  removePizza(pizzaId) {
-    delete this.pizzas[pizzaId];
-    this.lineup = [...this.lineup.filter((pizzaId) => pizzaId !== pizzaId)];
+  removePizza(removedPizzaId) {
+    console.log(removedPizzaId);
+    delete this.pizzas[removedPizzaId];
+    console.log(this.lineup, this.reserve);
+    this.lineup = [
+      ...this.lineup.filter((pizzaId) => pizzaId !== removedPizzaId),
+    ];
+    console.log(this.lineup, this.reserve);
+    this.reserve = [
+      ...this.reserve.filter((pizzaId) => pizzaId !== removedPizzaId),
+    ];
+    console.log(this.lineup, this.reserve);
     utils.emitEvent("LineupChanged");
   }
 
@@ -207,5 +216,5 @@ class PlayerState {
     utils.emitEvent("LineupChanged");
   }
 }
-console.log("this is firing now");
+
 window.playerState = new PlayerState();

@@ -84,8 +84,21 @@ class PauseMenu {
           right: () => "&#9733;",
         };
       });
+      const reservePizzas = playerState.reserve.map((id) => {
+        const { pizzaId } = playerState.pizzas[id];
+        const base = Pizzas[pizzaId];
+        return {
+          label: base.name,
+          description: base.description,
+          handler: () => {
+            this.keyboardMenu.setOptions(this.getOptions(id));
+            this.statPanel.setPanel(id);
+          },
+        };
+      });
       return [
         ...lineupPizzas,
+        ...reservePizzas,
         {
           label: "Back",
           description: "Back to pause menu",
@@ -114,14 +127,73 @@ class PauseMenu {
           },
         };
       });
-
+    const equipped = Object.keys(playerState.pizzas)
+      .filter((id) => {
+        return playerState.lineup.indexOf(id) !== -1;
+      })
+      .map((id) => {
+        const { pizzaId } = playerState.pizzas[id];
+        const base = Pizzas[pizzaId];
+        return {
+          label: `Swap in for ${base.name}`,
+          description: base.description,
+          handler: () => {
+            playerState.swapLineup(id, pageKey);
+            this.keyboardMenu.setOptions(this.getOptions("pizzas"));
+            this.statPanel.setPanel(0);
+          },
+        };
+      });
+    const isActive = playerState.lineup.indexOf(pageKey) !== -1;
+    const otherPizzas = isActive ? unequipped : equipped;
+    const frontOption = isActive
+      ? [
+          {
+            label: "Move to front",
+            description: "Move this pizza to the front of the list",
+            handler: () => {
+              playerState.moveToFront(pageKey);
+              this.keyboardMenu.setOptions(this.getOptions("root"));
+              this.statPanel.setPanel(0);
+            },
+          },
+        ]
+      : [];
+    const slotOption =
+      !isActive && playerState.lineup.length < 3
+        ? [
+            {
+              label: "add to Active",
+              description: "Add to active Pizza list",
+              handler: () => {
+                playerState.lineup.push(pageKey);
+                playerState.reserve = [
+                  ...playerState.reserve.filter((item) => item !== pageKey),
+                ];
+                utils.emitEvent("LineupChanged");
+                this.keyboardMenu.setOptions(this.getOptions("root"));
+                this.statPanel.setPanel(0);
+              },
+            },
+          ]
+        : [];
     return [
-      ...unequipped,
+      ...otherPizzas,
+      ...frontOption,
+      ...slotOption,
       {
-        label: "Move to front",
-        description: "Move this pizza to the front of the list",
+        label: "Pick Apart",
+        description: "Dismantle and eat (gain some EXP and ingredients)",
         handler: () => {
-          playerState.moveToFront(pageKey);
+          const pizza = playerState.pizzas[pageKey];
+          playerState.addExp(Math.round(pizza.xp / 10));
+          recipes[pizza.pizzaId].ingredients.forEach((item) => {
+            playerState.ingredients.push({
+              indexId: item,
+              instanceId: `item${new Date()}`,
+            });
+          });
+          playerState.removePizza(pageKey);
           this.keyboardMenu.setOptions(this.getOptions("root"));
           this.statPanel.setPanel(0);
         },
