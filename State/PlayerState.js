@@ -72,6 +72,7 @@ class PlayerState {
       },
     };
     this.lineup = ["p1", "p2", "p3"];
+    this.reserve = ["p4"];
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },
       { actionId: "item_recoverHp", instanceId: "item2" },
@@ -155,6 +156,8 @@ class PlayerState {
     }
     if (this.lineup.length < 3) {
       this.lineup.push(newId);
+    } else {
+      this.reserve.push(newId);
     }
     utils.emitEvent("LineupChanged");
     console.log("new State:", this);

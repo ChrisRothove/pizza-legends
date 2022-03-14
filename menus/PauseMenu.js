@@ -81,6 +81,7 @@ class PauseMenu {
             this.keyboardMenu.setOptions(this.getOptions(id));
             this.statPanel.setPanel(id);
           },
+          right: () => "&#9733;",
         };
       });
       return [
