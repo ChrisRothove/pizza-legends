@@ -21,6 +21,7 @@ class PauseMenu {
           handler: () => {
             this.keyboardMenu.setOptions(this.getOptions("items"));
           },
+          disabled: playerState.items.length === 0,
         },
         {
           label: "Ingredients",
@@ -172,7 +173,11 @@ class PauseMenu {
                   (item) => item.instanceId !== itemObject.instanceId
                 ),
               ];
-              this.keyboardMenu.setOptions(this.getOptions("items"));
+              if (playerState.items.length > 0) {
+                this.keyboardMenu.setOptions(this.getOptions("items"));
+              } else {
+                this.keyboardMenu.setOptions(this.getOptions("root"));
+              }
               this.statPanel.setPanel(0);
             },
             disabled: !action.legalTarget(pizza),
