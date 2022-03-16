@@ -136,6 +136,20 @@ class OverworldEvent {
     menu.init(document.querySelector(".game-container"));
   }
 
+  useItem(resolve) {
+    console.log("this fires", this.event);
+    const { target, recover } = this.event;
+    if (recover) {
+      let newHp = (target.hp += recover);
+      if (target.maxHp < newHp) {
+        newHp = target.maxHp;
+      }
+      target.hp = newHp;
+      utils.emitEvent("LineupChanged");
+    }
+    resolve();
+  }
+
   init() {
     return new Promise((resolve) => {
       this[this.event.type](resolve);

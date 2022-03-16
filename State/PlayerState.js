@@ -5,7 +5,7 @@ class PlayerState {
       p1: {
         ...Pizzas["n001"],
         pizzaId: "n001",
-        hp: 200,
+        hp: 159,
         maxHp: 200,
         xp: 99,
         maxXp: levels[2],
@@ -20,9 +20,9 @@ class PlayerState {
         addOns: [],
       },
       p2: {
-        ...Pizzas["n001"],
-        pizzaId: "n001",
-        hp: 200,
+        ...Pizzas["n002"],
+        pizzaId: "n002",
+        hp: 120,
         maxHp: 200,
         xp: 99,
         maxXp: levels[2],
@@ -37,8 +37,8 @@ class PlayerState {
         addOns: [],
       },
       p3: {
-        ...Pizzas["n001"],
-        pizzaId: "n001",
+        ...Pizzas["s001"],
+        pizzaId: "s001",
         hp: 200,
         maxHp: 200,
         xp: 99,
@@ -54,8 +54,8 @@ class PlayerState {
         addOns: [],
       },
       p4: {
-        ...Pizzas["n001"],
-        pizzaId: "n001",
+        ...Pizzas["s002"],
+        pizzaId: "s002",
         hp: 200,
         maxHp: 200,
         xp: 99,

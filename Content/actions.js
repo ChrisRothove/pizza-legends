@@ -295,6 +295,7 @@ window.Actions = {
       { type: "textMessage", text: "Feeling fresh!" },
     ],
     price: 25,
+    legalTarget: (pizza) => false,
   },
   item_recoverHp: {
     name: "Parmesan Packet",
@@ -306,6 +307,7 @@ window.Actions = {
       { type: "textMessage", text: "{CASTER} recovers HP!" },
     ],
     price: 50,
+    legalTarget: (pizza) => pizza.hp !== pizza.maxHp,
   },
   item_recoverHp2: {
     name: "Parmesan Shaker",
@@ -317,6 +319,7 @@ window.Actions = {
       { type: "textMessage", text: "{CASTER} recovers HP!" },
     ],
     price: 100,
+    legalTarget: (pizza) => pizza.hp !== pizza.maxHp,
   },
   item_attack1: {
     name: "Attack Sauce",
@@ -329,6 +332,7 @@ window.Actions = {
       { type: "textMessage", text: "{TARGET} is getting pumped!" },
     ],
     price: 35,
+    legalTarget: (pizza) => false,
   },
   item_defense1: {
     name: "Defense Sauce",
@@ -341,6 +345,7 @@ window.Actions = {
       { type: "textMessage", text: "{TARGET} is getting pumped!" },
     ],
     price: 35,
+    legalTarget: (pizza) => false,
   },
   item_speed1: {
     name: "Speed Sauce",
@@ -353,5 +358,6 @@ window.Actions = {
       { type: "textMessage", text: "{TARGET} is getting pumped!" },
     ],
     price: 35,
+    legalTarget: (pizza) => false,
   },
 };

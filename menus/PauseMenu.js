@@ -4,7 +4,7 @@ class PauseMenu {
     this.onComplete = onComplete;
   }
 
-  getOptions(pageKey) {
+  getOptions(pageKey, itemObject = null) {
     //Case 1: Show the first page of options
     if (pageKey === "root") {
       return [
@@ -19,7 +19,7 @@ class PauseMenu {
           label: "Items",
           description: "View and Use Items (coming soon)",
           handler: () => {
-            // open items and use/view them.
+            this.keyboardMenu.setOptions(this.getOptions("items"));
           },
         },
         {
@@ -108,8 +108,79 @@ class PauseMenu {
         },
       ];
     }
+    //case 3: Show items
+    if (pageKey === "items" && !itemObject) {
+      let quantityMap = {};
+      playerState.items.forEach((item) => {
+        let existing = quantityMap[item.actionId];
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          quantityMap[item.actionId] = {
+            actionId: item.actionId,
+            quantity: 1,
+            instanceId: item.instanceId,
+          };
+        }
+      });
+      const items = Object.values(quantityMap);
 
-    //Case 3: Show the options for just one pizza (by id)
+      return [
+        ...items.map((itemKey) => {
+          const item = Actions[itemKey.actionId];
+          return {
+            label: Actions[itemKey.actionId].name,
+            description: item.description,
+            handler: () => {
+              this.keyboardMenu.setOptions(this.getOptions("items", itemKey));
+            },
+            right: () => itemKey.quantity,
+            disabled: item.isBattleOnly,
+          };
+        }),
+        {
+          label: "Back",
+          description: "Back to the main menu",
+          handler: () => {
+            this.keyboardMenu.setOptions(this.getOptions("root"));
+          },
+        },
+      ];
+    } else if (itemObject) {
+      //case 3.b: individual item pages
+      const action = Actions[itemObject.actionId];
+      return [
+        ...Object.keys(playerState.pizzas).map((pizzaId) => {
+          const pizza = playerState.pizzas[pizzaId];
+          return {
+            label: pizza.name,
+            description: `use ${action.name} on ${pizza.name}`,
+            handler: async () => {
+              const useItem = new OverworldEvent({
+                map: null,
+                event: {
+                  ...action.success.filter(
+                    (event) => event.type === "stateChange"
+                  )[0],
+                  type: "useItem",
+                  target: pizza,
+                },
+              });
+              await useItem.init();
+              playerState.items = [
+                ...playerState.items.filter(
+                  (item) => item.instanceId !== itemObject.instanceId
+                ),
+              ];
+              this.keyboardMenu.setOptions(this.getOptions("items"));
+              this.statPanel.setPanel(0);
+            },
+            disabled: !action.legalTarget(pizza),
+          };
+        }),
+      ];
+    }
+    //Case 4: Show the options for just one pizza (by id)
     const unequipped = Object.keys(playerState.pizzas)
       .filter((id) => {
         return playerState.lineup.indexOf(id) === -1;
