@@ -171,7 +171,7 @@ class StatPanel {
         </tr>
         </table>
       `;
-    } else {
+    } else if (this.id === 0) {
       // render for player
       const lineup = this.subject.lineup;
       const reserve = Object.keys(this.subject.pizzas).filter(
@@ -235,6 +235,34 @@ class StatPanel {
           .join("")}
         </table>
       `;
+    } else if (this.id === null) {
+      this.element.innerHTML = `
+        <table class="stats">
+            ${recipes.map(recipe => {
+            const ingredient1 = {
+              ...ingredients[recipe.ingredients[0]],
+              count: playerState.ingredients.filter(ing => ingredients[recipe.ingredients[0]].name === ing.indexId).length
+            }
+            const ingredient2 = {
+              ...ingredients[recipe.ingredients[1]],
+              count: playerState.ingredients.filter(ing => ingredients[recipe.ingredients[1]].name === ing.indexId).length
+            }
+            const ingredient3 = {
+              ...ingredients[recipe.ingredients[2]],
+              count: playerState.ingredients.filter(ing => ingredients[recipe.ingredients[2]].name === ing.indexId).length
+            }
+            return `
+              <tr>
+                <td class="head">${recipe.name}</td>
+                <td><em>${ingredient1.name} (${ingredient1.count})</em></td>
+                <td class="alone"><em>${ingredient2.name} (${ingredient2.count})</em></td>
+                <td class="alone"><em>${ingredient3.name} (${ingredient3.count})</em></td>
+              </tr>
+            `
+            })}
+            
+        </table>
+      `
     }
   }
 

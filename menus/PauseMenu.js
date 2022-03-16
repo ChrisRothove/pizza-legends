@@ -24,17 +24,27 @@ class PauseMenu {
           disabled: playerState.items.length === 0,
         },
         {
-          label: "Ingredients",
-          description: "Ingredients for making pizzas (coming soon)",
-          handler: () => {
-            // view Ingredients.
-          },
-        },
-        {
           label: "Recipes",
           description: "Recipes for making pizzas (coming soon)",
           handler: () => {
-            // view Recipes.
+            this.keyboardMenu.setOptions(this.getOptions([
+              {
+                label: "Back",
+                description: "Back to main menu",
+                handler: () => {
+                  this.keyboardMenu.setOptions((this.getOptions("root")))
+                  this.statPanel.setPanel(0)
+                }
+              }
+            ]))
+            this.statPanel.setPanel(null)
+          },
+        },
+        {
+          label: "Objectives",
+          description: "Quests and story progress (coming soon)",
+          handler: () => {
+            // view quest stuff.
           },
         },
         {
