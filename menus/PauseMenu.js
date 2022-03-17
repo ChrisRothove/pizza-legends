@@ -27,17 +27,17 @@ class PauseMenu {
           label: "Recipes",
           description: "Recipes for making pizzas (coming soon)",
           handler: () => {
-            this.keyboardMenu.setOptions(this.getOptions([
+            this.keyboardMenu.setOptions([
               {
                 label: "Back",
                 description: "Back to main menu",
                 handler: () => {
-                  this.keyboardMenu.setOptions((this.getOptions("root")))
-                  this.statPanel.setPanel(0)
-                }
-              }
-            ]))
-            this.statPanel.setPanel(null)
+                  this.keyboardMenu.setOptions(this.getOptions("root"));
+                  this.statPanel.setPanel(0);
+                },
+              },
+            ]);
+            this.statPanel.setPanel(1);
           },
         },
         {

@@ -77,7 +77,7 @@ class StatPanel {
         </tr>
         </table>
       `;
-    } else if (this.id) {
+    } else if (this.id && typeof this.id === "string") {
       this.subject = Pizzas[this.id];
       // render for Pizza in creation menu
       this.activeIngredients = playerState.ingredients.filter((ingred) => {
@@ -235,34 +235,47 @@ class StatPanel {
           .join("")}
         </table>
       `;
-    } else if (this.id === null) {
+    } else if (this.id === 1) {
       this.element.innerHTML = `
         <table class="stats">
-            ${recipes.map(recipe => {
-            const ingredient1 = {
-              ...ingredients[recipe.ingredients[0]],
-              count: playerState.ingredients.filter(ing => ingredients[recipe.ingredients[0]].name === ing.indexId).length
-            }
-            const ingredient2 = {
-              ...ingredients[recipe.ingredients[1]],
-              count: playerState.ingredients.filter(ing => ingredients[recipe.ingredients[1]].name === ing.indexId).length
-            }
-            const ingredient3 = {
-              ...ingredients[recipe.ingredients[2]],
-              count: playerState.ingredients.filter(ing => ingredients[recipe.ingredients[2]].name === ing.indexId).length
-            }
-            return `
+            ${Object.keys(recipes)
+              .map((recipeId) => {
+                const recipe = recipes[recipeId];
+                console.log(recipe.ingredients[0]);
+                const ingredient1 = {
+                  ...ingredients[recipe.ingredients[0]],
+                  count: playerState.ingredients.filter(
+                    (ing) =>
+                      ingredients[recipe.ingredients[0]].name === ing.indexId
+                  ).length,
+                };
+                const ingredient2 = {
+                  ...ingredients[recipe.ingredients[1]],
+                  count: playerState.ingredients.filter(
+                    (ing) =>
+                      ingredients[recipe.ingredients[1]].name === ing.indexId
+                  ).length,
+                };
+                const ingredient3 = {
+                  ...ingredients[recipe.ingredients[2]],
+                  count: playerState.ingredients.filter(
+                    (ing) =>
+                      ingredients[recipe.ingredients[2]].name === ing.indexId
+                  ).length,
+                };
+                return `
               <tr>
-                <td class="head">${recipe.name}</td>
+                <td class="head">${recipe.label}</td>
                 <td><em>${ingredient1.name} (${ingredient1.count})</em></td>
                 <td class="alone"><em>${ingredient2.name} (${ingredient2.count})</em></td>
                 <td class="alone"><em>${ingredient3.name} (${ingredient3.count})</em></td>
               </tr>
-            `
-            })}
+            `;
+              })
+              .join("")}
             
         </table>
-      `
+      `;
     }
   }
 

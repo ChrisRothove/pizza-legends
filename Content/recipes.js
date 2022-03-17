@@ -29,10 +29,10 @@ window.recipes = {
   },
   f002: {
     label: "Chanterella",
-    ingredients: ["Chanterelle", "feta", "garlic sauce"],
+    ingredients: ["chanterelle", "feta", "garlic sauce"],
   },
   c001: {
-    label: "Pineapple Powerhouse",
+    label: "Pineapple Punch",
     ingredients: ["pineapple", "cheddar", "alfredo sauce"],
   },
   c002: {
