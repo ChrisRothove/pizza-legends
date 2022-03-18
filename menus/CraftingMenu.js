@@ -9,6 +9,11 @@ class CraftingMenu {
       return [
         ...this.pizzas.map((id) => {
           const base = Pizzas[id];
+          const disabled =
+            Object.keys(playerState.pizzas).filter((pizzaId) => {
+              const pizza = playerState.pizzas[pizzaId];
+              return pizza.name === base.name;
+            }).length > 0;
           return {
             label: base.name,
             description: base.description,
@@ -19,6 +24,10 @@ class CraftingMenu {
               this.statPanel.init(this.displayElement);
               this.statPanel.setPanel(id);
               this.listMenu.setOptions(this.getOptions(id));
+            },
+            disabled,
+            right: () => {
+              return disabled ? "&#9733;" : "";
             },
           };
         }),
