@@ -102,6 +102,7 @@ class PlayerState {
       { indexId: "cheddar", instanceId: "item3" },
       { indexId: "tomato sauce", instanceId: "item4" },
     ];
+    this.addOns = [...Object.values(AddOns).map((addOn) => addOn.name)];
   }
 
   addRecipe(recipeId) {

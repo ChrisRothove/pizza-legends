@@ -58,7 +58,7 @@
 
 .stats td {
   width: 25%;
-  font-size: 6px;
+  font-size: 5px;
   padding: 0px;
   padding-left: 3px;
   border: 1px solid var(--menu-border-color);
@@ -82,7 +82,7 @@
   position: relative;
   text-align: right;
   width: 25%;
-  font-size: 6px;
+  font-size: 5px;
   padding: 0px;
   padding-right: 3px;
   background: var(--menu-font-color);
@@ -94,6 +94,13 @@
   image-rendering: pixelated;
   overflow: hidden;
   font-family: "Crete Round", serif;
+}
+
+.stats .divided {
+  padding-right: 3px;
+  padding-left: 2px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .stats .pizzaBox {

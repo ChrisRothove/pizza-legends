@@ -13,7 +13,7 @@ window.recipes = {
   },
   s002: {
     label: "Deep Dish Volcano",
-    ingredients: ["four cheese mix", "peppers", "spicy marinara"],
+    ingredients: ["cheese mix", "peppers", "spicy marinara"],
   },
   v001: {
     label: "Kale-eye-descope",
@@ -78,8 +78,8 @@ window.ingredients = {
     name: "spicy marinara",
     price: 30,
   },
-  "four cheese mix": {
-    name: "four cheese mix",
+  "cheese mix": {
+    name: "cheese mix",
     price: 40,
   },
   peppers: {
@@ -117,5 +117,48 @@ window.ingredients = {
   basil: {
     name: "basil",
     price: 15,
+  },
+};
+
+window.AddOns = {
+  "stuffed crust": {
+    name: "stuffed crust",
+    description: "Pizza gains 20 starting HP",
+    effect: (pizza) => (pizza.stats.hp += 20),
+  },
+  "extra cheese": {
+    name: "extra cheese",
+    description: "Pizza gains +5 DEF",
+    effect: (pizza) => (pizza.stats.def += 5),
+  },
+  "pretzel crust": {
+    name: "pretzel crust",
+    description: "Pizza gains +5 ATK",
+    effect: (pizza) => (pizza.stats.atk += 5),
+  },
+  "garlic sauce": {
+    name: "garlic sauce",
+    description: "Pizza learns Olive Oil",
+    effect: (pizza) => pizza.actions.push("clumsyStatus"),
+  },
+  "butter glaze": {
+    name: "butter glaze",
+    description: "Pizza gains +5 SPD",
+    effect: (pizza) => (pizza.stats.spd += 5),
+  },
+  "sirracha sauce": {
+    name: "sirracha sauce",
+    description: "Pizza learns Tomato Squeeze",
+    effect: (pizza) => pizza.actions.push("saucyStatus"),
+  },
+  "truffle powder": {
+    name: "truffle powder",
+    description: "Pizza learns Shitake Stake",
+    effect: (pizza) => pizza.actions.push("fungi2"),
+  },
+  "thin crust": {
+    name: "thin crust",
+    description: "Pizza learns Crust Rush",
+    effect: (pizza) => pizza.actions.push("damage2"),
   },
 };

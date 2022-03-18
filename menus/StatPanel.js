@@ -237,6 +237,7 @@ class StatPanel {
       `;
     } else if (this.id === 1) {
       this.element.innerHTML = `
+      <h2>Recipes</h2>
         <table class="stats">
             ${Object.keys(recipes)
               .map((recipeId) => {
@@ -266,14 +267,28 @@ class StatPanel {
                 return `
               <tr>
                 <td class="head">${recipe.label}</td>
-                <td><em>${ingredient1.name} (${ingredient1.count})</em></td>
-                <td class="alone"><em>${ingredient2.name} (${ingredient2.count})</em></td>
-                <td class="alone"><em>${ingredient3.name} (${ingredient3.count})</em></td>
+                <td><div class="divided"><em>${ingredient1.name}</em><span>${ingredient1.count}</span></div></td>
+                <td class="alone"><div class="divided"><em>${ingredient2.name}</em><span>${ingredient2.count}</span></div></td>
+                <td class="alone"><div class="divided"><em>${ingredient3.name}</em><span>${ingredient3.count}</span></div></td>
               </tr>
             `;
               })
               .join("")}
-            
+              <tr>
+                <td colSpan="4" class="banner divider"><h4>Add-ons</h4></td>
+              </tr>
+              <tr>
+                <td class="alone">${playerState.addOns[0] || "???"}</td>
+                <td class="alone">${playerState.addOns[1] || "???"}</td>
+                <td class="alone">${playerState.addOns[2] || "???"}</td>
+                <td class="alone">${playerState.addOns[3] || "???"}</td>
+              </tr>
+              <tr>
+                <td class="alone">${playerState.addOns[4] || "???"}</td>
+                <td class="alone">${playerState.addOns[5] || "???"}</td>
+                <td class="alone">${playerState.addOns[6] || "???"}</td>
+                <td class="alone">${playerState.addOns[7] || "???"}</td>
+              </tr>
         </table>
       `;
     }
