@@ -27,7 +27,19 @@ body {
   outline: 1px solid #fff;
   margin: auto;
 
-  transform: scale(3) translateY(65%);
+  transform: scale(3) translateY(52%);
+}
+
+@media only screen and (max-width: 1056px) {
+  .game-container {
+    transform: scale(2) translateY(38%);
+  }
+}
+
+@media only screen and (max-width: 704px) {
+  .game-container {
+    transform: scale(1) translateY(25%);
+  }
 }
 
 .game-container canvas {
