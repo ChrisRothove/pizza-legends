@@ -154,32 +154,40 @@ class BattleEvent {
 
   giveXp(resolve) {
     let amount = this.event.xp;
-    const { combatant, playerActivePizzaId } = this.event;
-    const pizza = playerState.pizzas[playerActivePizzaId];
-    const step = () => {
-      if (amount > 0) {
-        amount -= 1;
-        combatant.xp += 1;
-        pizza.xp += 1;
+    const { combatant, playerActivePizzaId, player } = this.event;
+    if (playerActivePizzaId) {
+      const pizza = playerState.pizzas[playerActivePizzaId];
+      const step = () => {
+        if (amount > 0) {
+          amount -= 1;
+          combatant.xp += 1;
+          pizza.xp += 1;
 
-        //Check if we've hit level up point
-        if (combatant.xp === combatant.maxXp) {
-          // level up player Pizza
-          playerState.levelUpPizza(playerActivePizzaId);
-          // apply changes to combatant
-          Object.keys(pizza).forEach((key) => {
-            combatant[key] = pizza[key];
-          });
-          console.log(playerState.pizzas[playerActivePizzaId], combatant);
+          //Check if we've hit level up point
+          if (combatant.xp === combatant.maxXp) {
+            // level up player Pizza
+            playerState.levelUpPizza(playerActivePizzaId);
+            // apply changes to combatant
+            Object.keys(pizza).forEach((key) => {
+              combatant[key] = pizza[key];
+            });
+            console.log(playerState.pizzas[playerActivePizzaId], combatant);
+          }
+
+          combatant.update();
+          requestAnimationFrame(step);
+          return;
         }
-
-        combatant.update();
-        requestAnimationFrame(step);
-        return;
+        resolve();
+      };
+      requestAnimationFrame(step);
+    } else if (player) {
+      playerState.pizzaExp += amount;
+      if (playerState.pizzaExp >= levels[playerState.level + 1]) {
+        playerState.level += 1;
       }
       resolve();
-    };
-    requestAnimationFrame(step);
+    }
   }
 
   animation(resolve) {

@@ -94,6 +94,15 @@ class TurnCycle {
           playerActivePizzaId,
           combatant: this.battle.combatants[playerActivePizzaId],
         });
+        await this.onNewEvent({
+          type: "textMessage",
+          text: `You gained ${Math.round(xp / 2)} XP`,
+        });
+        await this.onNewEvent({
+          type: "giveXp",
+          xp: Math.round(xp / 2),
+          player: true,
+        });
       } else {
         playerState.removePizza(enemyId);
       }
