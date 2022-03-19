@@ -2,9 +2,11 @@ class CraftingMenu {
   constructor({ pizzas, onComplete }) {
     this.pizzas = pizzas;
     this.onComplete = onComplete;
+    this.addOns = [];
+    this.newPizza = null;
   }
 
-  getOptions(pageId) {
+  getOptions(pageId, addOns) {
     if (!pageId) {
       return [
         ...this.pizzas.map((id) => {
@@ -39,7 +41,7 @@ class CraftingMenu {
           },
         },
       ];
-    } else {
+    } else if (!addOns) {
       const disabled =
         this.statPanel.ingredient1.value.length <= 0 ||
         this.statPanel.ingredient2.value.length <= 0 ||
@@ -49,7 +51,7 @@ class CraftingMenu {
           label: `Create this pizza`,
           description: "Add this pizza to your team",
           handler: () => {
-            playerState.addPizza(pageId);
+            playerState.addPizza(pageId, this.newPizza);
             playerState.removeIngredients(
               this.statPanel.ingredient1.value[0].instanceId
             );
@@ -68,6 +70,14 @@ class CraftingMenu {
           disabled,
         },
         {
+          label: `Add add-ons (${Object.keys(this.addOns).length}/3)`,
+          description: "Add extras to your pizza.",
+          handler: () => {
+            this.listMenu.setOptions(this.getOptions(pageId, true));
+          },
+          disabled,
+        },
+        {
           label: "Back",
           description: disabled
             ? "You don't have enough ingredients"
@@ -75,6 +85,42 @@ class CraftingMenu {
           handler: () => {
             this.statPanel.end();
             this.listMenu.setOptions(this.getOptions());
+          },
+        },
+      ];
+    } else {
+      return [
+        ...playerState.addOns.map((addOnId) => {
+          const addOn = AddOns[addOnId];
+          const disabled =
+            this.addOns.length > 2 ||
+            addOn.disabled(this.newPizza || Pizzas[pageId]);
+          const current = this.addOns.includes(addOn);
+          return {
+            label: addOn.name,
+            description: current ? "remove this add-on" : addOn.description,
+            handler: () => {
+              if (current) {
+                this.addOns = [...this.addOns.filter((item) => item !== addOn)];
+              } else {
+                this.addOns.push(addOn);
+              }
+              this.newPizza = this.statPanel.setPanel(pageId, this.addOns);
+              this.newPizza.addOns = this.addOns.map((addOn) => addOn.name);
+              this.listMenu.setOptions(this.getOptions(pageId, true));
+            },
+            disabled: current ? !current : disabled,
+            right: () => {
+              return current ? "&#9733;" : "";
+            },
+          };
+        }),
+        {
+          label: "Back",
+          description: "Go back",
+          handler: () => {
+            this.statPanel.setPanel(0);
+            this.listMenu.setOptions(this.getOptions(pageId));
           },
         },
       ];

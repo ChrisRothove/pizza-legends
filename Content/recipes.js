@@ -124,41 +124,52 @@ window.AddOns = {
   "stuffed crust": {
     name: "stuffed crust",
     description: "Pizza gains 20 starting HP",
-    effect: (pizza) => (pizza.stats.hp += 20),
+    effect: (pizza) => {
+      pizza.maxHp += 20;
+      pizza.hp += 20;
+    },
+    disabled: (pizza) => false,
   },
   "extra cheese": {
     name: "extra cheese",
     description: "Pizza gains +5 DEF",
     effect: (pizza) => (pizza.stats.def += 5),
+    disabled: (pizza) => false,
   },
   "pretzel crust": {
     name: "pretzel crust",
     description: "Pizza gains +5 ATK",
     effect: (pizza) => (pizza.stats.atk += 5),
+    disabled: (pizza) => false,
   },
   "garlic sauce": {
     name: "garlic sauce",
     description: "Pizza learns Olive Oil",
     effect: (pizza) => pizza.actions.push("clumsyStatus"),
+    disabled: (pizza) => pizza.actions.length > 3,
   },
   "butter glaze": {
     name: "butter glaze",
     description: "Pizza gains +5 SPD",
     effect: (pizza) => (pizza.stats.spd += 5),
+    disabled: (pizza) => false,
   },
   "sirracha sauce": {
     name: "sirracha sauce",
     description: "Pizza learns Tomato Squeeze",
     effect: (pizza) => pizza.actions.push("saucyStatus"),
+    disabled: (pizza) => pizza.actions.length > 3,
   },
   "truffle powder": {
     name: "truffle powder",
     description: "Pizza learns Shitake Stake",
     effect: (pizza) => pizza.actions.push("fungi2"),
+    disabled: (pizza) => pizza.actions.length > 3,
   },
   "thin crust": {
     name: "thin crust",
     description: "Pizza learns Crust Rush",
     effect: (pizza) => pizza.actions.push("damage2"),
+    disabled: (pizza) => pizza.actions.length > 3,
   },
 };

@@ -101,6 +101,7 @@ class PlayerState {
       { indexId: "pepperoni", instanceId: "item2" },
       { indexId: "cheddar", instanceId: "item3" },
       { indexId: "tomato sauce", instanceId: "item4" },
+      { indexId: "kale", instanceId: "item5" },
     ];
     this.addOns = [...Object.values(AddOns).map((addOn) => addOn.name)];
   }
@@ -127,9 +128,10 @@ class PlayerState {
     );
   }
 
-  addPizza(pizzaId) {
+  addPizza(pizzaId, newPizza) {
     const newId = `p${Date.now()}` + Math.floor(Math.random() * 99999);
     const archetype = Pizzas[pizzaId];
+    const custom = newPizza || {};
     const { vit, atk, def, spd } = archetype.attributes;
     this.pizzas[newId] = {
       ...archetype,
@@ -147,6 +149,7 @@ class PlayerState {
         spd,
       },
       addOns: [],
+      ...custom,
     };
     console.log(this.pizzas[newId]);
     if (this.pizzaLevel > 1) {

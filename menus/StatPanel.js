@@ -4,7 +4,7 @@ class StatPanel {
     this.subject = id === 0 ? playerState : playerState.pizzas[id];
   }
 
-  setPanel(newSubject = 0) {
+  setPanel(newSubject = 0, addOns = null) {
     this.id = newSubject;
     this.subject = !newSubject ? playerState : playerState.pizzas[this.id];
     if (this.id && Object.keys(playerState.pizzas).includes(this.id)) {
@@ -78,7 +78,7 @@ class StatPanel {
         </table>
       `;
     } else if (this.id && typeof this.id === "string") {
-      this.subject = Pizzas[this.id];
+      this.subject = { ...Pizzas[this.id] };
       // render for Pizza in creation menu
       this.activeIngredients = playerState.ingredients.filter((ingred) => {
         return recipes[this.id].ingredients.includes(ingred.indexId);
@@ -105,6 +105,20 @@ class StatPanel {
       this.ingredient3.value = this.activeIngredients.filter(
         (ing) => ing.indexId === this.ingredient3.name
       );
+      this.subject.maxHp = this.subject.attributes.vit * 10;
+      this.subject.hp = this.subject.attributes.vit * 10;
+      this.subject.stats = {};
+      this.subject.stats.vit = this.subject.attributes.vit;
+      this.subject.stats.atk = this.subject.attributes.atk;
+      this.subject.stats.def = this.subject.attributes.def;
+      this.subject.stats.spd = this.subject.attributes.spd;
+      this.subject.actions = [...Pizzas[this.id].actions];
+
+      if (addOns) {
+        addOns.forEach((addOn) => {
+          addOn.effect(this.subject);
+        });
+      }
 
       this.element.innerHTML = `
         <h2>${this.subject.name}</h2>
@@ -112,7 +126,7 @@ class StatPanel {
         <table class="stats">
         <tr>
           <td class="head"><strong>Hit Points</strong></td>
-          <td><em>${this.subject.attributes.vit * 10}</em></td>
+          <td><em>${this.subject.maxHp}</em></td>
           <td class="head"><strong>Type</strong></td>
           <td><em>${this.subject.type}</em></td>
         </tr>
@@ -124,25 +138,25 @@ class StatPanel {
         </tr>
         <tr>
           <td class="head"><strong>Vitality</strong></td>
-          <td><em>${this.subject.attributes.vit}</em></td>
+          <td><em>${this.subject.stats.vit}</em></td>
           <td class="head"><strong>Growth Rate</strong></td>
           <td><em>level/${this.subject.attributes.vitRate}</em></td>
         </tr>
         <tr>
           <td class="head"><strong>Attack</strong></td>
-          <td><em>${this.subject.attributes.atk}</em></td>
+          <td><em>${this.subject.stats.atk}</em></td>
           <td class="head"><strong>Growth Rate</strong></td>
           <td><em>level/${this.subject.attributes.atkRate}</em></td>
         </tr>
         <tr>
           <td class="head"><strong>Defense</strong></td>
-          <td><em>${this.subject.attributes.def}</em></td>
+          <td><em>${this.subject.stats.def}</em></td>
           <td class="head"><strong>Growth Rate</strong></td>
           <td><em>level/${this.subject.attributes.defRate}</em></td>
         </tr>
         <tr>
           <td class="head"><strong>Speed</strong></td>
-          <td><em>${this.subject.attributes.spd}</em></td>
+          <td><em>${this.subject.stats.spd}</em></td>
           <td class="head"><strong>Growth Rate</strong></td>
           <td><em>level/${this.subject.attributes.spdRate}</em></td>
         </tr>
@@ -158,6 +172,16 @@ class StatPanel {
         this.ingredient3.value.length
       })</em></td>
         </tr>
+        ${
+          addOns
+            ? `<tr>
+          <td class="head"><strong>Addons</strong></td>
+          <td><em>${addOns[0]?.name || "None"}</em></td>
+          <td class="alone"><em>${addOns[1]?.name || "None"}</em></td>
+          <td class="alone"><em>${addOns[2]?.name || "None"}</em></td>
+        </tr>`
+            : ""
+        }
         <tr>
         <td colSpan="4" class="banner divider"><h4>Attacks</h4></td>
         </tr>
@@ -292,6 +316,7 @@ class StatPanel {
         </table>
       `;
     }
+    return this.subject;
   }
 
   createElement() {
