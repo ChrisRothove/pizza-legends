@@ -119,7 +119,7 @@ class CraftingMenu {
           label: "Back",
           description: "Go back",
           handler: () => {
-            this.statPanel.setPanel(0);
+            this.statPanel.setPanel(pageId, this.addOns);
             this.listMenu.setOptions(this.getOptions(pageId));
           },
         },
