@@ -1,97 +1,16 @@
 class PlayerState {
   constructor() {
     this.name = "Hero";
-    this.pizzas = {
-      p1: {
-        ...Pizzas["n001"],
-        pizzaId: "n001",
-        hp: 159,
-        maxHp: 200,
-        xp: 99,
-        maxXp: levels[2],
-        level: 1,
-        status: null,
-        stats: {
-          vit: 20,
-          atk: 10,
-          def: 10,
-          spd: 10,
-        },
-        addOns: [],
-      },
-      p2: {
-        ...Pizzas["n002"],
-        pizzaId: "n002",
-        hp: 120,
-        maxHp: 200,
-        xp: 99,
-        maxXp: levels[2],
-        level: 1,
-        status: null,
-        stats: {
-          vit: 20,
-          atk: 10,
-          def: 10,
-          spd: 10,
-        },
-        addOns: [],
-      },
-      p3: {
-        ...Pizzas["s001"],
-        pizzaId: "s001",
-        hp: 200,
-        maxHp: 200,
-        xp: 99,
-        maxXp: levels[2],
-        level: 1,
-        status: null,
-        stats: {
-          vit: 20,
-          atk: 10,
-          def: 10,
-          spd: 10,
-        },
-        addOns: [],
-      },
-      p4: {
-        ...Pizzas["s002"],
-        pizzaId: "s002",
-        hp: 200,
-        maxHp: 200,
-        xp: 99,
-        maxXp: levels[2],
-        level: 1,
-        status: null,
-        stats: {
-          vit: 20,
-          atk: 10,
-          def: 10,
-          spd: 10,
-        },
-        addOns: [],
-      },
-    };
-    this.lineup = ["p1", "p2", "p3"];
-    this.reserve = ["p4"];
+    this.pizzas = {};
+    this.lineup = [];
+    this.reserve = [];
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },
       { actionId: "item_recoverHp", instanceId: "item2" },
       { actionId: "item_recoverHp", instanceId: "item3" },
     ];
     this.storyFlags = {};
-
-    this.recipes = [
-      "n001",
-      "n002",
-      "s001",
-      "s002",
-      "v001",
-      "v002",
-      "f001",
-      "f002",
-      "c001",
-      "c002",
-    ];
+    this.recipes = ["n001"];
 
     this.currency = 15;
     this.pizzaLevel = 1;
@@ -101,9 +20,8 @@ class PlayerState {
       { indexId: "pepperoni", instanceId: "item2" },
       { indexId: "cheddar", instanceId: "item3" },
       { indexId: "tomato sauce", instanceId: "item4" },
-      { indexId: "kale", instanceId: "item5" },
     ];
-    this.addOns = [...Object.values(AddOns).map((addOn) => addOn.name)];
+    this.addOns = [];
   }
 
   addRecipe(recipeId) {
