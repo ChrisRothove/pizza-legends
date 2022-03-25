@@ -13,25 +13,35 @@ class DirectionInput {
       KeyA: "left",
       KeyD: "right",
     };
+
+    this.keyUpEvent = (e) => {
+      const dir = this.map[e.code];
+      const index = this.heldDirection.indexOf(dir);
+      if (index > -1) {
+        this.heldDirection.splice(index, 1);
+      }
+    };
+    this.keyDownEvent = (e) => {
+      const dir = this.map[e.code];
+      if (dir && this.heldDirection.indexOf(dir) === -1) {
+        this.heldDirection.unshift(dir);
+      }
+    };
   }
 
   get direction() {
     return this.heldDirection[0];
   }
 
+  reMap() {
+    this.map = playerState.directions;
+    document.removeEventListener("keyup", this.keyUpEvent);
+    document.removeEventListener("keydown", this.keyDownEvent);
+    this.init();
+  }
+
   init() {
-    document.addEventListener("keydown", (e) => {
-      const dir = this.map[e.code];
-      if (dir && this.heldDirection.indexOf(dir) === -1) {
-        this.heldDirection.unshift(dir);
-      }
-    });
-    document.addEventListener("keyup", (e) => {
-      const dir = this.map[e.code];
-      const index = this.heldDirection.indexOf(dir);
-      if (index > -1) {
-        this.heldDirection.splice(index, 1);
-      }
-    });
+    document.addEventListener("keydown", this.keyDownEvent);
+    document.addEventListener("keyup", this.keyUpEvent);
   }
 }
