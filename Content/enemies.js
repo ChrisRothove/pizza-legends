@@ -5,18 +5,20 @@ window.enemies = {
     rewards: {
       currency: 1000,
       items: ["item_recoverHp2"],
-      ingredients: ["magic dough"],
+      ingredients: ["magic dough", "pepperoni", "cheddar", "tomato sauce"],
     },
     pizzas: {
       a: {
-        pizzaId: "s001",
-        maxHp: 50,
+        hp: 280,
+        pizzaId: "c001",
+        maxHp: 280,
         level: 1,
-      },
-      b: {
-        pizzaId: "s002",
-        maxHp: 50,
-        level: 1,
+        stats: {
+          vit: 28,
+          atk: 8,
+          def: 10,
+          spd: 4,
+        },
       },
     },
   },
@@ -30,7 +32,7 @@ window.enemies = {
     },
     pizzas: {
       a: {
-        hp: 2,
+        hp: 280,
         pizzaId: "f001",
         maxHp: 280,
         level: 1,

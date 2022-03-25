@@ -43,6 +43,11 @@ window.MapMaker = {
             x: utils.withGrid(3),
             y: utils.withGrid(8),
             src: "./../images/characters/people/erio.png",
+            talking: [
+              {
+                events: [{ type: "battle", enemyId: "erio" }],
+              },
+            ],
           }),
         };
     const transitionCutscene = playerState.storyFlags["FIRST_DEFEAT"]
@@ -56,6 +61,12 @@ window.MapMaker = {
         hero,
         ...master,
         ...erio,
+        pizzaStone: new PizzaStone({
+          x: utils.withGrid(2),
+          y: utils.withGrid(7),
+          storyFlag: "USED_PIZZA_STONE",
+          pizzas: playerState.recipes,
+        }),
       },
       ...transitionCutscene,
     };
