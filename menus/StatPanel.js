@@ -263,7 +263,7 @@ class StatPanel {
       this.element.innerHTML = `
       <h2>Recipes</h2>
         <table class="stats">
-            ${Object.keys(recipes)
+            ${playerState.recipes
               .map((recipeId) => {
                 const recipe = recipes[recipeId];
                 console.log(recipe.ingredients[0]);

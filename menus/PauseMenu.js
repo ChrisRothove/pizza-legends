@@ -17,7 +17,7 @@ class PauseMenu {
         },
         {
           label: "Items",
-          description: "View and Use Items (coming soon)",
+          description: "View and Use Items",
           handler: () => {
             this.keyboardMenu.setOptions(this.getOptions("items"));
           },
@@ -25,7 +25,7 @@ class PauseMenu {
         },
         {
           label: "Recipes",
-          description: "Recipes for making pizzas (coming soon)",
+          description: "Recipes for making pizzas",
           handler: () => {
             this.keyboardMenu.setOptions([
               {
