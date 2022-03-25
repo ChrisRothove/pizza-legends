@@ -66,6 +66,7 @@ class Overworld {
 
   startMap(mapConfig, heroInitialState = null) {
     this.map = new OverworldMap(mapConfig);
+    console.log(this.map);
     this.map.overworld = this;
     this.map.mountObjects();
 
@@ -82,6 +83,8 @@ class Overworld {
     this.progress.startingHeroX = this.map.gameObjects.hero.x;
     this.progress.startingHeroY = this.map.gameObjects.hero.y;
     this.progress.startingHeroDirection = this.map.gameObjects.hero.direction;
+    this.map.transitionCutscene &&
+      this.map.startCutscene(this.map.transitionCutscene);
   }
 
   async init() {
@@ -112,7 +115,7 @@ class Overworld {
     this.hud.init(container);
 
     //start the first map
-    this.startMap(window.OverworldMaps[this.progress.mapId], initialHeroState);
+    this.startMap(window.MapMaker[this.progress.mapId](), initialHeroState);
 
     //Create Controlls
     this.bindActionInput();
@@ -124,10 +127,6 @@ class Overworld {
     // Kick off the game!
     this.startGameLoop();
 
-    // this.map.startCutscene([
-    //   { type: "battle", enemyId: "beth" },
-    //   // { type: "changeMap", map: "DemoRoom" },
-    //   // { type: "textMessage", text: "This is the very first message!" },
-    // ]);
+    this.map.startCutscene(Cutscenes[0].events);
   }
 }

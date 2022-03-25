@@ -13,6 +13,8 @@ class OverworldMap {
 
     this.isCutscenePlaying = false;
     this.isPaused = false;
+
+    this.transitionCutscene = config.transitionCutscene || null;
   }
 
   drawLowerImage(ctx, cameraPerson) {
