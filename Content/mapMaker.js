@@ -33,7 +33,6 @@ window.MapMaker = {
             x: utils.withGrid(3),
             y: utils.withGrid(5),
             src: "./../images/characters/people/npc5.png",
-            talking: Cutscenes[0],
           }),
         };
     const erio = playerState.storyFlags["FIRST_DEFEAT"]
@@ -43,11 +42,7 @@ window.MapMaker = {
             x: utils.withGrid(3),
             y: utils.withGrid(8),
             src: "./../images/characters/people/erio.png",
-            talking: [
-              {
-                events: [{ type: "battle", enemyId: "erio" }],
-              },
-            ],
+            talking: Cutscenes[2].events,
           }),
         };
     const transitionCutscene = playerState.storyFlags["FIRST_DEFEAT"]

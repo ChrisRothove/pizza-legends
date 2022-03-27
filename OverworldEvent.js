@@ -150,6 +150,12 @@ class OverworldEvent {
     resolve();
   }
 
+  removeObject(resolve) {
+    const { who } = gameObjects;
+    delete this.map.gameObjects[who];
+    resolve();
+  }
+
   init() {
     return new Promise((resolve) => {
       this[this.event.type](resolve);
