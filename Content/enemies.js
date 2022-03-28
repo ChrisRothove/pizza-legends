@@ -9,7 +9,7 @@ window.enemies = {
     },
     pizzas: {
       a: {
-        hp: 280,
+        hp: 2,
         pizzaId: "c001",
         maxHp: 280,
         level: 1,

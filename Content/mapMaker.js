@@ -42,7 +42,7 @@ window.MapMaker = {
             x: utils.withGrid(3),
             y: utils.withGrid(8),
             src: "./../images/characters/people/erio.png",
-            talking: Cutscenes[2].events,
+            talking: [{ events: Cutscenes[2].events }],
           }),
         };
     const transitionCutscene = playerState.storyFlags["FIRST_DEFEAT"]

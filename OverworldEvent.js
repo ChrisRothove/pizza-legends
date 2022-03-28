@@ -151,7 +151,10 @@ class OverworldEvent {
   }
 
   removeObject(resolve) {
-    const { who } = gameObjects;
+    console.log(this);
+    const { who } = this.event;
+    const person = this.map.gameObjects[who];
+    delete this.map.removeWall(person.x, person.y);
     delete this.map.gameObjects[who];
     resolve();
   }
