@@ -49,7 +49,7 @@ window.MapMaker = {
       ? {}
       : { transitionCutscene: Cutscenes[1].events };
     return {
-      id: "Master's Room",
+      id: "mastersRoom",
       lowerSrc: "./../images/maps/DemoLower.png",
       upperSrc: "./../images/maps/DemoUpper.png",
       gameObjects: {
@@ -109,8 +109,8 @@ window.MapMaker = {
               {
                 type: "changeMap",
                 map: "city",
-                x: utils.withGrid(2),
-                y: utils.withGrid(2),
+                x: utils.withGrid(4),
+                y: utils.withGrid(11),
                 direction: "right",
               },
             ],
@@ -123,13 +123,13 @@ window.MapMaker = {
   city: () => {
     const hero = new Person({
       isPlayerControlled: true,
-      x: utils.withGrid(7),
-      y: utils.withGrid(4),
+      x: utils.withGrid(4),
+      y: utils.withGrid(11),
     });
     const transitionCutscene = {};
 
     return {
-      id: "Pizza City",
+      id: "city",
       lowerSrc: "./../images/maps/StreetLower.png",
       upperSrc: "./../images/maps/StreetUpper.png",
       gameObjects: { hero },
