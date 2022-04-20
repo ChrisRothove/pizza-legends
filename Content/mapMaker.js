@@ -225,9 +225,22 @@ window.MapMaker = {
               {
                 type: "changeMap",
                 map: "upperCity",
-                x: utils.withGrid(4),
-                y: utils.withGrid(11),
-                direction: "right",
+                x: utils.withGrid(7),
+                y: utils.withGrid(16),
+                direction: "up",
+              },
+            ],
+          },
+        ],
+        [utils.asGridCoords(5, 9)]: [
+          {
+            events: [
+              {
+                type: "changeMap",
+                map: "shop",
+                x: utils.withGrid(5),
+                y: utils.withGrid(12),
+                direction: "up",
               },
             ],
           },
@@ -237,9 +250,9 @@ window.MapMaker = {
             events: [
               {
                 type: "changeMap",
-                map: "shop",
+                map: "stack",
                 x: utils.withGrid(5),
-                y: utils.withGrid(12),
+                y: utils.withGrid(10),
                 direction: "up",
               },
             ],
@@ -328,9 +341,180 @@ window.MapMaker = {
               {
                 type: "changeMap",
                 map: "city",
+                x: utils.withGrid(5),
+                y: utils.withGrid(9),
+                direction: "down",
+              },
+            ],
+          },
+        ],
+      },
+    };
+  },
+  // The Stack
+  stack: () => {
+    const hero = new Person({
+      isPlayerControlled: true,
+      x: utils.withGrid(4),
+      y: utils.withGrid(11),
+    });
+    const transitionCutscene = {};
+
+    return {
+      id: "stack",
+      lowerSrc: "./../images/maps/KitchenLower.png",
+      upperSrc: "./../images/maps/KitchenUpper.png",
+      gameObjects: { hero },
+      ...transitionCutscene,
+      walls: {
+        [utils.asGridCoords(2, 4)]: true,
+        [utils.asGridCoords(3, 4)]: true,
+        [utils.asGridCoords(4, 3)]: true,
+        [utils.asGridCoords(5, 4)]: true,
+        [utils.asGridCoords(6, 4)]: true,
+        [utils.asGridCoords(7, 4)]: true,
+        [utils.asGridCoords(8, 4)]: true,
+        [utils.asGridCoords(9, 4)]: true,
+        [utils.asGridCoords(10, 4)]: true,
+        [utils.asGridCoords(11, 5)]: true,
+        [utils.asGridCoords(12, 5)]: true,
+        [utils.asGridCoords(13, 6)]: true,
+        [utils.asGridCoords(13, 7)]: true,
+        [utils.asGridCoords(13, 8)]: true,
+        [utils.asGridCoords(13, 9)]: true,
+        [utils.asGridCoords(12, 10)]: true,
+        [utils.asGridCoords(11, 10)]: true,
+        [utils.asGridCoords(10, 10)]: true,
+        [utils.asGridCoords(9, 10)]: true,
+        [utils.asGridCoords(8, 10)]: true,
+        [utils.asGridCoords(7, 10)]: true,
+        [utils.asGridCoords(6, 10)]: true,
+        [utils.asGridCoords(4, 10)]: true,
+        [utils.asGridCoords(3, 10)]: true,
+        [utils.asGridCoords(2, 10)]: true,
+        [utils.asGridCoords(2, 9)]: true,
+        [utils.asGridCoords(1, 9)]: true,
+        [utils.asGridCoords(0, 8)]: true,
+        [utils.asGridCoords(1, 7)]: true,
+        [utils.asGridCoords(1, 6)]: true,
+        [utils.asGridCoords(1, 5)]: true,
+        [utils.asGridCoords(6, 7)]: true,
+        [utils.asGridCoords(7, 7)]: true,
+        [utils.asGridCoords(9, 7)]: true,
+        [utils.asGridCoords(10, 7)]: true,
+        [utils.asGridCoords(9, 9)]: true,
+        [utils.asGridCoords(10, 9)]: true,
+      },
+      cutsceneSpaces: {
+        [utils.asGridCoords(5, 10)]: [
+          {
+            events: [
+              {
+                type: "changeMap",
+                map: "city",
                 x: utils.withGrid(29),
                 y: utils.withGrid(9),
                 direction: "down",
+              },
+            ],
+          },
+        ],
+      },
+    };
+  },
+  // Upper City
+  upperCity: () => {
+    const hero = new Person({
+      isPlayerControlled: true,
+      x: utils.withGrid(4),
+      y: utils.withGrid(11),
+    });
+    const transitionCutscene = {};
+
+    return {
+      id: "upperCity",
+      lowerSrc: "./../images/maps/StreetNorthLower.png",
+      upperSrc: "./../images/maps/StreetNorthUpper.png",
+      gameObjects: { hero },
+      ...transitionCutscene,
+      walls: {
+        [utils.asGridCoords(2, 15)]: true,
+        [utils.asGridCoords(3, 15)]: true,
+        [utils.asGridCoords(4, 15)]: true,
+        [utils.asGridCoords(5, 15)]: true,
+        [utils.asGridCoords(6, 15)]: true,
+        [utils.asGridCoords(8, 15)]: true,
+        [utils.asGridCoords(9, 15)]: true,
+        [utils.asGridCoords(10, 15)]: true,
+        [utils.asGridCoords(11, 15)]: true,
+        [utils.asGridCoords(12, 15)]: true,
+        [utils.asGridCoords(13, 15)]: true,
+        [utils.asGridCoords(14, 15)]: true,
+        [utils.asGridCoords(7, 17)]: true,
+        [utils.asGridCoords(1, 8)]: true,
+        [utils.asGridCoords(1, 9)]: true,
+        [utils.asGridCoords(1, 10)]: true,
+        [utils.asGridCoords(1, 11)]: true,
+        [utils.asGridCoords(1, 12)]: true,
+        [utils.asGridCoords(1, 13)]: true,
+        [utils.asGridCoords(1, 14)]: true,
+        [utils.asGridCoords(1, 15)]: true,
+        [utils.asGridCoords(2, 7)]: true,
+        [utils.asGridCoords(3, 7)]: true,
+        [utils.asGridCoords(3, 6)]: true,
+        [utils.asGridCoords(4, 5)]: true,
+        [utils.asGridCoords(5, 5)]: true,
+        [utils.asGridCoords(6, 5)]: true,
+        [utils.asGridCoords(8, 5)]: true,
+        [utils.asGridCoords(9, 5)]: true,
+        [utils.asGridCoords(10, 5)]: true,
+        [utils.asGridCoords(11, 6)]: true,
+        [utils.asGridCoords(12, 6)]: true,
+        [utils.asGridCoords(13, 6)]: true,
+        [utils.asGridCoords(14, 7)]: true,
+        [utils.asGridCoords(14, 8)]: true,
+        [utils.asGridCoords(14, 9)]: true,
+        [utils.asGridCoords(14, 10)]: true,
+        [utils.asGridCoords(14, 11)]: true,
+        [utils.asGridCoords(14, 12)]: true,
+        [utils.asGridCoords(14, 13)]: true,
+        [utils.asGridCoords(14, 14)]: true,
+        [utils.asGridCoords(14, 15)]: true,
+        [utils.asGridCoords(8, 4)]: true,
+        [utils.asGridCoords(6, 16)]: true,
+        [utils.asGridCoords(8, 16)]: true,
+        [utils.asGridCoords(7, 8)]: true,
+        [utils.asGridCoords(8, 8)]: true,
+        [utils.asGridCoords(7, 9)]: true,
+        [utils.asGridCoords(8, 9)]: true,
+        [utils.asGridCoords(7, 10)]: true,
+        [utils.asGridCoords(8, 10)]: true,
+        [utils.asGridCoords(9, 10)]: true,
+        [utils.asGridCoords(10, 10)]: true,
+      },
+      cutsceneSpaces: {
+        [utils.asGridCoords(7, 16)]: [
+          {
+            events: [
+              {
+                type: "changeMap",
+                map: "city",
+                x: utils.withGrid(25),
+                y: utils.withGrid(6),
+                direction: "down",
+              },
+            ],
+          },
+        ],
+        [utils.asGridCoords(8, 5)]: [
+          {
+            events: [
+              {
+                type: "changeMap",
+                map: "green",
+                x: utils.withGrid(6),
+                y: utils.withGrid(12),
+                direction: "up",
               },
             ],
           },
