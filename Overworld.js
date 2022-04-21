@@ -127,6 +127,6 @@ class Overworld {
     // Kick off the game!
     this.startGameLoop();
 
-    this.map.startCutscene(Cutscenes[0].events);
+    if (!useSaveFile) this.map.startCutscene(Cutscenes[0].events);
   }
 }

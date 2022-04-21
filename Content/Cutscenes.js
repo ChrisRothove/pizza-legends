@@ -73,6 +73,7 @@ window.Cutscenes = [
       { who: "erio", type: "walk", direction: "down" },
       { who: "erio", type: "walk", direction: "down" },
       { who: "erio", type: "removeObject" },
+      { type: "addStoryFlag", flag: "FIRST_DEFEAT" },
     ],
   },
 ];
