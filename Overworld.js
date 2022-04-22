@@ -93,6 +93,9 @@ class Overworld {
     // create new progress tracker
     this.progress = new Progress();
 
+    this.musicPlayer = new MusicPlayer({ tune: "title", src: "Utopia" });
+    this.musicPlayer.start();
+
     //show title screen
     this.titleScreen = new TitleScreen({
       progress: this.progress,
