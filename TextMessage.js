@@ -1,7 +1,9 @@
 class TextMessage {
-  constructor({ text, onComplete }) {
+  constructor({ text, onComplete, speaker, name }) {
     this.text = text;
     this.onComplete = onComplete;
+    this.speaker = speaker;
+    this.name = name;
     this.element = null;
   }
 
@@ -10,8 +12,19 @@ class TextMessage {
     this.element.classList.add("TextMessage");
 
     this.element.innerHTML = `
-    <p class="TextMessage_p"></p>
-    <button class="TextMessage_button">Next</button>
+    <div class="${this.speaker ? "speaker" : ""}">
+      <div class="head">${
+        this.speaker
+          ? `<img src="/images/characters/people/${this.speaker || ""}.png"/>`
+          : ""
+      }
+      </div>
+      <div class="${this.name ? "name" : ""}">${this.name || ""}</div>
+    </div>
+    <div>
+      <p class="TextMessage_p"></p>
+      <button class="TextMessage_button">Next</button>
+    </div>
     `;
 
     this.revealingText = new RevealingText({

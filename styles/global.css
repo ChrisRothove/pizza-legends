@@ -5,7 +5,8 @@
   --menu-background: #ffe8d2;
   --menu-border-color: #a48465;
   --menu-font-color: #3a160d;
-  --menu-selected-background: #7fc2ff;
+  --menu-selected-background: #7fc2ff50;
+  --menu-selected-border: #7fc2ff;
 }
 
 * {

@@ -4,16 +4,17 @@
   right: 0;
   bottom: 0;
   height: 36px;
-  font-size: 12px;
   padding: 4px;
   background: var(--menu-background);
   border-top: var(--menu-border-color);
   color: var(--menu-font-color);
+  display: flex;
+  flex-direction: row;
 }
 
 .TextMessage_p {
   margin: 0;
-  font-size: 12;
+  font-size: 12px;
 }
 
 .TextMessage span {
@@ -36,4 +37,40 @@
   position: absolute;
   right: 2px;
   bottom: 0;
+}
+
+.TextMessage .speaker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -4px;
+  margin-right: 3px;
+  height: 36px;
+  border: 1px solid var(--menu-border-color);
+  min-width: 32px;
+}
+
+.name {
+  margin: 0;
+  font-size: 8px !important;
+}
+
+.speaker .head {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  padding: 0px;
+  padding-right: 3px;
+  color: var(--menu-background);
+  image-rendering: pixelated;
+  overflow: hidden;
+  font-family: "Crete Round", serif;
+}
+
+.speaker .head img {
+  position: absolute;
+  left: 45px;
+  top: 30px;
+  /* transform: scale(2); */
 }

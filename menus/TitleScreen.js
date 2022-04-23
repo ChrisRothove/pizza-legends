@@ -31,7 +31,12 @@ class TitleScreen {
     this.element = document.createElement("div");
     this.element.classList.add("TitleScreen");
     this.element.innerHTML = `
-      <img class="TitleScreen_logo" src="/images/logo.png" alt="Pizza Legends" />
+      <img class="TitleScreen_logo" src="/images/new_logo.png" alt="Pizza Legends" />
+    `;
+    this.subElement = document.createElement("div");
+    this.subElement.classList.add("menuContainer");
+    this.subElement.innerHTML = `
+      <img class="TitleScreen_logo_sprite" src="/images/logo_sprite.png" alt="Buster Paddle" />
     `;
   }
 
@@ -44,8 +49,9 @@ class TitleScreen {
     return new Promise((resolve) => {
       this.createElement();
       container.appendChild(this.element);
+      this.element.appendChild(this.subElement);
       this.keyboardMenu = new KeyboardMenu();
-      this.keyboardMenu.init(this.element);
+      this.keyboardMenu.init(this.subElement);
       this.keyboardMenu.setOptions(this.getOptions(resolve));
     });
   }

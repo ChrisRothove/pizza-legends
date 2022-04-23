@@ -5,19 +5,34 @@
   top: 0;
   bottom: 0;
   background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .TitleScreen_logo {
   display: block;
   margin: 0 auto;
-  width: 128px;
+  width: 300px;
   image-rendering: pixelated;
+}
+
+.TitleScreen_logo_sprite {
+  image-rendering: pixelated;
+}
+
+.TitleScreen .menuContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: start;
+  justify-content: space-around;
 }
 
 .TitleScreen .KeyboardMenu {
   position: relative;
   width: 100px;
-  margin: 0 auto;
+  margin: 14px auto;
   background: transparent;
   border: 0;
 }

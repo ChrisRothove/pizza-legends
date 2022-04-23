@@ -31,6 +31,8 @@
 }
 .KeyboardMenu button:focus {
   background: var(--menu-selected-background);
+  border-radius: 3px;
+  border: 1px solid var(--menu-selected-border);
   outline: 0;
 }
 

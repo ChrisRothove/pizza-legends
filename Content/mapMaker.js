@@ -30,7 +30,7 @@ window.MapMaker = {
         }
       : {
           master: new Person({
-            x: utils.withGrid(3),
+            x: utils.withGrid(5),
             y: utils.withGrid(5),
             src: "./../images/characters/people/npc5.png",
           }),
@@ -39,8 +39,8 @@ window.MapMaker = {
       ? {}
       : {
           erio: new Person({
-            x: utils.withGrid(3),
-            y: utils.withGrid(8),
+            x: utils.withGrid(5),
+            y: utils.withGrid(9),
             src: "./../images/characters/people/erio.png",
             talking: [{ events: Cutscenes[2].events }],
           }),
