@@ -20,6 +20,8 @@ window.MapMaker = {
       x: utils.withGrid(7),
       y: utils.withGrid(4),
     });
+
+    // MASTER
     const master = playerState.storyFlags["FIRST_DEFEAT"]
       ? {
           master: new Person({
@@ -35,6 +37,8 @@ window.MapMaker = {
             src: "./../images/characters/people/npc5.png",
           }),
         };
+
+    // ERIO
     const erio = playerState.storyFlags["FIRST_DEFEAT"]
       ? {}
       : {
@@ -45,9 +49,15 @@ window.MapMaker = {
             talking: [{ events: Cutscenes[2].events }],
           }),
         };
+
+    // TRANSITION SCENE
     const transitionCutscene = playerState.storyFlags["FIRST_DEFEAT"]
       ? {}
       : { transitionCutscene: Cutscenes[1].events };
+
+    // MUSIC
+    const theme = playerState.storyFlags["FIRST_DEFEAT"] ? "learning" : "erio";
+
     return {
       id: "mastersRoom",
       lowerSrc: "./../images/maps/DemoLower.png",
@@ -59,11 +69,11 @@ window.MapMaker = {
         pizzaStone: new PizzaStone({
           x: utils.withGrid(2),
           y: utils.withGrid(7),
-          storyFlag: "USED_PIZZA_STONE",
           pizzas: playerState.recipes,
         }),
       },
       ...transitionCutscene,
+      theme,
       walls: {
         [utils.asGridCoords(7, 6)]: true,
         [utils.asGridCoords(8, 6)]: true,

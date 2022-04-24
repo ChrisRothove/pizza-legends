@@ -99,11 +99,13 @@ class OverworldEvent {
   }
 
   pause(resolve) {
+    this.map.overworld.musicPlayer.pause();
     this.map.isPaused = true;
     const menu = new PauseMenu({
       progress: this.map.overworld.progress,
       onComplete: () => {
         resolve();
+        this.map.overworld.musicPlayer.play();
         this.map.isPaused = false;
         this.map.overworld.startGameLoop();
       },

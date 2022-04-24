@@ -65,6 +65,7 @@ class Overworld {
   }
 
   startMap(mapConfig, heroInitialState = null) {
+    console.log(mapConfig);
     this.map = new OverworldMap(mapConfig);
 
     this.map.overworld = this;
@@ -83,6 +84,7 @@ class Overworld {
     this.progress.startingHeroX = this.map.gameObjects.hero.x;
     this.progress.startingHeroY = this.map.gameObjects.hero.y;
     this.progress.startingHeroDirection = this.map.gameObjects.hero.direction;
+    this.musicPlayer.changeTune(mapConfig.theme);
     this.map.transitionCutscene &&
       this.map.startCutscene(this.map.transitionCutscene);
   }

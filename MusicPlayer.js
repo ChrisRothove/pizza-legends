@@ -1,9 +1,11 @@
 class MusicPlayer {
   constructor(config) {
     this.currentTuneId = config.tune;
+    this.currentTune = Tunes[config.tune];
   }
 
   start() {
+    this.currentTune.pause();
     this.currentTune = Tunes[this.currentTuneId];
     this.currentTune.autoplay = true;
     this.currentTune.loop = true;
@@ -12,10 +14,12 @@ class MusicPlayer {
   }
 
   changeTune(id) {
+    console.log("change!");
+    if (!id) return this.currentTune.pause();
     if (id !== this.currentTuneId) {
       this.currentTuneId = id;
       this.currentTune.pause();
-      this.setTune();
+      this.start();
     }
   }
 
