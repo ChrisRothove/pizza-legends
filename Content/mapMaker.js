@@ -4,6 +4,7 @@ window.MapMaker = {
       id: "Empty Room",
       lowerSrc: "./../images/null.png",
       upperSrc: "./../images/null.png",
+      theme: "erio",
       gameObjects: {
         hero: new Person({
           isPlayerControlled: true,
@@ -138,12 +139,16 @@ window.MapMaker = {
     });
     const transitionCutscene = {};
 
+    //MUSIC
+    const theme = "town";
+
     return {
       id: "city",
       lowerSrc: "./../images/maps/StreetLower.png",
       upperSrc: "./../images/maps/StreetUpper.png",
       gameObjects: { hero },
       ...transitionCutscene,
+      theme,
       walls: {
         [utils.asGridCoords(3, 10)]: true,
         [utils.asGridCoords(3, 11)]: true,
@@ -280,12 +285,15 @@ window.MapMaker = {
     });
     const transitionCutscene = {};
 
+    const theme = "town";
+
     return {
       id: "shop",
       lowerSrc: "./../images/maps/PizzaShopLower.png",
       upperSrc: "./../images/maps/PizzaShopUpper.png",
       gameObjects: { hero },
       ...transitionCutscene,
+      theme,
       walls: {
         [utils.asGridCoords(1, 3)]: true,
         [utils.asGridCoords(0, 4)]: true,
@@ -370,12 +378,15 @@ window.MapMaker = {
     });
     const transitionCutscene = {};
 
+    const theme = "town";
+
     return {
       id: "stack",
       lowerSrc: "./../images/maps/KitchenLower.png",
       upperSrc: "./../images/maps/KitchenUpper.png",
       gameObjects: { hero },
       ...transitionCutscene,
+      theme,
       walls: {
         [utils.asGridCoords(2, 4)]: true,
         [utils.asGridCoords(3, 4)]: true,
@@ -441,12 +452,15 @@ window.MapMaker = {
     });
     const transitionCutscene = {};
 
+    const theme = "upperTown";
+
     return {
       id: "upperCity",
       lowerSrc: "./../images/maps/StreetNorthLower.png",
       upperSrc: "./../images/maps/StreetNorthUpper.png",
       gameObjects: { hero },
       ...transitionCutscene,
+      theme,
       walls: {
         [utils.asGridCoords(2, 15)]: true,
         [utils.asGridCoords(3, 15)]: true,
@@ -541,12 +555,15 @@ window.MapMaker = {
     });
     const transitionCutscene = {};
 
+    const theme = "upperTown";
+
     return {
       id: "dining",
       lowerSrc: "./../images/maps/DiningRoomLower.png",
       upperSrc: "./../images/maps/DiningRoomUpper.png",
       gameObjects: { hero },
       ...transitionCutscene,
+      theme,
       walls: {
         [utils.asGridCoords(1, 3)]: true,
         [utils.asGridCoords(0, 4)]: true,
@@ -648,12 +665,15 @@ window.MapMaker = {
     });
     const transitionCutscene = {};
 
+    const theme = "erio";
+
     return {
       id: "finale",
       lowerSrc: "./../images/maps/GreenKitchenLower.png",
       upperSrc: "./../images/maps/GreenKitchenUpper.png",
       gameObjects: { hero },
       ...transitionCutscene,
+      theme,
       walls: {
         [utils.asGridCoords(1, 3)]: true,
         [utils.asGridCoords(2, 3)]: true,

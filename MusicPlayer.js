@@ -14,7 +14,6 @@ class MusicPlayer {
   }
 
   changeTune(id) {
-    console.log("change!");
     if (!id) return this.currentTune.pause();
     if (id !== this.currentTuneId) {
       this.currentTuneId = id;

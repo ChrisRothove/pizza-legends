@@ -226,7 +226,6 @@ class StatPanel {
           .map((idx) => {
             const thePizza = this.subject.pizzas[lineup[idx]];
             const theReserve = this.subject.pizzas[reserve[idx]];
-            console.log(thePizza, theReserve);
             return `
               <tr>
                 <td class="head pizzaBox">

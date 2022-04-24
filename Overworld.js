@@ -65,7 +65,6 @@ class Overworld {
   }
 
   startMap(mapConfig, heroInitialState = null) {
-    console.log(mapConfig);
     this.map = new OverworldMap(mapConfig);
 
     this.map.overworld = this;
