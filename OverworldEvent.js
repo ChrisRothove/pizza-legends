@@ -82,10 +82,13 @@ class OverworldEvent {
 
   battle(resolve) {
     if (Object.keys(playerState.pizzas).length > 0) {
+      const prevMusic = this.map.overworld.musicPlayer.currentTuneId;
+      this.map.overworld.musicPlayer.changeTune(this.event.bgm);
       const battle = new Battle({
         enemy: enemies[this.event.enemyId],
         onComplete: (didWin) => {
           resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
+          this.map.overworld.musicPlayer.changeTune(prevMusic);
         },
       });
       battle.init(document.querySelector(".game-container"));
