@@ -287,7 +287,7 @@ window.Actions = {
   //Items
   item_recoverStatus: {
     name: "Heating Lamp",
-    description: "Feeling fresh and warm",
+    description: "Feeling fresh and warm, clear all statuses",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} uses a {ACTION}!" },
@@ -299,11 +299,11 @@ window.Actions = {
   },
   item_recoverHp: {
     name: "Parmesan Packet",
-    description: "Heals the target 75 HP",
+    description: "Heals the target 30 HP",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} sprinkles on some parmesan!" },
-      { type: "stateChange", recover: 75 },
+      { type: "stateChange", recover: 30 },
       { type: "textMessage", text: "{CASTER} recovers HP!" },
     ],
     price: 50,
@@ -311,11 +311,11 @@ window.Actions = {
   },
   item_recoverHp2: {
     name: "Parmesan Shaker",
-    description: "Heals the target 150 HP",
+    description: "Heals the target 60 HP",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} sprinkles on some parmesan!" },
-      { type: "stateChange", recover: 150 },
+      { type: "stateChange", recover: 60 },
       { type: "textMessage", text: "{CASTER} recovers HP!" },
     ],
     price: 100,

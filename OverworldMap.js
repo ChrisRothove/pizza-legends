@@ -112,189 +112,189 @@ class OverworldMap {
   }
 }
 
-window.OverworldMaps = {
-  DemoRoom: {
-    id: "DemoRoom",
-    lowerSrc: "/images/maps/DemoLower.png",
-    upperSrc: "/images/maps/DemoUpper.png",
-    gameObjects: {
-      hero: new Person({
-        isPlayerControlled: true,
-        x: utils.withGrid(5),
-        y: utils.withGrid(6),
-      }),
-      npcA: new Person({
-        x: utils.withGrid(7),
-        y: utils.withGrid(9),
-        src: "/images/characters/people/npc1.png",
-        behaviorLoop: [
-          { type: "stand", direction: "left", time: 800 },
-          { type: "stand", direction: "up", time: 800 },
-          { type: "stand", direction: "right", time: 1200 },
-          { type: "stand", direction: "up", time: 300 },
-        ],
-        talking: [
-          {
-            required: ["TALKED_TO_ERIO"],
-            events: [
-              {
-                type: "textMessage",
-                text: "Isn't Erio the coolest?",
-                faceHero: "npcA",
-              },
-            ],
-          },
-          {
-            events: [
-              {
-                type: "textMessage",
-                text: "I'm going to crush you!",
-                faceHero: "npcA",
-              },
-              { type: "battle", enemyId: "beth" },
-              { type: "addStoryFlag", flag: "DEFEATED_BETH" },
-              {
-                type: "textMessage",
-                text: "You crushed me like weak pepper.",
-                faceHero: "npcA",
-              },
-              // { type: "textMessage", text: "Go away!"},
-              //{ who: "hero", type: "walk",  direction: "up" },
-            ],
-          },
-        ],
-      }),
-      npcB: new Person({
-        x: utils.withGrid(8),
-        y: utils.withGrid(5),
-        src: "/images/characters/people/erio.png",
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "Bahaha!", faceHero: "npcB" },
-              { type: "addStoryFlag", flag: "TALKED_TO_ERIO" },
-              //{ type: "battle", enemyId: "erio" }
-            ],
-          },
-        ],
-        // behaviorLoop: [
-        //   { type: "walk",  direction: "left" },
-        //   { type: "stand",  direction: "up", time: 800 },
-        //   { type: "walk",  direction: "up" },
-        //   { type: "walk",  direction: "right" },
-        //   { type: "walk",  direction: "down" },
-        // ]
-      }),
-      pizzaStone: new PizzaStone({
-        x: utils.withGrid(2),
-        y: utils.withGrid(7),
-        storyFlag: "USED_PIZZA_STONE",
-        pizzas: playerState.recipes,
-      }),
-    },
-    walls: {
-      [utils.asGridCoords(7, 6)]: true,
-      [utils.asGridCoords(8, 6)]: true,
-      [utils.asGridCoords(7, 7)]: true,
-      [utils.asGridCoords(8, 7)]: true,
-    },
-    cutsceneSpaces: {
-      [utils.asGridCoords(7, 4)]: [
-        {
-          events: [
-            { who: "npcB", type: "walk", direction: "left" },
-            { who: "npcB", type: "stand", direction: "up", time: 500 },
-            { type: "textMessage", text: "You can't be in there!" },
-            { who: "npcB", type: "walk", direction: "right" },
-            { who: "hero", type: "walk", direction: "down" },
-            { who: "hero", type: "walk", direction: "left" },
-          ],
-        },
-      ],
-      [utils.asGridCoords(5, 10)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "Kitchen",
-              x: utils.withGrid(2),
-              y: utils.withGrid(2),
-              direction: "down",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  Kitchen: {
-    id: "Kitchen",
-    lowerSrc: "/images/maps/KitchenLower.png",
-    upperSrc: "/images/maps/KitchenUpper.png",
-    gameObjects: {
-      hero: new Person({
-        isPlayerControlled: true,
-        x: utils.withGrid(5),
-        y: utils.withGrid(5),
-      }),
-      npcB: new Person({
-        x: utils.withGrid(10),
-        y: utils.withGrid(8),
-        src: "/images/characters/people/npc3.png",
-        talking: [
-          {
-            events: [
-              {
-                type: "textMessage",
-                text: "You made it! This video is going to be such a good time!",
-                faceHero: "npcB",
-              },
-              { type: "openShop" },
-            ],
-          },
-        ],
-      }),
-    },
-    cutsceneSpaces: {
-      [utils.asGridCoords(5, 10)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "Street",
-              x: utils.withGrid(29),
-              y: utils.withGrid(9),
-              direction: "down",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  Street: {
-    id: "Street",
-    lowerSrc: "/images/maps/StreetLower.png",
-    upperSrc: "/images/maps/StreetUpper.png",
-    gameObjects: {
-      hero: new Person({
-        isPlayerControlled: true,
-        x: utils.withGrid(30),
-        y: utils.withGrid(10),
-      }),
-    },
-    cutsceneSpaces: {
-      [utils.asGridCoords(29, 9)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "Kitchen",
-              x: utils.withGrid(5),
-              y: utils.withGrid(10),
-              direction: "up",
-            },
-          ],
-        },
-      ],
-    },
-  },
-};
+// window.OverworldMaps = {
+//   DemoRoom: {
+//     id: "DemoRoom",
+//     lowerSrc: "/images/maps/DemoLower.png",
+//     upperSrc: "/images/maps/DemoUpper.png",
+//     gameObjects: {
+//       hero: new Person({
+//         isPlayerControlled: true,
+//         x: utils.withGrid(5),
+//         y: utils.withGrid(6),
+//       }),
+//       npcA: new Person({
+//         x: utils.withGrid(7),
+//         y: utils.withGrid(9),
+//         src: "/images/characters/people/npc1.png",
+//         behaviorLoop: [
+//           { type: "stand", direction: "left", time: 800 },
+//           { type: "stand", direction: "up", time: 800 },
+//           { type: "stand", direction: "right", time: 1200 },
+//           { type: "stand", direction: "up", time: 300 },
+//         ],
+//         talking: [
+//           {
+//             required: ["TALKED_TO_ERIO"],
+//             events: [
+//               {
+//                 type: "textMessage",
+//                 text: "Isn't Erio the coolest?",
+//                 faceHero: "npcA",
+//               },
+//             ],
+//           },
+//           {
+//             events: [
+//               {
+//                 type: "textMessage",
+//                 text: "I'm going to crush you!",
+//                 faceHero: "npcA",
+//               },
+//               { type: "battle", enemyId: "beth" },
+//               { type: "addStoryFlag", flag: "DEFEATED_BETH" },
+//               {
+//                 type: "textMessage",
+//                 text: "You crushed me like weak pepper.",
+//                 faceHero: "npcA",
+//               },
+//               // { type: "textMessage", text: "Go away!"},
+//               //{ who: "hero", type: "walk",  direction: "up" },
+//             ],
+//           },
+//         ],
+//       }),
+//       npcB: new Person({
+//         x: utils.withGrid(8),
+//         y: utils.withGrid(5),
+//         src: "/images/characters/people/erio.png",
+//         talking: [
+//           {
+//             events: [
+//               { type: "textMessage", text: "Bahaha!", faceHero: "npcB" },
+//               { type: "addStoryFlag", flag: "TALKED_TO_ERIO" },
+//               //{ type: "battle", enemyId: "erio" }
+//             ],
+//           },
+//         ],
+//         // behaviorLoop: [
+//         //   { type: "walk",  direction: "left" },
+//         //   { type: "stand",  direction: "up", time: 800 },
+//         //   { type: "walk",  direction: "up" },
+//         //   { type: "walk",  direction: "right" },
+//         //   { type: "walk",  direction: "down" },
+//         // ]
+//       }),
+//       pizzaStone: new PizzaStone({
+//         x: utils.withGrid(2),
+//         y: utils.withGrid(7),
+//         storyFlag: "USED_PIZZA_STONE",
+//         pizzas: playerState.recipes,
+//       }),
+//     },
+//     walls: {
+//       [utils.asGridCoords(7, 6)]: true,
+//       [utils.asGridCoords(8, 6)]: true,
+//       [utils.asGridCoords(7, 7)]: true,
+//       [utils.asGridCoords(8, 7)]: true,
+//     },
+//     cutsceneSpaces: {
+//       [utils.asGridCoords(7, 4)]: [
+//         {
+//           events: [
+//             { who: "npcB", type: "walk", direction: "left" },
+//             { who: "npcB", type: "stand", direction: "up", time: 500 },
+//             { type: "textMessage", text: "You can't be in there!" },
+//             { who: "npcB", type: "walk", direction: "right" },
+//             { who: "hero", type: "walk", direction: "down" },
+//             { who: "hero", type: "walk", direction: "left" },
+//           ],
+//         },
+//       ],
+//       [utils.asGridCoords(5, 10)]: [
+//         {
+//           events: [
+//             {
+//               type: "changeMap",
+//               map: "Kitchen",
+//               x: utils.withGrid(2),
+//               y: utils.withGrid(2),
+//               direction: "down",
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   },
+//   Kitchen: {
+//     id: "Kitchen",
+//     lowerSrc: "/images/maps/KitchenLower.png",
+//     upperSrc: "/images/maps/KitchenUpper.png",
+//     gameObjects: {
+//       hero: new Person({
+//         isPlayerControlled: true,
+//         x: utils.withGrid(5),
+//         y: utils.withGrid(5),
+//       }),
+//       npcB: new Person({
+//         x: utils.withGrid(10),
+//         y: utils.withGrid(8),
+//         src: "/images/characters/people/npc3.png",
+//         talking: [
+//           {
+//             events: [
+//               {
+//                 type: "textMessage",
+//                 text: "You made it! This video is going to be such a good time!",
+//                 faceHero: "npcB",
+//               },
+//               { type: "openShop" },
+//             ],
+//           },
+//         ],
+//       }),
+//     },
+//     cutsceneSpaces: {
+//       [utils.asGridCoords(5, 10)]: [
+//         {
+//           events: [
+//             {
+//               type: "changeMap",
+//               map: "Street",
+//               x: utils.withGrid(29),
+//               y: utils.withGrid(9),
+//               direction: "down",
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   },
+//   Street: {
+//     id: "Street",
+//     lowerSrc: "/images/maps/StreetLower.png",
+//     upperSrc: "/images/maps/StreetUpper.png",
+//     gameObjects: {
+//       hero: new Person({
+//         isPlayerControlled: true,
+//         x: utils.withGrid(30),
+//         y: utils.withGrid(10),
+//       }),
+//     },
+//     cutsceneSpaces: {
+//       [utils.asGridCoords(29, 9)]: [
+//         {
+//           events: [
+//             {
+//               type: "changeMap",
+//               map: "Kitchen",
+//               x: utils.withGrid(5),
+//               y: utils.withGrid(10),
+//               direction: "up",
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   },
+// };

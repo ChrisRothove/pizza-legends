@@ -10,6 +10,7 @@ class PlayerState {
       { actionId: "item_recoverHp", instanceId: "item3" },
     ];
     this.storyFlags = {};
+    this.gameState = 0;
     this.recipes = ["n001"];
 
     this.currency = 15;
@@ -54,8 +55,8 @@ class PlayerState {
     this.pizzas[newId] = {
       ...archetype,
       pizzaId,
-      hp: vit * 10,
-      maxHp: vit * 10,
+      hp: vit * 5,
+      maxHp: vit * 5,
       xp: 0,
       maxXp: 100,
       level: 1,

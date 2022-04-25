@@ -36,7 +36,7 @@ class OverworldEvent {
       {
         type: "walk",
         direction: this.event.direction,
-        retry: true,
+        retry: this.event.retry || true,
       }
     );
     // setup event handler for when a person is done walking, then resolve event
@@ -163,6 +163,11 @@ class OverworldEvent {
     const person = this.map.gameObjects[who];
     delete this.map.removeWall(person.x, person.y);
     delete this.map.gameObjects[who];
+    resolve();
+  }
+
+  updateGameState(resolve) {
+    window.playerState.gameState += 1;
     resolve();
   }
 

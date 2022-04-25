@@ -30,9 +30,10 @@
   font-size: 10px;
 }
 .KeyboardMenu button:focus {
-  background: var(--menu-selected-background);
+  background: var(--menu-background);
   border-radius: 3px;
-  border: 1px solid var(--menu-selected-border);
+  border: 1px solid var(--menu-border-color);
+  color: var(--menu-font-color);
   outline: 0;
 }
 

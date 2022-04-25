@@ -1,4 +1,5 @@
 window.Cutscenes = [
+  // First Defeat
   {
     name: "First Defeat 1",
     events: [
@@ -108,6 +109,10 @@ window.Cutscenes = [
       { who: "erio", type: "walk", direction: "down" },
       { who: "erio", type: "removeObject" },
       { type: "addStoryFlag", flag: "FIRST_DEFEAT" },
+      { type: "updateGameState" },
     ],
+  },
+  {
+    name: "Exhibition",
   },
 ];

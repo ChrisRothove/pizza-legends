@@ -132,21 +132,100 @@ window.MapMaker = {
   },
   // LITTLE CHEF BIG CITYYYY
   city: () => {
+    // SET DEFAULTS
     const hero = new Person({
       isPlayerControlled: true,
       x: utils.withGrid(4),
       y: utils.withGrid(11),
     });
-    const transitionCutscene = {};
-
-    //MUSIC
+    let transitionCutscene = {};
+    let gameObjects = {};
     const theme = "town";
+
+    switch (playerState.gameState) {
+      default:
+        gameObjects = {
+          benson: new Person({
+            x: utils.withGrid(13),
+            y: utils.withGrid(9),
+            src: "/images/characters/people/npc2.png",
+            behaviorLoop: null,
+            talking: [
+              {
+                events: [
+                  {
+                    type: "textMessage",
+                    text: "Oh, you're the Master's new apprentice, right?",
+                    speaker: "npc2",
+                    name: "benson",
+                  },
+                  {
+                    type: "textMessage",
+                    text: "Work hard, okay? He needs the win.",
+                    speaker: "npc2",
+                    name: "benson",
+                  },
+                ],
+              },
+            ],
+          }),
+          riley: new Person({
+            x: utils.withGrid(17),
+            y: utils.withGrid(12),
+            src: "/images/characters/people/npc2.png",
+            behaviorLoop: null,
+            talking: [
+              {
+                events: [
+                  {
+                    type: "textMessage",
+                    text: "These red boxes are for challenging strangers to a Pizza Fight. Just walk around.",
+                    speaker: "npc2",
+                    name: "Riley",
+                  },
+                ],
+              },
+            ],
+          }),
+          tribly: new Person({
+            x: utils.withGrid(32),
+            y: utils.withGrid(12),
+            src: "/images/characters/people/npc2.png",
+            behaviorLoop: [
+              { type: "walk", direction: "down", retry: false },
+              { type: "walk", direction: "left", retry: false },
+              { type: "walk", direction: "left", retry: false },
+              { type: "walk", direction: "left", retry: false },
+              { type: "walk", direction: "up", retry: false },
+              { type: "walk", direction: "right", retry: false },
+              { type: "walk", direction: "right", retry: false },
+              { type: "walk", direction: "up", retry: false },
+              { type: "walk", direction: "up", retry: false },
+              { type: "walk", direction: "right", retry: false },
+              { type: "walk", direction: "down", retry: false },
+              { type: "walk", direction: "down", retry: false },
+            ],
+            talking: [
+              {
+                events: [
+                  {
+                    type: "textMessage",
+                    text: "I didn't expect it at all...",
+                    speaker: "npc2",
+                    name: "Javier",
+                  },
+                ],
+              },
+            ],
+          }),
+        };
+    }
 
     return {
       id: "city",
       lowerSrc: "./../images/maps/StreetLower.png",
       upperSrc: "./../images/maps/StreetUpper.png",
-      gameObjects: { hero },
+      gameObjects: { hero, ...gameObjects },
       ...transitionCutscene,
       theme,
       walls: {

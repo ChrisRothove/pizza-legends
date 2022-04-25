@@ -1,17 +1,17 @@
 window.enemies = {
-  erio: {
+  erio_tutorial: {
     name: "Erio",
     src: "/images/characters/people/erio.png",
     rewards: {
       currency: 1000,
-      items: ["item_recoverHp2"],
-      ingredients: ["magic dough", "pepperoni", "cheddar", "tomato sauce"],
+      items: [],
+      ingredients: [],
     },
     pizzas: {
       a: {
-        hp: 2,
+        hp: 140,
         pizzaId: "c001",
-        maxHp: 280,
+        maxHp: 140,
         level: 1,
         stats: {
           vit: 28,
@@ -34,7 +34,7 @@ window.enemies = {
       a: {
         hp: 280,
         pizzaId: "f001",
-        maxHp: 280,
+        maxHp: 140,
         level: 1,
         stats: {
           vit: 28,
