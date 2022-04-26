@@ -142,10 +142,113 @@ window.MapMaker = {
     let gameObjects = {};
     const theme = "town";
 
-    switch (playerState.gameState) {
+    switch (playerState.storyFlags["CITY_STATE"]) {
+      case 1: 
+        gameObjects.guy1 = new Person({
+          x: utils.withGrid(16),
+          y: utils.withGrid(8),
+          src: "/images/characters/people/npc2.png",
+        })
+        gameObjects.guy2 = new Person({
+          x: utils.withGrid(18),
+          y: utils.withGrid(8),
+          src: "/images/characters/people/npc2.png",
+        })
+        gameObjects.guy3 = new Person({
+          x: utils.withGrid(19),
+          y: utils.withGrid(8),
+          src: "/images/characters/people/npc2.png",
+        })
+        gameObjects.guy4 = new Person({
+          x: utils.withGrid(20),
+          y: utils.withGrid(8),
+          src: "/images/characters/people/npc2.png",
+        })
+        gameObjects.guy5 = new Person({
+          x: utils.withGrid(24),
+          y: utils.withGrid(8),
+          src: "/images/characters/people/npc2.png",
+        })
+        gameObjects.guy6 = new Person({
+          x: utils.withGrid(18),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+        gameObjects.guy7 = new Person({
+          x: utils.withGrid(19),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+        gameObjects.guy8 = new Person({
+          x: utils.withGrid(20),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+        gameObjects.guy9 = new Person({
+          x: utils.withGrid(21),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+        gameObjects.guy10 = new Person({
+          x: utils.withGrid(22),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+        gameObjects.guy11 = new Person({
+          x: utils.withGrid(23),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+        gameObjects.guy12 = new Person({
+          x: utils.withGrid(24),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+
+        gameObjects.beth = new Person({
+          x: utils.withGrid(19),
+          y: utils.withGrid(9),
+          src: "/images/characters/people/npc1.png",
+          direction: "right"
+        })
+        gameObjects.bethPizza = new Person({
+          x: utils.withGrid(20),
+          y: utils.withGrid(10),
+          src: "/images/characters/pizzas/f001.png"
+        })
+
+        gameObjects.baddie = new Person({
+          x: utils.withGrid(22),
+          y: utils.withGrid(11),
+          src: "/images/characters/people/npc2.png",
+          direction: "left"
+        })
+        gameObjects.baddiePizza = new Person({
+          x: utils.withGrid(21),
+          y: utils.withGrid(10),
+          src: "/images/characters/pizzas/n002.png"
+        })
+
+        gameObjects.paprika = new Person({
+          x: utils.withGrid(20),
+          y: utils.withGrid(13),
+          src: "/images/characters/people/npc4.png",
+          direction: "up",
+          talking: [
+            {
+              events: window.Cutscenes[3].events
+            }
+          ]
+        })
       default:
-        gameObjects = {
-          benson: new Person({
+          gameObjects.benson = new Person({
             x: utils.withGrid(13),
             y: utils.withGrid(9),
             src: "/images/characters/people/npc2.png",
@@ -158,6 +261,7 @@ window.MapMaker = {
                     text: "Oh, you're the Master's new apprentice, right?",
                     speaker: "npc2",
                     name: "benson",
+                    faceHero: "benson"
                   },
                   {
                     type: "textMessage",
@@ -165,11 +269,12 @@ window.MapMaker = {
                     speaker: "npc2",
                     name: "benson",
                   },
+                  {type: "stand", direction: "down"}
                 ],
               },
             ],
-          }),
-          riley: new Person({
+          })
+          gameObjects.riley = new Person({
             x: utils.withGrid(17),
             y: utils.withGrid(12),
             src: "/images/characters/people/npc2.png",
@@ -182,29 +287,18 @@ window.MapMaker = {
                     text: "These red boxes are for challenging strangers to a Pizza Fight. Just walk around.",
                     speaker: "npc2",
                     name: "Riley",
+                    faceHero: "riley"
                   },
+                  {type: "stand", direction: "down"}
                 ],
               },
             ],
-          }),
-          tribly: new Person({
+          })
+          gameObjects.javier = new Person({
             x: utils.withGrid(32),
             y: utils.withGrid(12),
             src: "/images/characters/people/npc2.png",
-            behaviorLoop: [
-              { type: "walk", direction: "down", retry: false },
-              { type: "walk", direction: "left", retry: false },
-              { type: "walk", direction: "left", retry: false },
-              { type: "walk", direction: "left", retry: false },
-              { type: "walk", direction: "up", retry: false },
-              { type: "walk", direction: "right", retry: false },
-              { type: "walk", direction: "right", retry: false },
-              { type: "walk", direction: "up", retry: false },
-              { type: "walk", direction: "up", retry: false },
-              { type: "walk", direction: "right", retry: false },
-              { type: "walk", direction: "down", retry: false },
-              { type: "walk", direction: "down", retry: false },
-            ],
+            behaviorLoop: null,
             talking: [
               {
                 events: [
@@ -218,7 +312,6 @@ window.MapMaker = {
               },
             ],
           }),
-        };
     }
 
     return {
