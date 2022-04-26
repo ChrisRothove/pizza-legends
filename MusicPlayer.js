@@ -10,6 +10,7 @@ class MusicPlayer {
     this.currentTune.autoplay = true;
     this.currentTune.loop = true;
     this.currentTune.muted = false;
+    this.currentTune.volume = 0.5;
     this.currentTune.load();
   }
 
