@@ -84,10 +84,11 @@ class OverworldEvent {
     if (Object.keys(playerState.pizzas).length > 0) {
       const prevMusic = this.map.overworld.musicPlayer.currentTuneId;
       this.map.overworld.musicPlayer.changeTune(this.event.bgm);
+      const { canLose } = this.event;
       const battle = new Battle({
         enemy: enemies[this.event.enemyId],
         onComplete: (didWin) => {
-          resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
+          resolve(didWin || canLose ? "WON_BATTLE" : "LOST_BATTLE");
           this.map.overworld.musicPlayer.changeTune(prevMusic);
         },
       });
@@ -166,8 +167,38 @@ class OverworldEvent {
     resolve();
   }
 
-  updateGameState(resolve) {
-    window.playerState.gameState += 1;
+  updateStoryValue(resolve) {
+    const { flag } = this.event;
+    state = window.playerState.storyFlags[flag];
+    state
+      ? (window.playerState.storyFlags[flag] += 1)
+      : (window.playerState.storyFlags[flag] = 1);
+    resolve();
+  }
+
+  itemGet(resolve) {
+    const { items } = this.event;
+    if (items) {
+      items.forEach((item) => {
+        playerState.items.push({
+          actionId: item,
+          instanceId: `item${new Date()}`,
+        });
+      });
+    }
+    resolve();
+  }
+
+  ingredientGet(resolve) {
+    const { items } = this.event;
+    if (items) {
+      items.forEach((item) => {
+        playerState.ingredients.push({
+          indexId: item,
+          instanceId: `item${new Date()}`,
+        });
+      });
+    }
     resolve();
   }
 
