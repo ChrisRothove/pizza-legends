@@ -97,7 +97,7 @@ window.Cutscenes = [
   {
     name: "First Defeat 3",
     events: [
-      { type: "battle", enemyId: "erio", canLose: true },
+      { type: "battle", enemyId: "erio_tutorial", canLose: true },
       {
         type: "textMessage",
         text: "See? No one in this town is a match for me.",
@@ -135,7 +135,7 @@ window.Cutscenes = [
         name: "Paprika",
       },
       {
-        type: "textMesssage",
+        type: "textMessage",
         text: "Sorry, Pap. I don't have a pie to throw right now. That bastard Erio just cleaned us out...",
         speaker: "hero",
         name: "Pietro",

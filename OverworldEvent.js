@@ -170,10 +170,10 @@ class OverworldEvent {
 
   updateStoryValue(resolve) {
     const { flag } = this.event;
-    state = window.playerState.storyFlags[flag];
+    const state = playerState.storyFlags[flag];
     state
-      ? (window.playerState.storyFlags[flag] += 1)
-      : (window.playerState.storyFlags[flag] = 1);
+      ? (playerState.storyFlags[flag] += 1)
+      : (playerState.storyFlags[flag] = 1);
     resolve();
   }
 
