@@ -138,11 +138,11 @@ window.MapMaker = {
       x: utils.withGrid(4),
       y: utils.withGrid(11),
     });
-    let transitionCutscene = {};
-    let gameObjects = {};
+    const transitionCutscene = {};
+    const gameObjects = {};
     const theme = "town";
 
-    switch (playerState.storyFlags["CITY_STATE"]) {
+    switch (playerState.storyFlags.CITY_STATE) {
       case 1: 
         gameObjects.guy1 = new Person({
           x: utils.withGrid(16),
@@ -243,10 +243,79 @@ window.MapMaker = {
           direction: "up",
           talking: [
             {
-              events: window.Cutscenes[3].events
+              events: Cutscenes[3].events
             }
           ]
         })
+        break;
+
+      case 2: 
+        gameObjects.guy2 = new Person({
+          x: utils.withGrid(18),
+          y: utils.withGrid(8),
+          src: "/images/characters/people/npc2.png",
+        })
+        gameObjects.guy4 = new Person({
+          x: utils.withGrid(20),
+          y: utils.withGrid(8),
+          src: "/images/characters/people/npc2.png",
+        })
+        gameObjects.guy5 = new Person({
+          x: utils.withGrid(24),
+          y: utils.withGrid(8),
+          src: "/images/characters/people/npc2.png",
+        })
+        gameObjects.guy8 = new Person({
+          x: utils.withGrid(20),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+        gameObjects.guy9 = new Person({
+          x: utils.withGrid(21),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+        gameObjects.guy10 = new Person({
+          x: utils.withGrid(22),
+          y: utils.withGrid(12),
+          src: "/images/characters/people/npc2.png",
+          direction: "up"
+        })
+
+        gameObjects.beth = new Person({
+          x: utils.withGrid(19),
+          y: utils.withGrid(9),
+          src: "/images/characters/people/npc1.png",
+          direction: "right",
+          talking: [
+            {
+              events: Cutscenes[5].events
+            }
+          ]
+        })
+
+        gameObjects.paprika = new Person({
+          x: utils.withGrid(20),
+          y: utils.withGrid(13),
+          src: "/images/characters/people/npc4.png",
+          direction: "up",
+          talking: [
+            {
+              events: [
+                {
+                  type: "textMessage",
+                  text: "Hurry up, I think she's getting tired.",
+                  speaker: "npc4",
+                  name: "Paprika"
+                }
+              ]
+            }
+          ]
+        })
+        break;
+        
       default:
           gameObjects.benson = new Person({
             x: utils.withGrid(13),
@@ -294,6 +363,7 @@ window.MapMaker = {
               },
             ],
           })
+
           gameObjects.javier = new Person({
             x: utils.withGrid(32),
             y: utils.withGrid(12),
@@ -549,14 +619,80 @@ window.MapMaker = {
       y: utils.withGrid(11),
     });
     const transitionCutscene = {};
-
     const theme = "town";
+    const gameObjects = { hero };
 
+    switch (playerState.storyFlags.STACK_STATE) {
+      case 1:
+        gameObjects.stacker = new Person({
+          x: utils.withGrid(8),
+          y: utils.withGrid(7),
+          behaviorLoop: null,
+          talking: [
+            {
+              required: ["FREEBIE"],
+              events: [
+                {
+                  type: "textMessage",
+                  text: "Well, go on then.",
+                  speaker: "npc3",
+                  name: "Stacker",
+                  faceHero: "stacker",
+                },
+                { type: "stand", direction: "down" },
+              ],
+            },
+            {
+              events: Cutscenes[4].events,
+            },
+          ],
+        });
+        break;
+      default:
+        gameObjects.stacker = new Person({
+          x: utils.withGrid(8),
+          y: utils.withGrid(7),
+          behaviorLoop: null,
+          talking: [
+            {
+              events: [
+                {
+                  type: "textMessage",
+                  text: "Oh, back for more, eh?",
+                  speaker: "npc3",
+                  name: "Stacker",
+                  faceHero: "stacker",
+                },
+                { type: "openShop", list: "ingredients" },
+                { type: "stand", direction: "down" },
+              ],
+            },
+          ],
+        });
+        gameObjects.paprika = new Person({
+          x: utils.withGrid(12),
+          y: utils.withGrid(5),
+          talking: [
+            {
+              events: [
+                {
+                  type: "textMessage",
+                  text: "Is everything okay? We've got water in the fridge if you're thirsty.",
+                  speaker: "npc4",
+                  name: "Paprika",
+                  faceHero: "paprika",
+                },
+                { type: "stand", direction: "down" },
+              ],
+            },
+          ],
+        });
+    }
     return {
       id: "stack",
       lowerSrc: "./../images/maps/KitchenLower.png",
       upperSrc: "./../images/maps/KitchenUpper.png",
-      gameObjects: { hero },
+      gameObjects,
       ...transitionCutscene,
       theme,
       walls: {

@@ -135,6 +135,7 @@ class OverworldEvent {
   openShop(resolve) {
     this.map.isPaused = true;
     const menu = new ShopMenu({
+      list: this.event.list || "items",
       onComplete: () => {
         resolve();
         this.map.isPaused = false;

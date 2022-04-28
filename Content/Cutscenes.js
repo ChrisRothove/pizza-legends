@@ -117,6 +117,7 @@ window.Cutscenes = [
       { type: "updateStoryValue", flag: "DEMO_STATE" },
     ],
   },
+  //Exhibition
   {
     name: "Exhibition",
     events: [
@@ -153,8 +154,10 @@ window.Cutscenes = [
       },
       { who: "paprika", type: "walk", direction: "up" },
       { type: "addStoryFlag", flag: "EXHIBITION" },
+      { type: "updateStoryValue", flag: "STACK_STATE" },
     ],
   },
+  //FREEBIE
   {
     name: "Freebie",
     events: [
